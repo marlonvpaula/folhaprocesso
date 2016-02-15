@@ -1,0 +1,31 @@
+<div layout="row" ng-controller="NavCtrl as vm">
+<md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" ng-show="signedIn()">
+  <!--md-content role="navigation"-->
+
+
+  <md-toolbar class="md-theme-indigo">
+    <img ng-src="/assets/user.png" class="md-card-image userimage" width="128px" height="128px" alt="User">
+    
+    <ul class="menuLogout">
+      <li ng-hide="signedIn()"><a href="#/login">Log In</a></li>
+      <li ng-hide="signedIn()"><a href="#/register">Register</a></li>
+      <li ng-show="signedIn()"><a href="#/">{{ user.username }}</a></li>
+      <li ng-show="signedIn()"><a href="" ng-click="logout()">Log Out</a></li>
+    </ul>
+
+    <ul class="side-menu">
+      <li ng-repeat="section in vm.menu.sections" class="parent-list-item md-theme-indigo"
+          ng-class="{'parentActive' : vm.isSectionSelected(section)}">
+
+        <h2 class="menu-heading" ng-if="section.type === 'heading'"
+            id="heading_{{ section.name | nospace }}">
+          {{section}}
+        </h2>
+        <menu-link section="section" ng-if="section.type === 'link'"></menu-link>
+        <menu-toggle section="section" ng-if="section.type === 'toggle'"></menu-toggle>
+      </li>
+    </ul>
+  </md-toolbar>
+  <!--/md-content-->
+</md-sidenav>
+</div>

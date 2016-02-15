@@ -1,0 +1,15 @@
+<md-content layout="column" flex >
+  <md-toolbar layout="row" md-scroll-shrink>
+
+    <div class="md-toolbar-tools">
+      <md-button ng-click="toggleSidenav('left')" hide-gt-sm class="md-icon-button">
+        <md-icon aria-label="Menu" class="md-toggle-icon fa fa-bars"></md-icon>
+      </md-button>
+      <h3>
+        <span>Usuário {{ user.username }}</span>
+      </h3>
+    </div>
+  </md-toolbar>
+
+  <h1>Email: {{ user.email }}</h1>
+</md-content>

@@ -1,0 +1,2 @@
+module InsertosHelper
+end
