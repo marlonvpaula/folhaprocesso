@@ -23,6 +23,8 @@ gem 'devise', '~> 3.4.0'
 
 gem 'angular_rails_csrf'
 
+gem 'rails_12factor'
+
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
