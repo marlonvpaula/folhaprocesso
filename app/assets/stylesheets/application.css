@@ -12,5 +12,6 @@
 
  *= require angular-material
  *= require components-font-awesome
+ *= require font-awesome
  *= require_tree .
  */
