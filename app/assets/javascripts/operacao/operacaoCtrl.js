@@ -13,7 +13,7 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, operacaos){
 	$scope.showAdvanced = function(ev) {
     var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
     $mdDialog.show({
-      controller: DialogController,
+      controller: 'DialogOperaController',
       templateUrl: 'operacao/_newOperacao.html',
       parent: angular.element(document.body),
       targetEvent: ev,
@@ -46,21 +46,23 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, operacaos){
     $mdSidenav(menuId).toggle();
   };
   
-
-  function DialogController($scope, $mdDialog, operacaos) {
-	  $scope.hide = function() {
-	    $mdDialog.hide();
-	  };
-	  $scope.cancel = function() {
-	    $mdDialog.cancel();
-	  };
-	  $scope.salvar = function() {
-	  	if(!$scope.operacao.descricao || $scope.operacao.descricao === '') { return; }
-		  operacaos.create({
-		    descricao: $scope.operacao.descricao,
-		  });
-		  $scope.operacao.descricao = '';
-	    $mdDialog.hide();
-	  };
-	}
+}])
+.controller('DialogOperaController', ['$scope',
+                                      '$mdDialog',
+                                      'operacaos',
+function ($scope, $mdDialog, operacaos) {
+    $scope.hide = function() {
+      $mdDialog.hide();
+    };
+    $scope.cancel = function() {
+      $mdDialog.cancel();
+    };
+    $scope.salvar = function() {
+      if(!$scope.operacao.descricao || $scope.operacao.descricao === '') { return; }
+      operacaos.create({
+        descricao: $scope.operacao.descricao,
+      });
+      $scope.operacao.descricao = '';
+      $mdDialog.hide();
+    };
 }]);
