@@ -7,13 +7,13 @@
                                'StarterApp.controllers'
                                ])
 .run(['$rootScope', '$location', 'Auth', function ($rootScope, $location, Auth) {
-    $rootScope.$on('$locationChangeStart', function (event) {
+    /*$rootScope.$on('$locationChangeStart', function (event) {
         if (!Auth.isAuthenticated()) {
           $location.path('/login');
           //event.preventDefault();
           return;
         }
-    });
+    });*/
 }])
 .config(['$stateProvider', '$urlRouterProvider', '$logProvider',
   function ($stateProvider, $urlRouterProvider) {
