@@ -13,7 +13,7 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, fabricantes){
 	$scope.showAdvanced = function(ev) {
     var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
     $mdDialog.show({
-      controller: DialogController,
+      controller: 'DialogFabriController',
       templateUrl: 'fabricante/_newFabricante.html',
       parent: angular.element(document.body),
       targetEvent: ev,
@@ -47,20 +47,24 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, fabricantes){
   };
   
 
-  function DialogController($scope, $mdDialog, fabricantes) {
-	  $scope.hide = function() {
-	    $mdDialog.hide();
-	  };
-	  $scope.cancel = function() {
-	    $mdDialog.cancel();
-	  };
-	  $scope.salvar = function() {
-	  	if(!$scope.fabricante.descricao || $scope.fabricante.descricao === '') { return; }
-		  fabricantes.create({
-		    descricao: $scope.fabricante.descricao,
-		  });
-		  $scope.fabricante.descricao = '';
-	    $mdDialog.hide();
-	  };
-	}
+  
+}])
+.controller('DialogFabriController', ['$scope',
+                                      '$mdDialog',
+                                      'fabricantes',
+function ($scope, $mdDialog, fabricantes) {
+    $scope.hide = function() {
+      $mdDialog.hide();
+    };
+    $scope.cancel = function() {
+      $mdDialog.cancel();
+    };
+    $scope.salvar = function() {
+      if(!$scope.fabricante.descricao || $scope.fabricante.descricao === '') { return; }
+      fabricantes.create({
+        descricao: $scope.fabricante.descricao,
+      });
+      $scope.fabricante.descricao = '';
+      $mdDialog.hide();
+    };
 }]);
