@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160214035639) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "fabricantes", force: true do |t|
     t.string   "descricao"
     t.datetime "created_at"
@@ -26,8 +29,8 @@ ActiveRecord::Schema.define(version: 20160214035639) do
     t.datetime "updated_at"
   end
 
-  add_index "inserto_fabricantes", ["fabricante_id"], name: "index_inserto_fabricantes_on_fabricante_id"
-  add_index "inserto_fabricantes", ["inserto_id"], name: "index_inserto_fabricantes_on_inserto_id"
+  add_index "inserto_fabricantes", ["fabricante_id"], name: "index_inserto_fabricantes_on_fabricante_id", using: :btree
+  add_index "inserto_fabricantes", ["inserto_id"], name: "index_inserto_fabricantes_on_inserto_id", using: :btree
 
   create_table "insertos", force: true do |t|
     t.string   "descricao"
@@ -58,8 +61,8 @@ ActiveRecord::Schema.define(version: 20160214035639) do
     t.string   "typeuser"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  add_index "users", ["username"], name: "index_users_on_username", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
 end
