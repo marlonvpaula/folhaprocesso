@@ -5,7 +5,14 @@ class InsertosController < ApplicationController
   end
 
   def create
-    respond_with Inserto.create(inserto_params)
+    #respond_with Inserto.create(inserto_params)
+    @inserto = Inserto.new(inserto_params)
+    if @inserto.save
+      params[:fabricantes].each do |a|
+        @inserto_fab = @inserto.inserto_fabricantes.create!(:fabricante_id => a['id'])
+      end
+    end
+    respond_with @inserto
   end
 
   def show
@@ -20,7 +27,7 @@ class InsertosController < ApplicationController
 
   private
   def inserto_params
-    params.require(:inserto).permit(:descricao)
+    params.require(:inserto).permit(:descricao, fabricantes_attributes: [:id, :descricao])
   end
 
 end

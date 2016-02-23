@@ -9,7 +9,6 @@ angular.module('StarterApp.controllers')
 function($scope, $stateParams, $mdSidenav, users, user){
 	$scope.user = user;
 
-
   $scope.toggleSidenav = function(menuId) {
     $mdSidenav(menuId).toggle();
   };

@@ -37,8 +37,8 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, operacaos){
   		operacaos.remove(
 		    $scope.selected[i].id
 		  );
-		  $scope.selected = {};
   	}
+    $scope.selected = [];
   }
 
 

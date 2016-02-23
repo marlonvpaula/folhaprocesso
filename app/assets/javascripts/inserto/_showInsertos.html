@@ -1,0 +1,28 @@
+<md-content layout="column" flex>
+  <md-toolbar layout="row" md-scroll-shrink>
+    <div class="md-toolbar-tools">
+      <md-button ng-click="toggleSidenav('left')" hide-gt-sm class="md-icon-button">
+        <md-icon aria-label="Menu" class="md-toggle-icon fa fa-bars"></md-icon>
+      </md-button>
+      <h3>
+        <span>Cadastros - Inserto</span>
+      </h3>
+    </div>
+  </md-toolbar>
+
+  <md-content class="md-padding" layout="column" flex >
+    <h2 class="md-title">{{ inserto.descricao }}</h2>
+  
+    <md-chips ng-repeat="fab in inserto.inserto_fabricantes">
+      <md-chip >{{fab.fabricante.descricao}}</md-chip>
+    </md-chips>
+    <ul class="menuLogout">
+      <li>
+        <md-button class="md-raised md-warn" ng-click="voltar()">
+         Voltar
+        </md-button>
+      </li>
+    </ul>
+    
+  </md-content>
+</md-content>

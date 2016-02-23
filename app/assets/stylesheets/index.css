@@ -36,6 +36,11 @@ body {
   list-style-type: none;
 }
 
+.menuDiv {
+  margin-top: 40px;
+  position: absolute;
+}
+
 .menuLogout li {
   display: block;
   padding: 5px;
@@ -155,3 +160,19 @@ body {
   padding-top: 12px;
   padding-bottom: 12px;
 }
+
+md-content.autocomplete {
+  min-height: 200px; }
+.blocoChips .veggie-option {
+  float: left;
+  width: 20%;
+  box-sizing: border-box;
+  padding: 0 8px; }
+.blocoChips .veggie-option .md-item-text {
+  padding: 8px;
+  background: #f0f0f0;
+  border-radius: 3px; }
+.blocoChips .veggie-option .md-item-text h3,
+.blocoChips .veggie-option .md-item-text p {
+  padding: 0;
+  margin: 0; }

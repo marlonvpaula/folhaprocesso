@@ -8,9 +8,8 @@
                                ])
 .run(['$rootScope', '$location', 'Auth', function ($rootScope, $location, Auth) {
     $rootScope.$on('$locationChangeStart', function (event) {
-        if (!Auth.isAuthenticated()) {
+        if (!Auth.isAuthenticated) {
           $location.path('/login');
-          //event.preventDefault();
           return;
         }
     });
@@ -91,6 +90,26 @@
         resolve: {
           postPromise: ['insertos', function(insertos){
             return insertos.getAll();
+          }]
+        }
+      })
+      .state('inserto', {
+        url: '/insertos/new',
+        templateUrl: 'inserto/_newInsertos.html',
+        controller: 'InsertoNewCtrl',
+        resolve: {
+          postPromise: ['fabricantes', function(fabricantes){
+            return fabricantes.getAll();
+          }]
+        }
+      })
+      .state('showInserto', {
+        url: '/insertos/{id}',
+        templateUrl: 'inserto/_showInsertos.html',
+        controller: 'InsertoShowCtrl',
+        resolve: {
+          inserto: ['$stateParams', 'insertos', function($stateParams, insertos) {
+            return insertos.get($stateParams.id);
           }]
         }
       });

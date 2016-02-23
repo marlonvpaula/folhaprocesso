@@ -6,7 +6,7 @@
           <md-icon aria-label="Menu" class="md-toggle-icon fa fa-bars"></md-icon>
         </md-button>
         <h3>
-          <span>Insertos</span>
+          <span>Cadastros - Inserto</span>
         </h3>
       </div>
     </md-toolbar>
@@ -18,7 +18,7 @@
       </md-data-table-toolbar>
       <ul class="menuLogout">
         <li>
-          <md-button class="md-primary md-raised" ng-click="showAdvanced($event)" style="width: 150px;">
+          <md-button class="md-primary md-raised" ng-click="newInserto()" style="width: 150px;">
             Novo Inserto
           </md-button>
         </li>
@@ -47,14 +47,22 @@
             <tr>
               <th name="Id" ></th>
               <th name="Descrição" ></th>
+              <th name="Ações" ></th>
             </tr>
           </thead>
 
         <tbody>
-        <tr md-auto-select ng-repeat="inserto in insertos">
+        <tr ng-repeat="inserto in insertos">
           <td>{{ inserto.id }}</td>
           <td>{{ inserto.descricao }}</td>
-          
+          <td>
+            <md-button class="md-fab md-mini md-primary" ng-click="showInserto(inserto.id)" aria-label="Mostrar">
+              <i class="fa fa-folder-open"></i>
+            </md-button>
+            <md-button class="md-fab md-mini md-primary" ng-click="editarInserto()" aria-label="Editar">
+              <i class="fa fa-pencil-square-o"></i>
+            </md-button>
+          </td>
         </tr>
       </md-data-table>
 

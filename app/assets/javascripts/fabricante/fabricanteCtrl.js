@@ -37,8 +37,8 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, fabricantes){
   		fabricantes.remove(
 		    $scope.selected[i].id
 		  );
-		  $scope.selected = {};
   	}
+    $scope.selected = [];
   }
 
 
