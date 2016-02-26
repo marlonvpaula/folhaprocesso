@@ -5,18 +5,18 @@
         <md-icon aria-label="Menu" class="md-toggle-icon fa fa-bars"></md-icon>
       </md-button>
       <h3>
-        <span>Cadastros - Inserto</span>
+        <span>Cadastros - Suporte</span>
       </h3>
     </div>
   </md-toolbar>
 
   <md-content class="md-padding" layout="column" flex >
-    <h2 class="md-title">{{ inserto.descricao }}</h2>
+    <h2 class="md-title">{{ suporte.descricao }}</h2>
+    
+    <h2 class="md-title">Operação: {{ suporte.operacao.descricao }}</h2>
   
-    <md-chips ng-repeat="fab in inserto.inserto_fabricantes">
-      <md-chip>
-        {{fab.fabricante.descricao}}
-      </md-chip>
+    <md-chips ng-repeat="sup in suporte.suporte_insertos">
+      <md-chip >{{sup.inserto.descricao}}</md-chip>
     </md-chips>
     <ul class="menuLogout">
       <li>

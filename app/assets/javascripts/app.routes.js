@@ -112,6 +112,39 @@
             return insertos.get($stateParams.id);
           }]
         }
+      })
+      .state('suportes', {
+        url: '/suportes',
+        templateUrl: 'suporte/_suportes.html',
+        controller: 'SuporteCtrl',
+        resolve: {
+          postPromise: ['suportes', function(suportes){
+            return suportes.getAll();
+          }]
+        }
+      })
+      .state('suporte', {
+        url: '/suportes/new',
+        templateUrl: 'suporte/_newSuportes.html',
+        controller: 'SuporteNewCtrl',
+        resolve: {
+          initialData: ['insertos', 'operacaos','$q', function (insertos, operacaos, $q) {
+            return $q.all({
+                     insertos: insertos.getAll(),
+                     operacaos: operacaos.getAll(),
+             });
+          }]
+        }
+      })
+      .state('showSuporte', {
+        url: '/suportes/{id}',
+        templateUrl: 'suporte/_showSuportes.html',
+        controller: 'SuporteShowCtrl',
+        resolve: {
+          suporte: ['$stateParams', 'suportes', function($stateParams, suportes) {
+            return suportes.get($stateParams.id);
+          }]
+        }
       });
     $urlRouterProvider.otherwise("/login");
 }])

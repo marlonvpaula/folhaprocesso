@@ -37,7 +37,7 @@
             },
             {
               name: 'Suporte',
-              state: 'home.createTool',
+              state: 'suportes',
               type: 'link',
               icon: 'fa fa-user'
             },

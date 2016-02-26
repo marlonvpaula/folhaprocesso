@@ -67,6 +67,13 @@ Folhaprocmultipet::Application.routes.draw do
   resources :insertos do
     resources :inserto_fabricantes
     resources :fabricantes
+    resources :suporte_insertos
+    resources :suportes
+  end
+  
+  resources :suportes do
+    resources :suporte_insertos
+    resources :insertos
   end
   
 end

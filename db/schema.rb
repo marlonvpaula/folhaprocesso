@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160214035639) do
+ActiveRecord::Schema.define(version: 20160226000033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,23 @@ ActiveRecord::Schema.define(version: 20160214035639) do
 
   create_table "operacaos", force: true do |t|
     t.string   "descricao"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "suporte_insertos", force: true do |t|
+    t.integer  "suporte_id"
+    t.integer  "inserto_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "suporte_insertos", ["inserto_id"], name: "index_suporte_insertos_on_inserto_id", using: :btree
+  add_index "suporte_insertos", ["suporte_id"], name: "index_suporte_insertos_on_suporte_id", using: :btree
+
+  create_table "suportes", force: true do |t|
+    t.string   "descricao"
+    t.integer  "operacao_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
