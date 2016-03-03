@@ -15,6 +15,21 @@ class SuportesController < ApplicationController
     respond_with @suporte
   end
 
+  def update
+    #respond_with Suporte.create(inserto_params)
+    @suporte = Suporte.find(params[:id])
+    @suporte.suporte_insertos.each do |fab|
+      fab.destroy
+    end
+
+    if @suporte.update(suporte_params)
+      params[:insertos].each do |a|
+        @inserto_fab = @suporte.suporte_insertos.create!(:inserto_id => a['id'])
+      end
+    end
+    respond_with @suporte
+  end
+
   def show
     respond_with Suporte.find(params[:id])
   end

@@ -113,6 +113,16 @@
           }]
         }
       })
+      .state('updateInserto', {
+        url: '/insertos/update/{id}',
+        templateUrl: 'inserto/_newInsertos.html',
+        controller: 'InsertoUpdateCtrl',
+        resolve: {
+          postPromise: ['fabricantes', function (fabricantes) {
+            return fabricantes.getAll();
+          }]
+        }
+      })
       .state('suportes', {
         url: '/suportes',
         templateUrl: 'suporte/_suportes.html',
@@ -130,8 +140,8 @@
         resolve: {
           initialData: ['insertos', 'operacaos','$q', function (insertos, operacaos, $q) {
             return $q.all({
-                     insertos: insertos.getAll(),
-                     operacaos: operacaos.getAll(),
+               insertos: insertos.getAll(),
+               operacaos: operacaos.getAll(),
              });
           }]
         }
@@ -143,6 +153,79 @@
         resolve: {
           suporte: ['$stateParams', 'suportes', function($stateParams, suportes) {
             return suportes.get($stateParams.id);
+          }]
+        }
+      })
+      .state('updateSuporte', {
+        url: '/suportes/update/{id}',
+        templateUrl: 'suporte/_newSuportes.html',
+        controller: 'SuporteUpdateCtrl',
+        resolve: {
+          initialData: ['insertos', 'operacaos','$q', function (insertos, operacaos, $q) {
+            return $q.all({
+               insertos: insertos.getAll(),
+               operacaos: operacaos.getAll(),
+             });
+          }]
+        }
+      })
+      .state('raios', {
+        url: '/raios',
+        templateUrl: 'raio/_raios.html',
+        controller: 'RaioCtrl',
+        resolve: {
+          postPromise: ['raios', function(raios){
+            return raios.getAll();
+          }]
+        }
+      })
+      .state('grupomodelos', {
+        url: '/grupomodelos',
+        templateUrl: 'grupomodelo/_grupomodelos.html',
+        controller: 'GrupomodeloCtrl',
+        resolve: {
+          postPromise: ['grupomodelos', function(grupomodelos){
+            return grupomodelos.getAll();
+          }]
+        }
+      })
+      .state('modelos', {
+        url: '/modelos',
+        templateUrl: 'modelo/_modelos.html',
+        controller: 'ModeloCtrl',
+        resolve: {
+          postPromise: ['modelos', function(modelos){
+            return modelos.getAll();
+          }]
+        }
+      })
+      .state('modelo', {
+        url: '/modelos/new',
+        templateUrl: 'modelo/_newModelos.html',
+        controller: 'ModeloNewCtrl',
+        resolve: {
+          postPromise: ['grupomodelos', function(grupomodelos){
+            return grupomodelos.getAll();
+          }]
+        }
+      })
+      .state('showModelo', {
+        url: '/modelos/{id}',
+        templateUrl: 'modelo/_showModelos.html',
+        controller: 'ModeloShowCtrl',
+        resolve: {
+          modelo: ['$stateParams', 'modelos', function($stateParams, modelos) {
+            return modelos.get($stateParams.id);
+          }]
+        }
+      })
+      .state('updateModelo', {
+        url: '/modelos/update/{id}',
+        templateUrl: 'modelo/_newModelos.html',
+        controller: 'ModeloUpdateCtrl',
+        resolve: {
+          postPromise: ['grupomodelos', function(grupomodelos){
+            return grupomodelos.getAll();
           }]
         }
       });

@@ -75,5 +75,9 @@ Folhaprocmultipet::Application.routes.draw do
     resources :suporte_insertos
     resources :insertos
   end
+
+  resources :raios
+  resources :grupomodelos
+  resources :modelos
   
 end

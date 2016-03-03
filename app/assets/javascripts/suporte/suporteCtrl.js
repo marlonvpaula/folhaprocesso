@@ -19,7 +19,7 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, suportes){
   };
 
   $scope.editarSuporte = function(id) {
-    $state.go('editarInserto');
+    $state.go('updateSuporte', { "id": id});
   };
 
   $scope.remover = function() {

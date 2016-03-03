@@ -13,12 +13,12 @@
         sections.push({
           name: 'Cadastros',
           type: 'toggle',
-          pages: [{
+          pages: [/*{
             name: 'Ferramenta',
             type: 'link',
             state: 'beers.ipas',
             icon: 'fa fa-cog'
-          },{
+          },*/{
             name: 'Operação',
             type: 'link',
             state: 'operacaos',
@@ -29,42 +29,42 @@
             type: 'link',
             icon: 'fa fa-building-o'
           },
-            {
-              name: 'Inserto',
-              state: 'insertos',
-              type: 'link',
-              icon: 'fa fa-cogs'
-            },
-            {
-              name: 'Suporte',
-              state: 'suportes',
-              type: 'link',
-              icon: 'fa fa-user'
-            },
-            {
-              name: 'Raio',
-              state: 'home.createTool',
-              type: 'link',
-              icon: 'fa fa-circle-o'
-            },
-            {
-              name: 'Grupo Modelo',
-              state: 'home.createTool',
-              type: 'link',
-              icon: 'fa fa-folder-o'
-            },
-            {
-              name: 'Modelo',
-              state: 'home.createTool',
-              type: 'link',
-              icon: 'fa fa-hdd-o'
-            },
-            {
-              name: 'Acessório',
-              state: 'home.createTool',
-              type: 'link',
-              icon: 'fa fa-link'
-            }]
+          {
+            name: 'Inserto',
+            state: 'insertos',
+            type: 'link',
+            icon: 'fa fa-cogs'
+          },
+          {
+            name: 'Suporte',
+            state: 'suportes',
+            type: 'link',
+            icon: 'fa fa-user'
+          },
+          {
+            name: 'Raio',
+            state: 'raios',
+            type: 'link',
+            icon: 'fa fa-circle-o'
+          },
+          {
+            name: 'Grupo Modelo',
+            state: 'grupomodelos',
+            type: 'link',
+            icon: 'fa fa-folder-o'
+          },
+          {
+            name: 'Modelo',
+            state: 'modelos',
+            type: 'link',
+            icon: 'fa fa-hdd-o'
+          },
+          {
+            name: 'Acessório',
+            state: 'home.createTool',
+            type: 'link',
+            icon: 'fa fa-link'
+          }]
         });
 
         sections.push({

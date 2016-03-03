@@ -1,16 +1,23 @@
 angular.module('StarterApp.controllers')
 
-.controller('InsertoNewCtrl', ['$scope',
+.controller('InsertoUpdateCtrl', ['$scope',
 															 '$state',
                                '$stateParams',
 															 '$mdSidenav', 
                                '$timeout', 
                                '$q',
-			                         'insertos',  
+			                         'insertos',
 			                         'fabricantes',
-function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, insertos,fabricantes){
-
-
+function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, insertos, fabricantes){
+	
+	insertos.get($stateParams.id).then(function(inserto){
+		$scope.fabricsSelected = [];
+    $scope.inserto = inserto;
+  	var inserto_fabricantes = inserto.inserto_fabricantes;
+  	for (var i = 0; i < inserto_fabricantes.length; i++) {
+  		$scope.fabricsSelected.push(inserto_fabricantes[i].fabricante);
+	  } 
+  });
 
   $scope.querySearch = querySearch;
   $scope.fabrics = loadFabricantes();
@@ -18,9 +25,11 @@ function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, insertos,fabric
 	$scope.transformChip = transformChip;
   $scope.selectedItem = null;
   $scope.searchText = null;
-  $scope.fabricsSelected = []; 
+
   $scope.autocompleteDemoRequireMatch = true;
+
   
+
   /**
    * Return the proper object when the append is called.
    */
@@ -67,7 +76,7 @@ function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, insertos,fabric
 
   $scope.salvar = function() {
   	if(!$scope.inserto.descricao || $scope.inserto.descricao === '') { return; }
-	  insertos.create({
+	  insertos.update($scope.inserto.id, {
 	    descricao: $scope.inserto.descricao,
       fabricantes: $scope.fabricsSelected,
 	  });

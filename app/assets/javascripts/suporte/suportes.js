@@ -25,8 +25,8 @@ function($http){
 	  });
 	};
 
-  o.update = function(suporte) {
-    return $http.put('/suportes.json', suporte).success(function(data){
+  o.update = function(id, suporte) {
+    return $http.put('/suportes/' + id + '.json', suporte).success(function(data){
       for(var i = o.suportes.length - 1; i >= 0; i--) {
         if(o.suportes[i].id === id) {
           o.suportes[i] = suporte;

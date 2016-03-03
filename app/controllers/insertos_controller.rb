@@ -15,6 +15,22 @@ class InsertosController < ApplicationController
     respond_with @inserto
   end
 
+  def update
+    #respond_with Inserto.create(inserto_params)
+    @insertof = Inserto.find(params[:id])
+    @insertof.inserto_fabricantes.each do |fab|
+      fab.destroy
+    end
+
+    #@inserto = Inserto.new(inserto_params)
+    if @insertof.update(inserto_params)
+      params[:fabricantes].each do |a|
+        @inserto_fab = @insertof.inserto_fabricantes.create!(:fabricante_id => a['id'])
+      end
+    end
+    respond_with @insertof
+  end
+
   def show
     respond_with Inserto.find(params[:id])
   end

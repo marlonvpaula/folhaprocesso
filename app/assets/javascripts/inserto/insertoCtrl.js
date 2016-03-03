@@ -18,8 +18,8 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, insertos){
     $state.go('showInserto', { "id": id});
   };
 
-  $scope.editarInserto = function() {
-    $state.go('editarInserto');
+  $scope.editarInserto = function(id) {
+    $state.go('updateInserto', { "id": id});
   };
 
   $scope.remover = function() {

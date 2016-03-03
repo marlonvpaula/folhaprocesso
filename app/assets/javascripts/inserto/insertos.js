@@ -25,8 +25,8 @@ function($http){
 	  });
 	};
 
-  o.update = function(inserto) {
-    return $http.post('/insertos.json', inserto).success(function(data){
+  o.update = function(id, inserto) {
+    return $http.put('/insertos/' + id + '.json', inserto).success(function(data){
       for(var i = o.insertos.length - 1; i >= 0; i--) {
         if(o.insertos[i].id === id) {
           o.insertos[i] = inserto;

@@ -6,7 +6,7 @@
           <md-icon aria-label="Menu" class="md-toggle-icon fa fa-bars"></md-icon>
         </md-button>
         <h3>
-          <span>Cadastros - Inserto</span>
+          <span>Cadastros - Modelo</span>
         </h3>
       </div>
     </md-toolbar>
@@ -14,12 +14,12 @@
 
     <md-content layout="column" flex >
       <md-data-table-toolbar>
-        <h2 class="md-title">Insertos</h2>
+        <h2 class="md-title">Modelos</h2>
       </md-data-table-toolbar>
       <ul class="menuLogout">
         <li>
-          <md-button class="md-primary md-raised" ng-click="newInserto()" style="width: 150px;">
-            Novo Inserto
+          <md-button class="md-primary md-raised" ng-click="newModelo()" style="width: 150px;">
+            Novo Modelo
           </md-button>
         </li>
         <li>
@@ -52,14 +52,14 @@
           </thead>
 
         <tbody>
-        <tr ng-repeat="inserto in insertos">
-          <td>{{ inserto.id }}</td>
-          <td>{{ inserto.descricao }}</td>
+        <tr ng-repeat="modelo in modelos">
+          <td>{{ modelo.id }}</td>
+          <td>{{ modelo.descricao }}</td>
           <td>
-            <md-button class="md-fab md-mini md-primary" ng-click="showInserto(inserto.id)" aria-label="Mostrar">
+            <md-button class="md-fab md-mini md-primary" ng-click="showModelo(modelo.id)" aria-label="Mostrar">
               <i class="fa fa-folder-open"></i>
             </md-button>
-            <md-button class="md-fab md-mini md-primary" ng-click="editarInserto(inserto.id)" aria-label="Editar">
+            <md-button class="md-fab md-mini md-primary" ng-click="editarModelo(modelo.id)" aria-label="Editar">
               <i class="fa fa-pencil-square-o"></i>
             </md-button>
           </td>
