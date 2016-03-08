@@ -51,7 +51,7 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, folhaprocessos){
           doc.text(090, linhas + (i * 10), ferramentafolha.fabricante.descricao);
           doc.text(130, linhas + (i * 10), ferramentafolha.raio.valor);
       });
-      doc.save('Test.pdf');
+      doc.save('FolhaProcesso' + folhaprocesso.id + '.pdf');
     });
   }
 
