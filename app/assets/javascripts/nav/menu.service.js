@@ -73,7 +73,7 @@
           pages: [{
             name: 'Emitir Folha Processo',
             type: 'link',
-            state: 'home.findwood',
+            state: 'folhaprocessos',
             icon: 'fa fa-clipboard'
           }, {
             name: 'Visualizar Folha Processo',

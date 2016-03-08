@@ -1,0 +1,131 @@
+<md-content layout="column" flex>
+  <md-toolbar layout="row" md-scroll-shrink>
+    <div class="md-toolbar-tools">
+      <md-button ng-click="toggleSidenav('left')" hide-gt-sm class="md-icon-button">
+        <md-icon aria-label="Menu" class="md-toggle-icon fa fa-bars"></md-icon>
+      </md-button>
+      <h3>
+        <span>Cadastros - Folha de Processo</span>
+      </h3>
+    </div>
+  </md-toolbar>
+
+  <md-content class="md-padding" layout="column" flex >
+    <h2 class="md-title">Nova Folha de Processo</h2>
+    <form name="modeloForm" ng-submit="salvar()">
+      <div layout-gt-xs="row">
+        <md-input-container class="md-block" flex-gt-sm>
+  	      <label>Numero do desenho</label>
+  	      <input name="nrDesenho" ng-model="folhaprocesso.nrDesenho"
+  	             required maxlength="100"/>
+  	    </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Nome da peça</label>
+          <input name="nomepeca" ng-model="folhaprocesso.nomepeca"
+                 required minlength="4" maxlength="100"/>
+        </md-input-container>
+        <md-datepicker ng-model="folhaprocesso.dtProjeto" md-placeholder="Data do projeto/verificação">
+        </md-datepicker>
+      </div>
+      <div layout-gt-xs="row">
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Maquina</label>
+          <md-select ng-model="folhaprocesso.modelo" ng-change="updateModelo()">
+            <md-option ng-repeat="mod in modelos" value="{{mod.id}}">
+              {{mod.descricao}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Grupo</label>
+          <md-select ng-model="folhaprocesso.grupomodelo">
+            <md-option ng-repeat="gru in grupomodelos" value="{{gru.id}}">
+              {{gru.descricao}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+        
+      </div>
+      <md-divider></md-divider>
+      <h2 class="md-title">Adicionar Ferramentas</h2>
+      <div layout-gt-xs="row">
+
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Ferramenta</label>
+          <md-select ng-model="ferramentafolha.suporte" ng-change="updateSuporte()">
+            <md-option ng-repeat="sup in suportes" value="{{sup.id}}">
+              {{sup.descricao}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Inserto</label>
+          <md-select ng-model="ferramentafolha.inserto" ng-change="updateInserto()">
+            <md-option ng-repeat="ins in insertos" value="{{ins.id}}">
+              {{ins.descricao}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Fabricante</label>
+          <md-select ng-model="ferramentafolha.fabricante">
+            <md-option ng-repeat="fab in fabricantes" value="{{fab.id}}">
+              {{fab.descricao}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Raio do Inserto</label>
+          <md-select ng-model="ferramentafolha.raio">
+            <md-option ng-repeat="rai in raios" value="{{rai.id}}">
+              {{rai.valor}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+      </div>
+      <div role="alert" class="error" ng-show="errorFerramenta">
+        {{errorFerramenta}}
+      </div>
+      <div layout-gt-xs="row">
+        <md-button class="md-raised md-primary" ng-click="adicionarFerramenta()">
+         Adicionar Ferramenta
+        </md-button>
+      </div>
+
+      <md-data-table-container>
+        <table md-data-table md-row-select="selected" md-data-table md-progress="deferred">
+          <thead >
+            <tr>
+              <th name="Suporte" ></th>
+              <th name="Inserto" ></th>
+              <th name="Fabricante" ></th>
+              <th name="Raio" ></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr ng-repeat="ferramenta in ferramentas">
+              <td>{{ ferramenta.suporte_id }}</td>
+              <td>{{ ferramenta.inserto_id }}</td>
+              <td>{{ ferramenta.fabricante_id }}</td>
+              <td>{{ ferramenta.raio_id }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </md-data-table>
+
+      <div layout-gt-xs="row">
+        <md-button class="md-raised md-warn" ng-click="cancel()">
+         Cancelar
+        </md-button>
+        <md-button class="md-raised md-primary" type="submit" style="margin-right:20px;">
+          Salvar
+        </md-button>
+      </div>
+    </form>
+  </md-content>
+</md-content>

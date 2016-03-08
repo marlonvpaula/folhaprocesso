@@ -1,5 +1,4 @@
-
- angular.module('StarterApp', ['md.data.table', 
+angular.module('StarterApp', ['md.data.table', 
                                'ngMaterial', 
                                'ui.router', 
                                'templates',
@@ -223,6 +222,56 @@
         url: '/modelos/update/{id}',
         templateUrl: 'modelo/_newModelos.html',
         controller: 'ModeloUpdateCtrl',
+        resolve: {
+          postPromise: ['grupomodelos', function(grupomodelos){
+            return grupomodelos.getAll();
+          }]
+        }
+      })
+      .state('folhaprocessos', {
+        url: '/folhaprocessos',
+        templateUrl: 'folhaprocesso/_folhaprocessos.html',
+        controller: 'FolhaprocessoCtrl',
+        resolve: {
+          postPromise: ['folhaprocessos', function(folhaprocessos){
+            return folhaprocessos.getAll();
+          }]
+        }
+      })
+      .state('folhaprocesso', {
+        url: '/folhaprocessos/new',
+        templateUrl: 'folhaprocesso/_newFolhaprocessos.html',
+        controller: 'FolhaprocessoNewCtrl',
+        resolve: {
+          initialData: ['grupomodelos', 
+                        'modelos',
+                        'suportes', 
+                        'raios',
+                        '$q', 
+                        function (grupomodelos, modelos, suportes, raios, $q) {
+            return $q.all({
+               grupomodelos: grupomodelos.getAll(),
+               modelos: modelos.getAll(),
+               suportes: suportes.getAll(),
+               raios: raios.getAll(),
+             });
+          }]
+        }
+      })
+      .state('showFolhaprocesso', {
+        url: '/folhaprocessos/{id}',
+        templateUrl: 'folhaprocesso/_showFolhaprocessos.html',
+        controller: 'FolhaprocessoShowCtrl',
+        resolve: {
+          folhaprocesso: ['$stateParams', 'folhaprocessos', function($stateParams, folhaprocessos) {
+            return folhaprocessos.get($stateParams.id);
+          }]
+        }
+      })
+      .state('updateFolhaprocesso', {
+        url: '/folhaprocessos/update/{id}',
+        templateUrl: 'folhaprocesso/_newFolhaprocessos.html',
+        controller: 'FolhaprocessoUpdateCtrl',
         resolve: {
           postPromise: ['grupomodelos', function(grupomodelos){
             return grupomodelos.getAll();

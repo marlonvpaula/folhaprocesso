@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160302231913) do
+ActiveRecord::Schema.define(version: 20160303033056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,36 @@ ActiveRecord::Schema.define(version: 20160302231913) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "ferramentafolhas", force: true do |t|
+    t.integer  "folhaprocesso_id"
+    t.integer  "suporte_id"
+    t.integer  "inserto_id"
+    t.integer  "fabricante_id"
+    t.integer  "raio_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ferramentafolhas", ["fabricante_id"], name: "index_ferramentafolhas_on_fabricante_id", using: :btree
+  add_index "ferramentafolhas", ["folhaprocesso_id"], name: "index_ferramentafolhas_on_folhaprocesso_id", using: :btree
+  add_index "ferramentafolhas", ["inserto_id"], name: "index_ferramentafolhas_on_inserto_id", using: :btree
+  add_index "ferramentafolhas", ["raio_id"], name: "index_ferramentafolhas_on_raio_id", using: :btree
+  add_index "ferramentafolhas", ["suporte_id"], name: "index_ferramentafolhas_on_suporte_id", using: :btree
+
+  create_table "folhaprocessos", force: true do |t|
+    t.integer  "nrDesenho"
+    t.string   "nomepeca"
+    t.date     "dtProjeto"
+    t.date     "dtVerificacao"
+    t.integer  "grupomodelo_id"
+    t.integer  "modelo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "folhaprocessos", ["grupomodelo_id"], name: "index_folhaprocessos_on_grupomodelo_id", using: :btree
+  add_index "folhaprocessos", ["modelo_id"], name: "index_folhaprocessos_on_modelo_id", using: :btree
 
   create_table "grupomodelos", force: true do |t|
     t.string   "descricao"

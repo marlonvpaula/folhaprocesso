@@ -3,6 +3,11 @@
 body {
 }
 
+.descricao {
+  margin: 0px;
+  padding: 15px;
+}
+
 .fill-height{
   display: flex;
   flex: 1;

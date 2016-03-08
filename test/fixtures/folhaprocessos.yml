@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nrDesenho: 1
+  nomepeca: MyString
+  dtProjeto: 2016-03-03
+  dtVerificacao: 2016-03-03
+  grupomodelo_id: 
+  modelo_id: 
+
+two:
+  nrDesenho: 1
+  nomepeca: MyString
+  dtProjeto: 2016-03-03
+  dtVerificacao: 2016-03-03
+  grupomodelo_id: 
+  modelo_id: 

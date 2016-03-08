@@ -80,4 +80,7 @@ Folhaprocmultipet::Application.routes.draw do
   resources :grupomodelos
   resources :modelos
   
+  resources :folhaprocessos do
+    resources :ferramentafolhas
+  end  
 end
