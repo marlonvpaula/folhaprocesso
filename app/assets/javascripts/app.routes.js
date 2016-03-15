@@ -273,8 +273,18 @@ angular.module('StarterApp', ['md.data.table',
         templateUrl: 'folhaprocesso/_newFolhaprocessos.html',
         controller: 'FolhaprocessoUpdateCtrl',
         resolve: {
-          postPromise: ['grupomodelos', function(grupomodelos){
-            return grupomodelos.getAll();
+          initialData: ['grupomodelos', 
+                        'modelos',
+                        'suportes', 
+                        'raios',
+                        '$q', 
+                        function (grupomodelos, modelos, suportes, raios, $q) {
+            return $q.all({
+               grupomodelos: grupomodelos.getAll(),
+               modelos: modelos.getAll(),
+               suportes: suportes.getAll(),
+               raios: raios.getAll(),
+             });
           }]
         }
       });

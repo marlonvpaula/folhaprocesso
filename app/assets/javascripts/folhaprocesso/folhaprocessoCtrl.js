@@ -32,7 +32,7 @@ function getFolhaprocesso(query) {
     $state.go('showFolhaprocesso', { "id": id});
   };
 
-  $scope.editarFolhaprocesso = function(id) {
+  $scope.editar = function(id) {
     $state.go('updateFolhaprocesso', { "id": id});
   };
 
