@@ -75,11 +75,6 @@
             type: 'link',
             state: 'folhaprocessos',
             icon: 'fa fa-clipboard'
-          }, {
-            name: 'Visualizar Folha Processo',
-            state: 'home.woodlist',
-            type: 'link',
-            icon: 'fa fa-files-o'
           }]
         });
 

@@ -10,12 +10,15 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, fabricantes){
 	$scope.fabricantes = fabricantes.fabricantes;
 
 
-	$scope.showAdvanced = function(ev) {
+	function showAdvanced(ev) {
     var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
     $mdDialog.show({
       controller: 'DialogFabriController',
       templateUrl: 'fabricante/_newFabricante.html',
       parent: angular.element(document.body),
+      locals: {
+        fabricante: $scope.fabricante
+      },
       targetEvent: ev,
       clickOutsideToClose:true,
       fullscreen: useFullScreen
@@ -31,6 +34,19 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, fabricantes){
       $scope.customFullscreen = (wantsFullScreen === true);
     });
   };
+
+  $scope.novo = function (ev) {
+    $scope.fabricante = null;
+    showAdvanced(ev);
+  }
+
+
+  $scope.editar = function (id, ev) {
+    fabricantes.get(id).then(function(fabricante){
+      $scope.fabricante = fabricante;
+      showAdvanced(ev);
+    });
+  }
 
   $scope.remover = function() {
   	for (var i = 0; i < $scope.selected.length; i++) {
@@ -52,7 +68,18 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, fabricantes){
 .controller('DialogFabriController', ['$scope',
                                       '$mdDialog',
                                       'fabricantes',
-function ($scope, $mdDialog, fabricantes) {
+                                      'fabricante',
+function ($scope, $mdDialog, fabricantes, fabricante) {
+    var update = false;
+    if (fabricante != null) {
+      update = true;
+      $scope.fabricante = fabricante;
+    }
+    else {
+      update = false;
+      $scope.fabricante = {};
+    }
+
     $scope.hide = function() {
       $mdDialog.hide();
     };
@@ -61,9 +88,17 @@ function ($scope, $mdDialog, fabricantes) {
     };
     $scope.salvar = function() {
       if(!$scope.fabricante.descricao || $scope.fabricante.descricao === '') { return; }
-      fabricantes.create({
-        descricao: $scope.fabricante.descricao,
-      });
+      if (update) {
+        fabricantes.update($scope.fabricante.id, {
+          id: $scope.fabricante.id,
+          descricao: $scope.fabricante.descricao,
+        });
+      }
+      else {
+        fabricantes.create({
+          descricao: $scope.fabricante.descricao,
+        });
+      }
       $scope.fabricante.descricao = '';
       $mdDialog.hide();
     };

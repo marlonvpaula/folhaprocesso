@@ -10,13 +10,16 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, raios){
 	$scope.raios = raios.raios;
 
 
-	$scope.showAdvanced = function(ev) {
+	function showAdvanced(ev) {
     var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
     $mdDialog.show({
       controller: 'DialogRaioController',
       templateUrl: 'raio/_newRaio.html',
       parent: angular.element(document.body),
       targetEvent: ev,
+      locals: {
+        raio: $scope.raio
+      },
       clickOutsideToClose:true,
       fullscreen: useFullScreen
     })
@@ -31,6 +34,20 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, raios){
       $scope.customFullscreen = (wantsFullScreen === true);
     });
   };
+
+
+  $scope.novo = function (ev) {
+    $scope.raio = null;
+    showAdvanced(ev);
+  }
+
+
+  $scope.editar = function (id, ev) {
+    raios.get(id).then(function(raio){
+      $scope.raio = raio;
+      showAdvanced(ev);
+    });
+  }
 
   $scope.remover = function() {
   	for (var i = 0; i < $scope.selected.length; i++) {
@@ -50,7 +67,19 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, raios){
 .controller('DialogRaioController', ['$scope',
                                       '$mdDialog',
                                       'raios',
-function ($scope, $mdDialog, raios) {
+                                      'raio',
+function ($scope, $mdDialog, raios, raio) {
+    var update = false;
+    if (raio != null) {
+      update = true;
+      $scope.raio = raio;
+      $scope.raio.valor = parseFloat(raio.valor);
+    }
+    else {
+      update = false;
+      $scope.raio = {};
+    }
+
     $scope.hide = function() {
       $mdDialog.hide();
     };
@@ -59,9 +88,17 @@ function ($scope, $mdDialog, raios) {
     };
     $scope.salvar = function() {
       if(!$scope.raio.valor || $scope.raio.valor === '') { return; }
-      raios.create({
-        valor: $scope.raio.valor,
-      });
+      if (update) {
+        raios.update($scope.raio.id, {
+          id: $scope.raio.id,
+          valor: $scope.raio.valor,
+        });
+      }
+      else {
+        raios.create({
+          valor: $scope.raio.valor,
+        });
+      }
       $scope.raio.valor = '';
       $mdDialog.hide();
     };

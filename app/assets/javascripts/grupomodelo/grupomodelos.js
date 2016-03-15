@@ -12,12 +12,28 @@ function($http){
       angular.copy(data, o.grupomodelos);
     });
   };
+  
+  o.get = function(id) {
+    return $http.get('/grupomodelos/' + id + '.json').then(function(res){
+      return res.data;
+    });
+  };
 
   o.create = function(grupomodelo) {
 	  return $http.post('/grupomodelos.json', grupomodelo).success(function(data){
 	    o.grupomodelos.push(data);
 	  });
 	};
+  
+  o.update = function(id, grupomodelo) {
+    return $http.put('/grupomodelos/' + id + '.json', grupomodelo).success(function(data){
+      for(var i = o.grupomodelos.length - 1; i >= 0; i--) {
+        if(o.grupomodelos[i].id === id) {
+          o.grupomodelos[i] = grupomodelo;
+        }
+      }
+    });
+  };
 
   o.remove = function(id) {
     return $http.delete('/grupomodelos/' + id + '.json').success(function(data){

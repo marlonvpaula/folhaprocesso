@@ -8,6 +8,12 @@ class FabricantesController < ApplicationController
     respond_with Fabricante.create(fabricante_params)
   end
 
+  def update
+    @fabricante = Fabricante.find(params[:id])
+    
+    respond_with @fabricante.update(fabricante_params)
+  end
+
   def show
     respond_with Fabricante.find(params[:id])
   end

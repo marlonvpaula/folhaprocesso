@@ -13,11 +13,27 @@ function($http){
     });
   };
 
+  o.get = function(id) {
+    return $http.get('/raios/' + id + '.json').then(function(res){
+      return res.data;
+    });
+  };
+
   o.create = function(raio) {
 	  return $http.post('/raios.json', raio).success(function(data){
 	    o.raios.push(data);
 	  });
 	};
+
+  o.update = function(id, raio) {
+    return $http.put('/raios/' + id + '.json', raio).success(function(data){
+      for(var i = o.raios.length - 1; i >= 0; i--) {
+        if(o.raios[i].id === id) {
+          o.raios[i] = raio;
+        }
+      }
+    });
+  };
 
   o.remove = function(id) {
     return $http.delete('/raios/' + id + '.json').success(function(data){

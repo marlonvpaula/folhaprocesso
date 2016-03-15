@@ -17,10 +17,10 @@
         <h2 class="md-title">Fabricantes</h2>
       </md-data-table-toolbar>
       <div layout-gt-xs="row">
-        <md-button class="md-primary md-raised" ng-click="showAdvanced($event)" style="width: 150px;">
+        <md-button class="md-primary md-raised" ng-click="novo($event)" style="width: 150px;">
           Novo Fabricante
         </md-button>
-        <md-button class="md-primary md-raised" ng-show="selected.length > 0" ng-click="remover()" style="width: 150px;">
+        <md-button class="md-warn md-raised" ng-show="selected.length > 0" ng-click="remover()" style="width: 150px;">
           Excluir
         </md-button>
       </div>
@@ -43,16 +43,23 @@
             <tr>
               <th name="Id" ></th>
               <th name="Descrição" ></th>
+              <th name="Ações" ></th>
             </tr>
           </thead>
 
-        <tbody>
-        <tr md-auto-select ng-repeat="fabricante in fabricantes">
-          <td>{{ fabricante.id }}</td>
-          <td>{{ fabricante.descricao }}</td>
-          
-        </tr>
-      </md-data-table>
+          <tbody>
+            <tr ng-repeat="fabricante in fabricantes">
+              <td>{{ fabricante.id }}</td>
+              <td>{{ fabricante.descricao }}</td>
+              <td>
+                <md-button class="md-fab md-mini md-primary" ng-click="editar(fabricante.id, $event)" aria-label="Editar">
+                    <i class="fa fa-pencil-square-o"></i>
+                </md-button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </md-data-table-container>
 
     </md-content>
 </md-content >

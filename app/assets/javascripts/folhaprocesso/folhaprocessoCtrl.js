@@ -10,6 +10,20 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, folhaprocessos){
 	$scope.folhaprocessos = folhaprocessos.folhaprocessos;
 
 
+  $scope.query = {
+    order: 'nomepeca',
+    limit: 2,
+    page: 1
+  };
+
+function getFolhaprocesso(query) {
+    $scope.promise = folhaprocessos.get(query, success).$promise;
+  }
+
+  $scope.onPaginate = function (page, limit) {
+    getFolhaprocesso(angular.extend({}, $scope.query, {page: page, limit: limit}));
+  };
+
 	$scope.newFolhaprocesso = function() {
     $state.go('folhaprocesso');
   };

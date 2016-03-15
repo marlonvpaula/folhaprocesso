@@ -11,6 +11,12 @@ class GrupomodelosController < ApplicationController
     respond_with Grupomodelo.find(params[:id])
   end
 
+  def update
+    @grupomodelo = Grupomodelo.find(params[:id])
+    
+    respond_with @grupomodelo.update(grupomodelo_params)
+  end
+
   def destroy
     @grupomodelo = Grupomodelo.find(params[:id])
     respond_with @grupomodelo.destroy

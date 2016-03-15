@@ -8,6 +8,12 @@ class OperacaosController < ApplicationController
     respond_with Operacao.create(operacao_params)
   end
 
+  def update
+    @operacao = Operacao.find(params[:id])
+    
+    respond_with @operacao.update(operacao_params)
+  end
+
   def show
     respond_with Operacao.find(params[:id])
   end

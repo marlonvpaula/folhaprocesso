@@ -7,6 +7,12 @@ class RaiosController < ApplicationController
     respond_with Raio.create(raio_params)
   end
 
+  def update
+    @raio = Raio.find(params[:id])
+    
+    respond_with @raio.update(raio_params)
+  end
+
   def show
     respond_with Raio.find(params[:id])
   end

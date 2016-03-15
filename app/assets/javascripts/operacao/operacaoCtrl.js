@@ -10,12 +10,15 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, operacaos){
 	$scope.operacaos = operacaos.operacaos;
 
 
-	$scope.showAdvanced = function(ev) {
+  function showAdvanced(ev) {
     var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
     $mdDialog.show({
       controller: 'DialogOperaController',
       templateUrl: 'operacao/_newOperacao.html',
       parent: angular.element(document.body),
+      locals: {
+        operacao: $scope.operacao
+      },
       targetEvent: ev,
       clickOutsideToClose:true,
       fullscreen: useFullScreen
@@ -32,6 +35,11 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, operacaos){
     });
   };
 
+	$scope.novo = function (ev) {
+    $scope.operacao = null;
+    showAdvanced(ev);
+  }
+
   $scope.remover = function() {
   	for (var i = 0; i < $scope.selected.length; i++) {
   		operacaos.remove(
@@ -39,6 +47,13 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, operacaos){
 		  );
   	}
     $scope.selected = [];
+  }
+
+  $scope.editar = function (id, ev) {
+    operacaos.get(id).then(function(operacao){
+      $scope.operacao = operacao;
+      showAdvanced(ev);
+    });
   }
 
 
@@ -50,7 +65,18 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, operacaos){
 .controller('DialogOperaController', ['$scope',
                                       '$mdDialog',
                                       'operacaos',
-function ($scope, $mdDialog, operacaos) {
+                                      'operacao',
+function ($scope, $mdDialog, operacaos, operacao) {
+    var update = false;
+    if (operacao != null) {
+      update = true;
+      $scope.operacao = operacao;
+    }
+    else {
+      update = false;
+      $scope.operacao = {};
+    }
+
     $scope.hide = function() {
       $mdDialog.hide();
     };
@@ -59,9 +85,17 @@ function ($scope, $mdDialog, operacaos) {
     };
     $scope.salvar = function() {
       if(!$scope.operacao.descricao || $scope.operacao.descricao === '') { return; }
-      operacaos.create({
-        descricao: $scope.operacao.descricao,
-      });
+      if (update) {
+        operacaos.update($scope.operacao.id, {
+          id: $scope.operacao.id,
+          descricao: $scope.operacao.descricao,
+        });
+      }
+      else {
+        operacaos.create({
+          descricao: $scope.operacao.descricao,
+        });
+      }
       $scope.operacao.descricao = '';
       $mdDialog.hide();
     };

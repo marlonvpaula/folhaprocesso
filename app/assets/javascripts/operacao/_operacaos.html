@@ -18,12 +18,12 @@
       </md-data-table-toolbar>
       <ul class="menuLogout">
         <li>
-          <md-button class="md-primary md-raised" ng-click="showAdvanced($event)" style="width: 150px;">
+          <md-button class="md-primary md-raised" ng-click="novo($event)" style="width: 150px;">
             Nova Operação
           </md-button>
         </li>
         <li>
-          <md-button class="md-primary md-raised" ng-show="selected.length > 0" ng-click="remover()" style="width: 150px;">
+          <md-button class="md-warn md-raised" ng-show="selected.length > 0" ng-click="remover()" style="width: 150px;">
             Excluir
           </md-button>
         </li>
@@ -47,16 +47,23 @@
             <tr>
               <th name="Id" ></th>
               <th name="Descrição" ></th>
+              <th name="Ações" ></th>
             </tr>
           </thead>
 
-        <tbody>
-        <tr md-auto-select ng-repeat="operacao in operacaos">
-          <td>{{ operacao.id }}</td>
-          <td>{{ operacao.descricao }}</td>
-          
-        </tr>
-      </md-data-table>
+          <tbody>
+            <tr ng-repeat="operacao in operacaos">
+              <td>{{ operacao.id }}</td>
+              <td>{{ operacao.descricao }}</td>
+              <td>
+                <md-button class="md-fab md-mini md-primary" ng-click="editar(operacao.id, $event)" aria-label="Editar">
+                    <i class="fa fa-pencil-square-o"></i>
+                </md-button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </md-data-table-container>
 
     </md-content>
 </md-content >
