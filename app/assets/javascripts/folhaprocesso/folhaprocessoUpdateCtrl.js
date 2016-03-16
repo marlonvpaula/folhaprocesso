@@ -16,7 +16,7 @@ angular.module('StarterApp.controllers')
                                         'raios',
 function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, $mdToast, folhaprocessos, suportes, insertos, grupomodelos, modelos, suportes, raios){
   
-  //$scope.grupomodelos = grupomodelos.grupomodelos;
+  $scope.grupomodelos = grupomodelos.grupomodelos;
   $scope.modelos = modelos.modelos;
   $scope.suportes = suportes.suportes;
   $scope.raios = raios.raios;
@@ -31,15 +31,13 @@ function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, $mdToast, folha
     $scope.folhaprocesso = folhaprocesso;
     $scope.folhaprocesso.modelo = folhaprocesso.modelo.id;
     $scope.folhaprocesso.grupomodelo = folhaprocesso.grupomodelo.id;
-    
+    var date = new Date();
+    $scope.folhaprocesso.dtProjeto = new Date(Date.parse(folhaprocesso.dtProjeto,'yyyy-MM-dd')+(date.getTimezoneOffset()*60*1000));
     var ferramentafolhas = folhaprocesso.ferramentafolhas;
+
     for (var i = 0; i < ferramentafolhas.length; i++) {
-      if (i = 0) {
-        $scope.ferramentafolha.suporte = ferramentafolhas[i].suporte.id;
-        $scope.ferramentafolha.inserto = ferramentafolhas[i].inserto.id;
-        $scope.ferramentafolha.fabricante = ferramentafolhas[i].fabricante.id;
-        $scope.ferramentafolha.raio = ferramentafolhas[i].raios.id;
-      }
+      console.log(ferramentafolhas[i]);
+      
       $scope.ferramentas.push(ferramentafolhas[i]);
     } 
   });
@@ -147,7 +145,7 @@ function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, $mdToast, folha
       ferramentafolhas: $scope.ferramentas,
     });
     $scope.folhaprocesso.nomepeca = '';
-    $state.go('modelos');
+    $state.go('folhaprocessos');
   };
 
 

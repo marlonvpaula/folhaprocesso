@@ -21,9 +21,22 @@ class FolhaprocessosController < ApplicationController
   end
 
   def update
+
     @folhaprocesso = Folhaprocesso.find(params[:id])
+    @folhaprocesso.ferramentafolhas.each do |fer|
+      fer.destroy
+    end
+
+    if @folhaprocesso.update(folhaprocesso_params)
+      params[:ferramentafolhas].each do |a|
+        @ferramenta = @folhaprocesso.ferramentafolhas.create!(:suporte_id => a['suporte_id'],
+                                                              :inserto_id => a['inserto_id'], 
+                                                              :fabricante_id => a['fabricante_id'], 
+                                                              :raio_id => a['raio_id'])
+      end
+    end
     
-    respond_with @folhaprocesso.update(folhaprocesso_params)
+    respond_with @folhaprocesso
   end
 
   def destroy

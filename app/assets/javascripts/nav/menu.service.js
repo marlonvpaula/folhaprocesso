@@ -36,7 +36,7 @@
             icon: 'fa fa-cogs'
           },
           {
-            name: 'Suporte',
+            name: 'Ferramenta',
             state: 'suportes',
             type: 'link',
             icon: 'fa fa-user'
@@ -48,13 +48,13 @@
             icon: 'fa fa-circle-o'
           },
           {
-            name: 'Grupo Modelo',
+            name: 'Grupo de Maquina',
             state: 'grupomodelos',
             type: 'link',
             icon: 'fa fa-folder-o'
           },
           {
-            name: 'Modelo',
+            name: 'Maquina',
             state: 'modelos',
             type: 'link',
             icon: 'fa fa-hdd-o'
