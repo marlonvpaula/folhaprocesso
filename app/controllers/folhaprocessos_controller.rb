@@ -9,8 +9,7 @@ class FolhaprocessosController < ApplicationController
       params[:ferramentafolhas].each do |a|
         @ferramenta = @folhaprocesso.ferramentafolhas.create!(:suporte_id => a['suporte_id'],
                                                               :inserto_id => a['inserto_id'], 
-                                                              :fabricante_id => a['fabricante_id'], 
-                                                              :raio_id => a['raio_id'])
+                                                              :fabricante_id => a['fabricante_id'])
       end
     end
     respond_with @folhaprocesso
@@ -31,8 +30,7 @@ class FolhaprocessosController < ApplicationController
       params[:ferramentafolhas].each do |a|
         @ferramenta = @folhaprocesso.ferramentafolhas.create!(:suporte_id => a['suporte_id'],
                                                               :inserto_id => a['inserto_id'], 
-                                                              :fabricante_id => a['fabricante_id'], 
-                                                              :raio_id => a['raio_id'])
+                                                              :fabricante_id => a['fabricante_id'])
       end
     end
     
@@ -50,6 +48,6 @@ class FolhaprocessosController < ApplicationController
     params.require(:folhaprocesso).permit(:nrDesenho, :nomepeca, :dtProjeto, :dtVerificacao, 
     	                                    :grupomodelo_id, :modelo_id, 
     	                                    ferramentafolhas_attributes: [:id, :suporte_id, :inserto_id, 
-                                                                        :fabricante_id, :raio_id])
+                                                                        :fabricante_id])
   end
 end

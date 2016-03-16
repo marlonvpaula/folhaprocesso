@@ -13,13 +13,11 @@ angular.module('StarterApp.controllers')
                                         'grupomodelos',
                                         'modelos',   
                                         'suportes',
-                                        'raios',
-function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, $mdToast, folhaprocessos, suportes, insertos, grupomodelos, modelos, suportes, raios){
+function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, $mdToast, folhaprocessos, suportes, insertos, grupomodelos, modelos, suportes){
   
   $scope.grupomodelos = grupomodelos.grupomodelos;
   $scope.modelos = modelos.modelos;
   $scope.suportes = suportes.suportes;
-  $scope.raios = raios.raios;
   $scope.ferramentas = [];
   $scope.insertos = [];
   $scope.fabricantes = [];
@@ -36,20 +34,9 @@ function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, $mdToast, folha
     var ferramentafolhas = folhaprocesso.ferramentafolhas;
 
     for (var i = 0; i < ferramentafolhas.length; i++) {
-      console.log(ferramentafolhas[i]);
-      
       $scope.ferramentas.push(ferramentafolhas[i]);
     } 
   });
-
-  $scope.updateModelo = function () {
-    $scope.folhaprocesso.grupomodelo = null;
-    $scope.grupomodelos = [];
-    modelos.get($scope.folhaprocesso.modelo).then(function(modelo){
-      $scope.grupomodelos.push(modelo.grupomodelo);
-      $scope.folhaprocesso.grupomodelo = modelo.grupomodelo.id;
-    });
-  }
 
   $scope.updateSuporte = function () {
     $scope.ferramentafolha.inserto = null;
@@ -97,20 +84,23 @@ function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, $mdToast, folha
       $scope.errorFerramenta = "O fabricante deve ser informado.";
       return;
     }
-    if (angular.isUndefined($scope.ferramentafolha.raio) || 
-        $scope.ferramentafolha.raio === null || 
-        $scope.ferramentafolha.raio < 0) {
-      $scope.errorFerramenta = "O raio deve ser informado.";
-      return;
-    }
     $scope.errorFerramenta = "";
 
     $scope.ferramentas.push({suporte_id: $scope.ferramentafolha.suporte,
                             inserto_id: $scope.ferramentafolha.inserto,
-                            fabricante_id: $scope.ferramentafolha.fabricante,
-                            raio_id: $scope.ferramentafolha.raio});
+                            fabricante_id: $scope.ferramentafolha.fabricante});
     $scope.ferramentafolha = {};
   }  
+  
+  $scope.removerFerramenta = function () {
+    for (var i = 0; i < $scope.selected.length; i++) {
+      for(var j = 0; j < $scope.ferramentas.length; j++) {
+        if($scope.ferramentas[j].id === $scope.selected[i].id) {
+          $scope.ferramentas.splice(j, 1);
+        }
+      }
+    }
+  }
 
   $scope.cancel = function() {
     $state.go('folhaprocessos');

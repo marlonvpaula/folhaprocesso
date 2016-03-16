@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160303033056) do
+ActiveRecord::Schema.define(version: 20160316043626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 20160303033056) do
     t.integer  "suporte_id"
     t.integer  "inserto_id"
     t.integer  "fabricante_id"
-    t.integer  "raio_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -35,7 +34,6 @@ ActiveRecord::Schema.define(version: 20160303033056) do
   add_index "ferramentafolhas", ["fabricante_id"], name: "index_ferramentafolhas_on_fabricante_id", using: :btree
   add_index "ferramentafolhas", ["folhaprocesso_id"], name: "index_ferramentafolhas_on_folhaprocesso_id", using: :btree
   add_index "ferramentafolhas", ["inserto_id"], name: "index_ferramentafolhas_on_inserto_id", using: :btree
-  add_index "ferramentafolhas", ["raio_id"], name: "index_ferramentafolhas_on_raio_id", using: :btree
   add_index "ferramentafolhas", ["suporte_id"], name: "index_ferramentafolhas_on_suporte_id", using: :btree
 
   create_table "folhaprocessos", force: true do |t|
@@ -72,25 +70,17 @@ ActiveRecord::Schema.define(version: 20160303033056) do
     t.string   "descricao"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "raio"
   end
 
   create_table "modelos", force: true do |t|
     t.string   "descricao"
-    t.integer  "grupomodelo_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "modelos", ["grupomodelo_id"], name: "index_modelos_on_grupomodelo_id", using: :btree
 
   create_table "operacaos", force: true do |t|
     t.string   "descricao"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "raios", force: true do |t|
-    t.decimal  "valor"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

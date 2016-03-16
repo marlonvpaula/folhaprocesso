@@ -43,7 +43,7 @@ class InsertosController < ApplicationController
 
   private
   def inserto_params
-    params.require(:inserto).permit(:descricao, fabricantes_attributes: [:id, :descricao])
+    params.require(:inserto).permit(:descricao, :raio, fabricantes_attributes: [:id, :descricao])
   end
 
 end

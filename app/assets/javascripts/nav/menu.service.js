@@ -42,22 +42,16 @@
             icon: 'fa fa-user'
           },
           {
-            name: 'Raio',
-            state: 'raios',
+            name: 'Maquina',
+            state: 'modelos',
             type: 'link',
-            icon: 'fa fa-circle-o'
+            icon: 'fa fa-hdd-o'
           },
           {
             name: 'Grupo de Maquina',
             state: 'grupomodelos',
             type: 'link',
             icon: 'fa fa-folder-o'
-          },
-          {
-            name: 'Maquina',
-            state: 'modelos',
-            type: 'link',
-            icon: 'fa fa-hdd-o'
           },
           {
             name: 'Acessório',

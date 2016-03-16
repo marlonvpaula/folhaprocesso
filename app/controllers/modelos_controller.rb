@@ -25,6 +25,6 @@ class ModelosController < ApplicationController
 
   private
   def modelo_params
-    params.require(:modelo).permit(:descricao, :grupomodelo_id)
+    params.require(:modelo).permit(:descricao)
   end
 end

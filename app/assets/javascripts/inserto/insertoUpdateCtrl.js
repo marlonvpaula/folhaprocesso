@@ -13,6 +13,7 @@ function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, insertos, fabri
 	insertos.get($stateParams.id).then(function(inserto){
 		$scope.fabricsSelected = [];
     $scope.inserto = inserto;
+    $scope.inserto.raio = parseFloat(inserto.raio);
   	var inserto_fabricantes = inserto.inserto_fabricantes;
   	for (var i = 0; i < inserto_fabricantes.length; i++) {
   		$scope.fabricsSelected.push(inserto_fabricantes[i].fabricante);
@@ -77,7 +78,9 @@ function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, insertos, fabri
   $scope.salvar = function() {
   	if(!$scope.inserto.descricao || $scope.inserto.descricao === '') { return; }
 	  insertos.update($scope.inserto.id, {
+      id: $scope.inserto.id,
 	    descricao: $scope.inserto.descricao,
+      raio: $scope.inserto.raio,
       fabricantes: $scope.fabricsSelected,
 	  });
     $scope.fabricsSelected = [];

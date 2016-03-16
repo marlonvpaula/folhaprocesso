@@ -3,5 +3,4 @@ class Ferramentafolha < ActiveRecord::Base
   belongs_to :suporte
   belongs_to :inserto
   belongs_to :fabricante
-  belongs_to :raio
 end

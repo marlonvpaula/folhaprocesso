@@ -57,13 +57,11 @@ function getFolhaprocesso(query) {
       doc.text(010, linhas, "Suporte");
       doc.text(050, linhas, "Inserto");
       doc.text(090, linhas, "Fabricante");
-      doc.text(130, linhas, "Raio");
       linhas += 10;
       folhaprocesso.ferramentafolhas.forEach(function(ferramentafolha, i){
           doc.text(010, linhas + (i * 10), ferramentafolha.suporte.descricao);
           doc.text(050, linhas + (i * 10), ferramentafolha.inserto.descricao);
           doc.text(090, linhas + (i * 10), ferramentafolha.fabricante.descricao);
-          doc.text(130, linhas + (i * 10), ferramentafolha.raio.valor);
       });
       doc.save('FolhaProcesso' + folhaprocesso.id + '.pdf');
     });

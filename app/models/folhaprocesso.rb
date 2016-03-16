@@ -4,6 +4,6 @@ class Folhaprocesso < ActiveRecord::Base
   has_many :ferramentafolhas, :dependent => :delete_all
 
   def as_json(options = {})
-    super(options.merge(include: [:grupomodelo, :modelo, ferramentafolhas: {include: [:suporte, :inserto, :fabricante, :raio]}]))
+    super(options.merge(include: [:grupomodelo, :modelo, ferramentafolhas: {include: [:suporte, :inserto, :fabricante]}]))
   end
 end

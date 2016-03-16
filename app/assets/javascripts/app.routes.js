@@ -168,16 +168,6 @@ angular.module('StarterApp', ['md.data.table',
           }]
         }
       })
-      .state('raios', {
-        url: '/raios',
-        templateUrl: 'raio/_raios.html',
-        controller: 'RaioCtrl',
-        resolve: {
-          postPromise: ['raios', function(raios){
-            return raios.getAll();
-          }]
-        }
-      })
       .state('grupomodelos', {
         url: '/grupomodelos',
         templateUrl: 'grupomodelo/_grupomodelos.html',
@@ -246,14 +236,12 @@ angular.module('StarterApp', ['md.data.table',
           initialData: ['grupomodelos', 
                         'modelos',
                         'suportes', 
-                        'raios',
                         '$q', 
-                        function (grupomodelos, modelos, suportes, raios, $q) {
+                        function (grupomodelos, modelos, suportes, $q) {
             return $q.all({
                grupomodelos: grupomodelos.getAll(),
                modelos: modelos.getAll(),
                suportes: suportes.getAll(),
-               raios: raios.getAll(),
              });
           }]
         }
@@ -276,14 +264,12 @@ angular.module('StarterApp', ['md.data.table',
           initialData: ['grupomodelos', 
                         'modelos',
                         'suportes', 
-                        'raios',
                         '$q', 
-                        function (grupomodelos, modelos, suportes, raios, $q) {
+                        function (grupomodelos, modelos, suportes, $q) {
             return $q.all({
                grupomodelos: grupomodelos.getAll(),
                modelos: modelos.getAll(),
                suportes: suportes.getAll(),
-               raios: raios.getAll(),
              });
           }]
         }

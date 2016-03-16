@@ -69,6 +69,7 @@ function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, insertos,fabric
   	if(!$scope.inserto.descricao || $scope.inserto.descricao === '') { return; }
 	  insertos.create({
 	    descricao: $scope.inserto.descricao,
+      raio: $scope.inserto.raio,
       fabricantes: $scope.fabricsSelected,
 	  });
     $scope.fabricsSelected = [];
