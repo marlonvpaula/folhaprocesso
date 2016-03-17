@@ -39,7 +39,7 @@
             name: 'Ferramenta',
             state: 'suportes',
             type: 'link',
-            icon: 'fa fa-user'
+            icon: 'fa fa-cog'
           },
           {
             name: 'Maquina',

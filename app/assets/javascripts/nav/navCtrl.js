@@ -15,12 +15,18 @@ function($scope, $mdSidenav, menu, $state, Auth){
   vm.autoFocusContent = false;
   vm.menu = menu;
 
-  console.log('menu: ', vm.menu)
-
   $scope.signedIn = Auth.isAuthenticated;
 
   $scope.logout = function () {
     Auth.logout();
+  };
+
+  $scope.home = function () {
+    $state.go('home');
+  };
+
+  this.openMenu = function($mdOpenMenu, ev) {
+    $mdOpenMenu(ev);
   };
     
   Auth.currentUser().then(function (user){

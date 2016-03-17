@@ -4,14 +4,38 @@
 
 
   <md-toolbar class="md-theme-indigo">
-    <img ng-src="/assets/user.png" class="md-card-image userimage" width="128px" height="128px" alt="User">
-    
-    <ul class="menuLogout">
-      <li ng-hide="signedIn()"><a href="#/login">Log In</a></li>
-      <li ng-hide="signedIn()"><a href="#/register">Register</a></li>
-      <li ng-show="signedIn()"><a href="#/">{{ user.username }}</a></li>
-      <li ng-show="signedIn()"><a href="" ng-click="logout()">Log Out</a></li>
-    </ul>
+    <div layout-gt-xs="row">
+      <img ng-src="/assets/user.png" class="md-card-image userimage" width="128px" height="128px" alt="User">
+    </div>
+    <div class="md-padding" layout-gt-xs="row">
+      <p class="email" flex>{{ user.email }}</p>
+      <md-menu md-position-mode="target-right target" >
+        <md-button aria-label="Abrir Menu Usuário" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+          <i class="fa fa-chevron-down"></i>
+        </md-button>
+        <md-menu-content width="3" >
+          <md-menu-item>
+            <md-button ng-click="home()">
+                <div layout="row" flex>
+                  <md-icon md-menu-origin class="fa fa-user" aria-label="Home"></md-icon>
+                  <p flex>{{ user.username }}</p>
+                </div>
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="logout()">
+                <div layout="row" flex>
+                  <md-icon md-menu-origin class="fa fa-sign-out" aria-label="Sair"></md-icon>
+                  <p flex>Sair</p>
+                </div>
+            </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+    </div>
+
+
+
 
     <ul class="side-menu">
       <li ng-repeat="section in vm.menu.sections" class="parent-list-item md-theme-indigo"
