@@ -53,7 +53,10 @@
               <td>{{ fabricante.descricao }}</td>
               <td>
                 <md-button class="md-fab md-mini md-primary" ng-click="editar(fabricante.id, $event)" aria-label="Editar">
-                    <i class="fa fa-pencil-square-o"></i>
+                  <i class="fa fa-pencil-square-o"></i>
+                  <md-tooltip md-visible="demo.showTooltip" md-direction="right">
+                    Editar
+                  </md-tooltip>
                 </md-button>
               </td>
             </tr>
