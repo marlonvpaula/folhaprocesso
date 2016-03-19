@@ -56,15 +56,14 @@
           <td>{{ modelo.id }}</td>
           <td>{{ modelo.descricao }}</td>
           <td>
-            <md-button class="md-fab md-mini md-primary" ng-click="showModelo(modelo.id)" aria-label="Mostrar">
-              <i class="fa fa-folder-open"></i>
-            </md-button>
             <md-button class="md-fab md-mini md-primary" ng-click="editarModelo(modelo.id)" aria-label="Editar">
               <i class="fa fa-pencil-square-o"></i>
+              <md-tooltip md-visible="demo.showTooltip" md-direction="right">
+                Editar
+              </md-tooltip>
             </md-button>
           </td>
         </tr>
       </md-data-table>
-
     </md-content>
 </md-content >

@@ -8,8 +8,7 @@ angular.module('StarterApp.controllers')
 		                         'insertos',  
 function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, insertos){
 	$scope.insertos = insertos.insertos;
-
-
+  
 	$scope.newInserto = function() {
     $state.go('inserto');
   };

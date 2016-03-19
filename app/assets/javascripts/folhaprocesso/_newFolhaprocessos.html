@@ -102,9 +102,9 @@
 
           <tbody>
             <tr ng-repeat="ferramenta in ferramentas">
-              <td>{{ ferramenta.suporte_id }}</td>
-              <td>{{ ferramenta.inserto_id }}</td>
-              <td>{{ ferramenta.fabricante_id }}</td>
+              <td>{{ ferramenta.suporte.descricao }}</td>
+              <td>{{ ferramenta.inserto.descricao }}</td>
+              <td>{{ ferramenta.fabricante.descricao }}</td>
             </tr>
           </tbody>
         </table>

@@ -30,6 +30,27 @@
         </div>
       </md-dialog-content>
 
+
+      <!--md-data-table-container>
+        <table md-data-table md-row-select="selected" md-data-table md-progress="deferred">
+           
+          <thead >
+            <tr>
+              <th name="Id" ></th>
+              <th name="Descrição" ></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr ng-repeat="fab in fabrics">
+              <td>{{ fab.id }}</td>
+              <td>{{ fab.descricao }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </md-data-table-container-->
+
+
       <md-chips ng-model="fabricsSelected" md-autocomplete-snap
                 md-transform-chip="transformChip($chip)"
                 md-require-match="autocompleteDemoRequireMatch">
@@ -50,7 +71,7 @@
         </md-chip-template>
       </md-chips>
 
-      <h2 class="md-title">Opção de Fabricantes</h2>
+      <!--h2 class="md-title">Opção de Fabricantes</h2>
       <md-list class="blocoChips">
         <md-list-item class="md-2-line veggie-option" ng-repeat="fab in fabrics" layout="row"
             layout-wrap>
@@ -58,7 +79,7 @@
             <h3>{{fab.descricao}}</h3>
           </div>
         </md-list-item>
-      </md-list>
+      </md-list-->
 
 
 

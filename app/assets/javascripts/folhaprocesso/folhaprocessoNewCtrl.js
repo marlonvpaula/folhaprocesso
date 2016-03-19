@@ -72,8 +72,8 @@ function($scope, $state, $mdSidenav, $timeout, $q, $mdToast, folhaprocessos, sup
     $scope.errorFerramenta = "";
 
     $scope.ferramentas.push({suporte_id: $scope.ferramentafolha.suporte,
-                            inserto_id: $scope.ferramentafolha.inserto,
-                            fabricante_id: $scope.ferramentafolha.fabricante});
+                             inserto_id: $scope.ferramentafolha.inserto,
+                             fabricante_id: $scope.ferramentafolha.fabricante});
     $scope.ferramentafolha = {};
   }  
 

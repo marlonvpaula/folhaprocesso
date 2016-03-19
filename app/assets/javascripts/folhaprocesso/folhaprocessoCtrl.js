@@ -63,7 +63,8 @@ function getFolhaprocesso(query) {
           doc.text(050, linhas + (i * 10), ferramentafolha.inserto.descricao);
           doc.text(090, linhas + (i * 10), ferramentafolha.fabricante.descricao);
       });
-      doc.save('FolhaProcesso' + folhaprocesso.id + '.pdf');
+      //doc.save('FolhaProcesso' + folhaprocesso.id + '.pdf');
+      doc.output('dataurlnewwindow');
     });
   }
 

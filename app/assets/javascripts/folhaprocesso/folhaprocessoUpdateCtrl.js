@@ -13,7 +13,8 @@ angular.module('StarterApp.controllers')
                                         'grupomodelos',
                                         'modelos',   
                                         'suportes',
-function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, $mdToast, folhaprocessos, suportes, insertos, grupomodelos, modelos, suportes){
+                                        'fabricantes',
+function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, $mdToast, folhaprocessos, suportes, insertos, grupomodelos, modelos, suportes, fabricantes){
   
   $scope.grupomodelos = grupomodelos.grupomodelos;
   $scope.modelos = modelos.modelos;
@@ -36,6 +37,7 @@ function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, $mdToast, folha
     for (var i = 0; i < ferramentafolhas.length; i++) {
       $scope.ferramentas.push(ferramentafolhas[i]);
     } 
+    console.log($scope.ferramentas);
   });
 
   $scope.updateSuporte = function () {
@@ -86,9 +88,37 @@ function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, $mdToast, folha
     }
     $scope.errorFerramenta = "";
 
-    $scope.ferramentas.push({suporte_id: $scope.ferramentafolha.suporte,
-                            inserto_id: $scope.ferramentafolha.inserto,
-                            fabricante_id: $scope.ferramentafolha.fabricante});
+    var suporteGet = null;
+    for (var i = 0; i < $scope.suportes.length; i++) {
+      if ($scope.suportes[i].id = $scope.ferramentafolha.suporte) {
+        suporteGet = $scope.suportes[i];
+      }
+    }
+
+    var insertoGet = null;
+    for (var i = 0; i < $scope.insertos.length; i++) {
+      if ($scope.insertos[i].id = $scope.ferramentafolha.inserto) {
+        insertoGet = $scope.insertos[i];
+      }
+    }
+
+    var fabricanteGet = null;
+    for (var i = 0; i < $scope.fabricantes.length; i++) {
+      if ($scope.fabricantes[i].id = $scope.ferramentafolha.fabricante) {
+        fabricanteGet = $scope.fabricantes[i];
+      }
+    }
+
+    $scope.ferramentas.push({suporte: {id: $scope.ferramentafolha.suporte,
+                                       descricao: suporteGet.descricao
+                                      },
+                             inserto: {id: $scope.ferramentafolha.inserto,
+                                       descricao: insertoGet.descricao
+                                      },
+                             fabricante: {id: $scope.ferramentafolha.fabricante,
+                                          descricao: fabricanteGet.descricao
+                                         }
+                            });
     $scope.ferramentafolha = {};
   }  
   
@@ -125,6 +155,13 @@ function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, $mdToast, folha
 
   $scope.salvar = function() {
     if(!$scope.folhaprocesso.nomepeca || $scope.folhaprocesso.nomepeca === '') { return; }
+    var ferramentas = [];
+    for (var i = 0; i < $scope.ferramentas.length; i++) {
+      ferramentas.push({suporte_id: $scope.ferramentas[i].suporte.id,
+                        inserto_id: $scope.ferramentas[i].inserto.id,
+                        fabricante_id: $scope.ferramentas[i].fabricante.id});
+    }
+    
     folhaprocessos.update($scope.folhaprocesso.id, {
       id: $scope.folhaprocesso.id,
       nrDesenho: $scope.folhaprocesso.nrDesenho,
@@ -132,7 +169,7 @@ function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, $mdToast, folha
       dtProjeto: $scope.folhaprocesso.dtProjeto,
       modelo_id: $scope.folhaprocesso.modelo,
       grupomodelo_id: $scope.folhaprocesso.grupomodelo,
-      ferramentafolhas: $scope.ferramentas,
+      ferramentafolhas: ferramentas,
     });
     $scope.folhaprocesso.nomepeca = '';
     $state.go('folhaprocessos');

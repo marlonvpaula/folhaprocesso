@@ -9,7 +9,7 @@ angular.module('StarterApp.controllers')
 			                         'insertos',
 			                         'fabricantes',
 function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, insertos, fabricantes){
-	
+
 	insertos.get($stateParams.id).then(function(inserto){
 		$scope.fabricsSelected = [];
     $scope.inserto = inserto;
@@ -20,8 +20,10 @@ function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, insertos, fabri
 	  } 
   });
 
+
   $scope.querySearch = querySearch;
   $scope.fabrics = loadFabricantes();
+  $scope.fabrics = fabricantes.fabricantes;
   $scope.filterSelected = true;
 	$scope.transformChip = transformChip;
   $scope.selectedItem = null;
