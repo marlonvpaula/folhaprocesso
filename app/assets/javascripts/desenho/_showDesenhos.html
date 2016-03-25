@@ -1,0 +1,33 @@
+<md-content layout="column" flex>
+  <md-toolbar layout="row" md-scroll-shrink>
+    <div class="md-toolbar-tools">
+      <md-button ng-click="toggleSidenav('left')" hide-gt-sm class="md-icon-button">
+        <md-icon aria-label="Menu" class="md-toggle-icon fa fa-bars"></md-icon>
+      </md-button>
+      <h3>
+        <span>Cadastros - Desenho</span>
+      </h3>
+    </div>
+  </md-toolbar>
+
+  <md-content class="md-padding" layout="column" flex >
+    <h2 class="md-title">{{ desenho.codigo }}</h2>
+
+    <h2 class="md-title">{{ desenho.titulo }}</h2>
+    
+    <div layout-gt-xs="row">
+      <h4 class="descricao">Maquina: {{ desenho.modelo.descricao }}</h4>
+      <h4 class="descricao">Grupo Maquina: {{ desenho.grupomodelo.descricao }}</h4>
+    </div>
+    
+
+    <ul class="menuLogout">
+      <li>
+        <md-button class="md-raised md-warn" ng-click="voltar()">
+         Voltar
+        </md-button>
+      </li>
+    </ul>
+    
+  </md-content>
+</md-content>

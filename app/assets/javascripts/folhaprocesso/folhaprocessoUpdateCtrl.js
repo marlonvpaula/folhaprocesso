@@ -37,7 +37,6 @@ function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, $mdToast, folha
     for (var i = 0; i < ferramentafolhas.length; i++) {
       $scope.ferramentas.push(ferramentafolhas[i]);
     } 
-    console.log($scope.ferramentas);
   });
 
   $scope.updateSuporte = function () {

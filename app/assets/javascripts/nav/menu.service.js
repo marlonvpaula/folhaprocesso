@@ -22,24 +22,37 @@
             name: 'Operação',
             type: 'link',
             state: 'operacaos',
-            icon: 'fa fa-group'
-          }, {
+            icon: 'fa fa-cog'
+          }, 
+          {
             name: 'Fabricante',
             state: 'fabricantes',
             type: 'link',
             icon: 'fa fa-building-o'
+          }, 
+          {
+            name: 'Programador',
+            state: 'programadors',
+            type: 'link',
+            icon: 'fa fa-child'
           },
           {
             name: 'Inserto',
             state: 'insertos',
             type: 'link',
-            icon: 'fa fa-cogs'
+            icon: 'fa fa-object-group'
           },
           {
             name: 'Ferramenta',
             state: 'suportes',
             type: 'link',
-            icon: 'fa fa-cog'
+            icon: 'fa fa-wrench'
+          },
+          {
+            name: 'Desenho',
+            state: 'desenhos',
+            type: 'link',
+            icon: 'fa fa-picture-o'
           },
           {
             name: 'Maquina',
@@ -55,9 +68,15 @@
           },
           {
             name: 'Acessório',
-            state: 'home.createTool',
+            state: 'acessorios',
             type: 'link',
             icon: 'fa fa-link'
+          },
+          {
+            name: 'Comando',
+            state: 'comandos',
+            type: 'link',
+            icon: 'fa fa-cogs'
           }]
         });
 

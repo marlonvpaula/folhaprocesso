@@ -1,16 +1,17 @@
 angular.module('StarterApp.controllers')
 
-.controller('SuporteShowCtrl',['$scope',
+.controller('DesenhoShowCtrl',['$scope',
 															 '$state',
 															 '$stateParams',
 															 '$mdSidenav',
-			                         'suportes',  
-			                         'suporte',
-function($scope, $state, $stateParams, $mdSidenav, suportes, suporte){
-	$scope.suporte = suporte;
+			                         'desenhos',  
+			                         'desenho',
+function($scope, $state, $stateParams, $mdSidenav, desenhos, desenho){
+	$scope.desenho = desenho;
+
 
 	$scope.voltar = function() {
-    $state.go('suportes');
+    $state.go('desenhos');
   };
 
   $scope.toggleSidenav = function(menuId) {

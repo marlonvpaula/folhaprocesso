@@ -1,0 +1,31 @@
+<md-dialog aria-label="Programador"  ng-cloak>
+  <form name="grupomodeloForm" ng-submit="salvar()">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Novo Programador</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-font-icon="fa fa-times" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+    	<div class="md-dialog-content">
+	      <md-input-container class="md-block" flex-gt-sm>
+		      <label>Nome do Programador</label>
+		      <input name="nome" ng-model="programador.nome"
+		             required minlength="6" maxlength="100"/>
+		    </md-input-container>
+		  </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button class="md-raised md-warn" ng-click="cancel()">
+       Cancelar
+      </md-button>
+      <md-button class="md-raised md-primary" type="submit" style="margin-right:20px;">
+        Salvar
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

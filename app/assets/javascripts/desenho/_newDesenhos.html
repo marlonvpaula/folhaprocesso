@@ -1,0 +1,66 @@
+<md-content layout="column" flex>
+  <md-toolbar layout="row" md-scroll-shrink>
+    <div class="md-toolbar-tools">
+      <md-button ng-click="toggleSidenav('left')" hide-gt-sm class="md-icon-button">
+        <md-icon aria-label="Menu" class="md-toggle-icon fa fa-bars"></md-icon>
+      </md-button>
+      <h3>
+        <span>Cadastros - Desenho</span>
+      </h3>
+    </div>
+  </md-toolbar>
+
+  <md-content class="md-padding" layout="column" flex >
+    <h2 class="md-title">Novo Desenho</h2>
+    <form name="insertoForm" ng-submit="salvar()">
+      
+      <md-input-container class="md-block" flex-gt-sm>
+	      <label>Código do Desenho</label>
+	      <input name="codigo" ng-model="desenho.codigo" ng-pattern="/^[0-9]{3}.[0-9]{3}.[0-9]{3}$/" required/>
+        <div class="hint">###.###.###</div>
+	    </md-input-container>
+
+      <md-input-container class="md-block" flex-gt-sm>
+        <label>Título do Desenho</label>
+        <input name="titulo" ng-model="desenho.titulo"
+               required minlength="6" maxlength="100"/>
+      </md-input-container>
+
+      <div layout-gt-xs="row">
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Maquina</label>
+          <md-select ng-model="desenho.modelo">
+            <md-option ng-repeat="mod in modelos" value="{{mod.id}}">
+              {{mod.descricao}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Grupo de Maquina</label>
+          <md-select ng-model="desenho.grupomodelo">
+            <md-option ng-repeat="gru in grupomodelos" value="{{gru.id}}">
+              {{gru.descricao}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+        
+      </div>
+
+      <div class="menuDiv">
+        <ul class="menuLogout">
+          <li>
+            <md-button class="md-raised md-warn" ng-click="cancel()">
+             Cancelar
+            </md-button>
+          </li>
+          <li>
+            <md-button class="md-raised md-primary" type="submit" style="margin-right:20px;">
+              Salvar
+            </md-button>
+          </li>
+        </ul>
+      </div>
+    </form>
+  </md-content>
+</md-content>

@@ -46,7 +46,6 @@ function($scope, $state, $mdSidenav, $timeout, $q, $mdToast, folhaprocessos, sup
 
   
   $scope.adicionarFerramenta = function () {
-    console.log($scope.ferramentas);
     if ($scope.ferramentafolha === null) {
       $scope.errorFerramenta = "Deve ser informada as opções de Ferramenta.";
       return;

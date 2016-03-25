@@ -11,10 +11,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160316043626) do
+ActiveRecord::Schema.define(version: 20160325024600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "acessorios", force: true do |t|
+    t.string   "descricao"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "comandos", force: true do |t|
+    t.string   "descricao"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "desenhos", force: true do |t|
+    t.string   "codigo"
+    t.string   "titulo"
+    t.integer  "modelo_id"
+    t.integer  "grupomodelo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "desenhos", ["grupomodelo_id"], name: "index_desenhos_on_grupomodelo_id", using: :btree
+  add_index "desenhos", ["modelo_id"], name: "index_desenhos_on_modelo_id", using: :btree
 
   create_table "fabricantes", force: true do |t|
     t.string   "descricao"
@@ -37,18 +61,17 @@ ActiveRecord::Schema.define(version: 20160316043626) do
   add_index "ferramentafolhas", ["suporte_id"], name: "index_ferramentafolhas_on_suporte_id", using: :btree
 
   create_table "folhaprocessos", force: true do |t|
-    t.integer  "nrDesenho"
     t.string   "nomepeca"
     t.date     "dtProjeto"
     t.date     "dtVerificacao"
-    t.integer  "grupomodelo_id"
-    t.integer  "modelo_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "desenho_id"
+    t.integer  "operacao_id"
   end
 
-  add_index "folhaprocessos", ["grupomodelo_id"], name: "index_folhaprocessos_on_grupomodelo_id", using: :btree
-  add_index "folhaprocessos", ["modelo_id"], name: "index_folhaprocessos_on_modelo_id", using: :btree
+  add_index "folhaprocessos", ["desenho_id"], name: "index_folhaprocessos_on_desenho_id", using: :btree
+  add_index "folhaprocessos", ["operacao_id"], name: "index_folhaprocessos_on_operacao_id", using: :btree
 
   create_table "grupomodelos", force: true do |t|
     t.string   "descricao"
@@ -81,6 +104,12 @@ ActiveRecord::Schema.define(version: 20160316043626) do
 
   create_table "operacaos", force: true do |t|
     t.string   "descricao"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "programadors", force: true do |t|
+    t.string   "nome"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

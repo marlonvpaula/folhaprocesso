@@ -7,7 +7,6 @@ angular.module('StarterApp.controllers')
 			                         'insertos',  
 			                         'inserto',
 function($scope, $state, $stateParams, $mdSidenav, insertos, inserto){
-	console.log(inserto);
 	$scope.inserto = inserto;
 
 

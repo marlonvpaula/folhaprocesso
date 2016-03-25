@@ -76,9 +76,12 @@ Folhaprocmultipet::Application.routes.draw do
     resources :insertos
   end
 
-  resources :raios
   resources :grupomodelos
   resources :modelos
+  resources :acessorios
+  resources :comandos
+  resources :desenhos
+  resources :programadors
   
   resources :folhaprocessos do
     resources :ferramentafolhas

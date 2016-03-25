@@ -82,6 +82,36 @@ angular.module('StarterApp', ['md.data.table',
           }]
         }
       })
+      .state('programadors', {
+        url: '/programadors',
+        templateUrl: 'programador/_programadors.html',
+        controller: 'ProgramadorCtrl',
+        resolve: {
+          postPromise: ['programadors', function(programadors){
+            return programadors.getAll();
+          }]
+        }
+      })
+      .state('acessorios', {
+        url: '/acessorios',
+        templateUrl: 'cessorio/_acessorios.html',
+        controller: 'AcessorioCtrl',
+        resolve: {
+          postPromise: ['acessorios', function(acessorios){
+            return acessorios.getAll();
+          }]
+        }
+      })
+      .state('comandos', {
+        url: '/comandos',
+        templateUrl: 'comando/_comandos.html',
+        controller: 'ComandoCtrl',
+        resolve: {
+          postPromise: ['comandos', function(comandos){
+            return comandos.getAll();
+          }]
+        }
+      })
       .state('insertos', {
         url: '/insertos',
         templateUrl: 'inserto/_insertos.html',
@@ -215,6 +245,58 @@ angular.module('StarterApp', ['md.data.table',
         resolve: {
           postPromise: ['grupomodelos', function(grupomodelos){
             return grupomodelos.getAll();
+          }]
+        }
+      })
+      .state('desenhos', {
+        url: '/desenhos',
+        templateUrl: 'desenho/_desenhos.html',
+        controller: 'DesenhoCtrl',
+        resolve: {
+          postPromise: ['desenhos', function(desenhos){
+            return desenhos.getAll();
+          }]
+        }
+      })
+      .state('desenho', {
+        url: '/desenhos/new',
+        templateUrl: 'desenho/_newDesenhos.html',
+        controller: 'DesenhoNewCtrl',
+        resolve: {
+          initialData: ['grupomodelos', 
+                        'modelos',
+                        '$q', 
+                        function (grupomodelos, modelos, $q) {
+            return $q.all({
+               grupomodelos: grupomodelos.getAll(),
+               modelos: modelos.getAll(),
+             });
+          }]
+        }
+      })
+      .state('showDesenho', {
+        url: '/desenhos/{id}',
+        templateUrl: 'desenho/_showDesenhos.html',
+        controller: 'DesenhoShowCtrl',
+        resolve: {
+          desenho: ['$stateParams', 'desenhos', function($stateParams, desenhos) {
+            return desenhos.get($stateParams.id);
+          }]
+        }
+      })
+      .state('updateDesenho', {
+        url: '/desenhos/update/{id}',
+        templateUrl: 'desenho/_newDesenhos.html',
+        controller: 'DesenhoUpdateCtrl',
+        resolve: {
+          initialData: ['grupomodelos', 
+                        'modelos',
+                        '$q', 
+                        function (grupomodelos, modelos, $q) {
+            return $q.all({
+               grupomodelos: grupomodelos.getAll(),
+               modelos: modelos.getAll(),
+             });
           }]
         }
       })

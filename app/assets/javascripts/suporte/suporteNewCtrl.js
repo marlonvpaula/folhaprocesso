@@ -66,7 +66,6 @@ function($scope, $state, $mdSidenav, $timeout, $q, suportes, insertos, operacaos
 
   $scope.salvar = function() {
   	if(!$scope.suporte.descricao || $scope.suporte.descricao === '') { return; }
-    console.log($scope.suporte.operacao);
 	  suportes.create({
 	    descricao: $scope.suporte.descricao,
       operacao_id: $scope.suporte.operacao,

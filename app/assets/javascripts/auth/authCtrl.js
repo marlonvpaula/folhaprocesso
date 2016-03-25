@@ -13,7 +13,6 @@ function($scope, $state, $mdSidenav, Auth){
       $state.go('home');
       $scope.error = '';
     }, function(error) {
-      console.log(error);
       $scope.error = 'Usuário ou senha incorreta!';
     });
   };

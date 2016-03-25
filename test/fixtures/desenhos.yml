@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  codigo: MyString
+  titulo: MyString
+  grupo_id: 
+  grupomodelo_id: 
+
+two:
+  codigo: MyString
+  titulo: MyString
+  grupo_id: 
+  grupomodelo_id: 
