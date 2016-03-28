@@ -1,7 +1,11 @@
 class DesenhosController < ApplicationController
 
 	def index
-    respond_with Desenho.all
+    if params[:codigo].present?
+      respond_with Desenho.where(codigo: params[:codigo])
+    else
+      respond_with Desenho.all
+    end
   end
 
   def create

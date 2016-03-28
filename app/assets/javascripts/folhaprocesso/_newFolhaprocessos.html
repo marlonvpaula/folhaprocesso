@@ -14,42 +14,67 @@
     <h2 class="md-title">Nova Folha de Processo</h2>
     <form name="modeloForm" ng-submit="salvar()">
       <div layout-gt-xs="row">
-        <md-input-container class="md-block" flex-gt-sm>
-  	      <label>Numero do desenho</label>
-  	      <input name="nrDesenho" ng-model="folhaprocesso.nrDesenho"
-  	             required maxlength="100"/>
-  	    </md-input-container>
+        
         <md-input-container class="md-block" flex-gt-sm>
           <label>Nome da peça</label>
           <input name="nomepeca" ng-model="folhaprocesso.nomepeca"
                  required minlength="4" maxlength="100"/>
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Operação</label>
+          <md-select ng-model="folhaprocesso.operacao">
+            <md-option ng-repeat="ope in operacaos" value="{{ope.id}}">
+              {{ope.descricao}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Programador</label>
+          <md-select ng-model="folhaprocesso.programador">
+            <md-option ng-repeat="prog in programadors" value="{{prog.id}}">
+              {{prog.nome}}
+            </md-option>
+          </md-select>
         </md-input-container>
         <md-datepicker ng-model="folhaprocesso.dtProjeto" md-placeholder="Data do projeto/verificação">
         </md-datepicker>
       </div>
       <div layout-gt-xs="row">
         <md-input-container class="md-block" flex-gt-sm>
+          <label>Numero do desenho</label>
+          <input name="codigoDesenho" ng-model="folhaprocesso.desenho.codigo" ng-change="updateDesenho()"
+                  ng-pattern="/^[0-9]{3}.[0-9]{3}.[0-9]{3}$/" required/>
+          <div class="hint">###.###.###</div>
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Título do Desenho</label>
+          <input name="descricaoDesenho" ng-model="folhaprocesso.desenho.titulo"
+                 ng-disabled="true"/>
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
           <label>Maquina</label>
-          <md-select ng-model="folhaprocesso.modelo">
-            <md-option ng-repeat="mod in modelos" value="{{mod.id}}">
-              {{mod.descricao}}
-            </md-option>
-          </md-select>
+          <input name="descricaoDesenho" ng-model="folhaprocesso.desenho.modelo.descricao"
+                 ng-disabled="true"/>
         </md-input-container>
 
         <md-input-container class="md-block" flex-gt-sm>
           <label>Grupo de Maquina</label>
-          <md-select ng-model="folhaprocesso.grupomodelo">
-            <md-option ng-repeat="gru in grupomodelos" value="{{gru.id}}">
-              {{gru.descricao}}
-            </md-option>
-          </md-select>
+          <input name="descricaoDesenho" ng-model="folhaprocesso.desenho.grupomodelo.descricao"
+                 ng-disabled="true"/>
         </md-input-container>
         
       </div>
       <md-divider></md-divider>
       <h2 class="md-title">Adicionar Ferramentas</h2>
       <div layout-gt-xs="row">
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Posição</label>
+          <md-select ng-model="ferramentafolha.posicao">
+            <md-option ng-repeat="pos in posicaos" value="{{pos.id}}">
+              {{pos.descricao}}
+            </md-option>
+          </md-select>
+        </md-input-container>
 
         <md-input-container class="md-block" flex-gt-sm>
           <label>Ferramenta</label>
@@ -77,6 +102,11 @@
             </md-option>
           </md-select>
         </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Altura</label>
+          <input name="altura" ng-model="ferramentafolha.altura"
+                 required />
+        </md-input-container>
       </div>
       <div role="alert" class="error" ng-show="errorFerramenta">
         {{errorFerramenta}}
@@ -94,17 +124,21 @@
         <table md-data-table md-row-select="selected" md-data-table md-progress="deferred">
           <thead >
             <tr>
+              <th name="Posição" ></th>
               <th name="Suporte" ></th>
               <th name="Inserto" ></th>
               <th name="Fabricante" ></th>
+              <th name="Altura" ></th>
             </tr>
           </thead>
 
           <tbody>
             <tr ng-repeat="ferramenta in ferramentas">
+              <td>{{ ferramenta.posicao }}</td>
               <td>{{ ferramenta.suporte.descricao }}</td>
               <td>{{ ferramenta.inserto.descricao }}</td>
               <td>{{ ferramenta.fabricante.descricao }}</td>
+              <td>{{ ferramenta.altura }}</td>
             </tr>
           </tbody>
         </table>

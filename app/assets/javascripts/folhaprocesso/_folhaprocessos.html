@@ -53,7 +53,7 @@
             <tr>
               <th name="Id" ></th>
               <th name="Nome Peça" ></th>
-              <th name="Desenho" ></th>
+              <th name="Data" ></th>
               <th name="Ações" ></th>
             </tr>
           </thead>
@@ -62,7 +62,7 @@
             <tr ng-repeat="folhaprocesso in folhaprocessos">
               <td>{{ folhaprocesso.id }}</td>
               <td>{{ folhaprocesso.nomepeca }}</td>
-              <td>{{ folhaprocesso.nrDesenho }}</td>
+              <td>{{ folhaprocesso.dtProjeto }}</td>
               <td>
                 <md-button class="md-fab md-mini md-primary" ng-click="showFolhaprocesso(folhaprocesso.id)" aria-label="Mostrar">
                   <i class="fa fa-folder-open"></i>

@@ -19,6 +19,12 @@ function($http){
     });
   };
 
+  o.getCodigo = function(codigo) {
+    return $http.get('/desenhos.json?codigo=' + codigo).then(function(res){
+      return res.data;
+    });
+  }
+
   o.create = function(desenho) {
 	  return $http.post('/desenhos.json', desenho).success(function(data){
 	    o.desenhos.push(data);

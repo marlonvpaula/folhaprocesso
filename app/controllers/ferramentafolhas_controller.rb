@@ -25,7 +25,7 @@ class FerramentafolhasController < ApplicationController
 
   private
   def ferramentafolha_params
-    params.require(:ferramentafolha).permit(:folhaprocesso_id, :suporte_id, :inserto_id, 
-    	                                      :fabricante_id)
+    params.require(:ferramentafolha).permit(:folhaprocesso_id, :posicao, :suporte_id, :inserto_id, 
+    	                                      :fabricante_id, :altura)
   end
 end

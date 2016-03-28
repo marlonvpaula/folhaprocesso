@@ -315,14 +315,14 @@ angular.module('StarterApp', ['md.data.table',
         templateUrl: 'folhaprocesso/_newFolhaprocessos.html',
         controller: 'FolhaprocessoNewCtrl',
         resolve: {
-          initialData: ['grupomodelos', 
-                        'modelos',
+          initialData: ['operacaos', 
+                        'programadors',
                         'suportes', 
                         '$q', 
-                        function (grupomodelos, modelos, suportes, $q) {
+                        function (operacaos, programadors, suportes, $q) {
             return $q.all({
-               grupomodelos: grupomodelos.getAll(),
-               modelos: modelos.getAll(),
+               operacaos: operacaos.getAll(),
+               programadors: programadors.getAll(),
                suportes: suportes.getAll(),
              });
           }]
@@ -343,14 +343,14 @@ angular.module('StarterApp', ['md.data.table',
         templateUrl: 'folhaprocesso/_newFolhaprocessos.html',
         controller: 'FolhaprocessoUpdateCtrl',
         resolve: {
-          initialData: ['grupomodelos', 
-                        'modelos',
+          initialData: ['operacaos', 
+                        'programadors',
                         'suportes', 
                         '$q', 
-                        function (grupomodelos, modelos, suportes, $q) {
+                        function (operacaos, programadors, suportes, $q) {
             return $q.all({
-               grupomodelos: grupomodelos.getAll(),
-               modelos: modelos.getAll(),
+               operacaos: operacaos.getAll(),
+               programadors: programadors.getAll(),
                suportes: suportes.getAll(),
              });
           }]
