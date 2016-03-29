@@ -11,19 +11,9 @@
         }];
 
         sections.push({
-          name: 'Cadastros',
+          name: 'Pessoas',
           type: 'toggle',
-          pages: [/*{
-            name: 'Ferramenta',
-            type: 'link',
-            state: 'beers.ipas',
-            icon: 'fa fa-cog'
-          },*/{
-            name: 'Operação',
-            type: 'link',
-            state: 'operacaos',
-            icon: 'fa fa-cog'
-          }, 
+          pages: [
           {
             name: 'Fabricante',
             state: 'fabricantes',
@@ -35,19 +25,13 @@
             state: 'programadors',
             type: 'link',
             icon: 'fa fa-child'
-          },
-          {
-            name: 'Inserto',
-            state: 'insertos',
-            type: 'link',
-            icon: 'fa fa-object-group'
-          },
-          {
-            name: 'Ferramenta',
-            state: 'suportes',
-            type: 'link',
-            icon: 'fa fa-wrench'
-          },
+          }]
+        });
+
+        sections.push({
+          name: 'Desenho',
+          type: 'toggle',
+          pages: [
           {
             name: 'Desenho',
             state: 'desenhos',
@@ -65,6 +49,30 @@
             state: 'grupomodelos',
             type: 'link',
             icon: 'fa fa-folder-o'
+          }]
+        });
+
+        sections.push({
+          name: 'Ferramentas',
+          type: 'toggle',
+          pages: [
+          {
+            name: 'Operação',
+            type: 'link',
+            state: 'operacaos',
+            icon: 'fa fa-cog'
+          }, 
+          {
+            name: 'Inserto',
+            state: 'insertos',
+            type: 'link',
+            icon: 'fa fa-object-group'
+          },
+          {
+            name: 'Ferramenta',
+            state: 'suportes',
+            type: 'link',
+            icon: 'fa fa-wrench'
           },
           {
             name: 'Acessório',
