@@ -56,7 +56,7 @@ function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, suportes, inser
   function createFilterFor(query) {
     var lowercaseQuery = angular.lowercase(query);
     return function filterFn(inserto) {
-      return (inserto._lowerdescricao.indexOf(lowercaseQuery) == 0);
+      return (inserto._lowerdescricao.indexOf(lowercaseQuery) != -1);
     };
   }
 
