@@ -13,12 +13,24 @@ class FolhaprocessosController < ApplicationController
                                                               :fabricante_id => a['fabricante_id'],
                                                               :altura        => a['altura'])
       end
+      params[:acessoriofolhas].each do |a|
+        @acessorio = @folhaprocesso.acessoriofolhas.create!(:acessorio_id    => a['id'])
+      end
+      params[:comandofolhas].each do |a|
+        @comando = @folhaprocesso.comandofolhas.create!(:comando_id    => a['id'])
+      end
     end
     respond_with @folhaprocesso
   end
 
   def show
+    
     respond_with Folhaprocesso.find(params[:id])
+    #@folhaprocesso = Folhaprocesso.find(params[:id])
+    #respond_to { |format|
+    #  format.json { render json: @folhaprocesso, :include => [:operacao,:programador, :desenho => [:modelo, :grupomodelo]] }
+    #}
+
   end
 
   def update
@@ -26,6 +38,12 @@ class FolhaprocessosController < ApplicationController
     @folhaprocesso = Folhaprocesso.find(params[:id])
     @folhaprocesso.ferramentafolhas.each do |fer|
       fer.destroy
+    end
+    @folhaprocesso.acessoriofolhas.each do |ace|
+      ace.destroy
+    end
+    @folhaprocesso.comandofolhas.each do |com|
+      com.destroy
     end
 
     if @folhaprocesso.update(folhaprocesso_params)
@@ -35,6 +53,12 @@ class FolhaprocessosController < ApplicationController
                                                               :inserto_id    => a['inserto_id'], 
                                                               :fabricante_id => a['fabricante_id'],
                                                               :altura        => a['altura'])
+      end
+      params[:acessoriofolhas].each do |a|
+        @acessorio = @folhaprocesso.acessoriofolhas.create!(:acessorio_id    => a['id'])
+      end
+      params[:comandofolhas].each do |a|
+        @comando = @folhaprocesso.comandofolhas.create!(:comando_id    => a['id'])
       end
     end
     
@@ -49,9 +73,11 @@ class FolhaprocessosController < ApplicationController
 
   private
   def folhaprocesso_params
-    params.require(:folhaprocesso).permit(:desenho_id, :nomepeca, :dtProjeto, :dtVerificacao, 
-    	                                    :operacao_id, :programador_id, 
+    params.require(:folhaprocesso).permit(:nomepeca, :dtProjeto, :dtVerificacao, 
+    	                                    :operacao_id, :programador_id, :desenho_id,
     	                                    ferramentafolhas_attributes: [:id, :posicao, :suporte_id, :inserto_id, 
-                                                                        :fabricante_id, :altura])
+                                                                        :fabricante_id, :altura],
+                                          acessoriofolhas_attributes: [:id, :acessorio_id],
+                                          comandofolhas_attributes: [:id, :comando_id])
   end
 end

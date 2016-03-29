@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  folhaprocesso_id: 
+  comando_id: 
+
+two:
+  folhaprocesso_id: 
+  comando_id: 

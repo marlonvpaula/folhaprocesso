@@ -12,13 +12,13 @@ angular.module('StarterApp.controllers')
                                      'operacaos',
                                      'desenhos',   
                                      'programadors',
-function($scope, $state, $mdSidenav, $timeout, $q, $mdToast, folhaprocessos, suportes, insertos, operacaos, desenhos, programadors){
+                                     'acessorios',   
+                                     'comandos',
+function($scope, $state, $mdSidenav, $timeout, $q, $mdToast, folhaprocessos, suportes, insertos, operacaos, desenhos, programadors, acessorios, comandos){
 	
   $scope.operacaos = operacaos.operacaos;
   $scope.programadors = programadors.programadors;
   $scope.suportes = suportes.suportes;
-  $scope.grupomodelos = [];
-  $scope.modelos = [];
   $scope.ferramentas = [];
   $scope.insertos = [];
   $scope.fabricantes = [];
@@ -46,6 +46,86 @@ function($scope, $state, $mdSidenav, $timeout, $q, $mdToast, folhaprocessos, sup
     {id: 19, descricao: 'T19'},
     {id: 20, descricao: 'T20'},
   ];
+
+
+  $scope.querySearchA = querySearchA;
+  $scope.querySearchC = querySearchC;
+  $scope.acessors = loadAcessorios();
+  $scope.comands = loadComandos();
+  $scope.filterSelected = true;
+  $scope.transformChip = transformChip;
+  $scope.selectedItemA = null;
+  $scope.selectedItemC = null;
+  $scope.searchTextA = null;
+  $scope.searchTextC = null;
+  $scope.acessorsSelected = []; 
+  $scope.comandsSelected = []; 
+  $scope.autocompleteDemoRequireMatch = true;
+  
+  /**
+   * Return the proper object when the append is called.
+   */
+  function transformChip(chip) {
+    // If it is an object, it's already a known chip
+    if (angular.isObject(chip)) {
+      return chip;
+    }
+    // Otherwise, create a new one
+    return { id: chip.id, descricao: chip.descricao }
+  }
+  /**
+   * Search for vegetables.
+   */
+  function querySearchA (query) {
+    var results = query ? $scope.acessors.filter(createFilterForA(query)) : [];
+    return results;
+  }
+  /**
+   * Search for vegetables.
+   */
+  function querySearchC (query) {
+    var results = query ? $scope.comands.filter(createFilterForC(query)) : [];
+    return results;
+  }
+  /**
+   * Create filter function for a query string
+   */
+  function createFilterForA(query) {
+    var lowercaseQuery = angular.lowercase(query);
+    return function filterFn(acessorio) {
+      return (acessorio._lowerdescricao.indexOf(lowercaseQuery) != -1);
+    };
+  }
+  /**
+   * Create filter function for a query string
+   */
+  function createFilterForC(query) {
+    var lowercaseQuery = angular.lowercase(query);
+    return function filterFn(comando) {
+      return (comando._lowerdescricao.indexOf(lowercaseQuery) != -1);
+    };
+  }
+
+
+  function loadAcessorios() {
+    var acessors = acessorios.acessorios;
+
+    return acessors.map(function (ace) {
+      ace._lowerdescricao = ace.descricao.toLowerCase();
+      return ace;
+    });
+  }
+
+  function loadComandos() {
+    var comands = comandos.comandos;
+
+    return comands.map(function (com) {
+      com._lowerdescricao = com.descricao.toLowerCase();
+      return com;
+    });
+  }
+
+
   
   $scope.updateDesenho = function () {
     desenhos.getCodigo($scope.folhaprocesso.desenho.codigo).then(function(desenho){
@@ -199,13 +279,24 @@ function($scope, $state, $mdSidenav, $timeout, $q, $mdToast, folhaprocessos, sup
       showMessage("Ao menos uma ferramenta deve ser informada.");
       return;
     }
+    var ferramentas = [];
+    for (var i = 0; i < $scope.ferramentas.length; i++) {
+      ferramentas.push({posicao: $scope.ferramentas[i].posicao,
+                        suporte_id: $scope.ferramentas[i].suporte.id,
+                        inserto_id: $scope.ferramentas[i].inserto.id,
+                        fabricante_id: $scope.ferramentas[i].fabricante.id,
+                        altura: $scope.ferramentas[i].altura
+                      });
+    }
 	  folhaprocessos.create({
       operacao_id: $scope.folhaprocesso.operacao,
       programador_id: $scope.folhaprocesso.programador,
-      desenho_id: $scope.folhaprocesso.desenho,
+      desenho_id: $scope.folhaprocesso.desenho.id,
 	    nomepeca: $scope.folhaprocesso.nomepeca,
       dtProjeto: $scope.folhaprocesso.dtProjeto,
-      ferramentafolhas: $scope.ferramentas,
+      acessoriofolhas: $scope.acessorsSelected,
+      comandofolhas: $scope.comandsSelected,
+      ferramentafolhas: ferramentas,
 	  });
 	  $scope.folhaprocesso.nomepeca = '';
     $state.go('folhaprocessos');

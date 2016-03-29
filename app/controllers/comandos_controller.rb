@@ -11,7 +11,7 @@ class ComandosController < ApplicationController
   def update
     @comando = Comando.find(params[:id])
     
-    respond_with @comando.update(fabricante_params)
+    respond_with @comando.update(comando_params)
   end
 
   def show

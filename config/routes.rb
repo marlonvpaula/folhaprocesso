@@ -85,5 +85,7 @@ Folhaprocmultipet::Application.routes.draw do
   
   resources :folhaprocessos do
     resources :ferramentafolhas
+    resources :acessoriofolhas
+    resources :comandofolhas
   end  
 end

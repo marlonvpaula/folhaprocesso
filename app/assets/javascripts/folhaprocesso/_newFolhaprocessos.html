@@ -16,7 +16,7 @@
       <div layout-gt-xs="row">
         
         <md-input-container class="md-block" flex-gt-sm>
-          <label>Nome da peça</label>
+          <label>Nome da folha</label>
           <input name="nomepeca" ng-model="folhaprocesso.nomepeca"
                  required minlength="4" maxlength="100"/>
         </md-input-container>
@@ -62,10 +62,45 @@
           <input name="descricaoDesenho" ng-model="folhaprocesso.desenho.grupomodelo.descricao"
                  ng-disabled="true"/>
         </md-input-container>
-        
       </div>
-      <md-divider></md-divider>
-      <h2 class="md-title">Adicionar Ferramentas</h2>
+      <div layout-gt-xs="row">
+        <md-chips ng-model="acessorsSelected" md-autocomplete-snap
+                md-transform-chip="transformChip($chip)"
+                md-require-match="autocompleteDemoRequireMatch" flex-gt-sm>
+          <md-autocomplete
+              md-selected-item="selectedItemA"
+              md-search-text="searchTextA"
+              md-items="aces in querySearchA(searchTextA)"
+              md-item-text="aces.descricao"
+              placeholder="Procure por um acessório">
+            <span md-highlight-text="searchTextA">{{aces.descricao}}</span>
+          </md-autocomplete>
+          <md-chip-template>
+            <strong>{{$chip.descricao}}</strong>
+          </md-chip-template>
+        </md-chips>
+
+        <md-chips ng-model="comandsSelected" md-autocomplete-snap
+                md-transform-chip="transformChip($chip)"
+                md-require-match="autocompleteDemoRequireMatch" flex-gt-sm>
+          <md-autocomplete
+              md-selected-item="selectedItemC"
+              md-search-text="searchTextC"
+              md-items="com in querySearchC(searchTextC)"
+              md-item-text="com.descricao"
+              placeholder="Procure por um comando">
+            <span md-highlight-text="searchTextC">{{com.descricao}}</span>
+          </md-autocomplete>
+
+
+          <md-chip-template>
+            <strong>{{$chip.descricao}}</strong>
+          </md-chip-template>
+        </md-chips>
+      </div>
+      <div layout-gt-xs="row">
+        <h2 class="md-title">Adicionar Ferramentas</h2>
+      </div>
       <div layout-gt-xs="row">
         <md-input-container class="md-block" flex-gt-sm>
           <label>Posição</label>
@@ -104,8 +139,7 @@
         </md-input-container>
         <md-input-container class="md-block" flex-gt-sm>
           <label>Altura</label>
-          <input name="altura" ng-model="ferramentafolha.altura"
-                 required />
+          <input name="altura" ng-model="ferramentafolha.altura"/>
         </md-input-container>
       </div>
       <div role="alert" class="error" ng-show="errorFerramenta">

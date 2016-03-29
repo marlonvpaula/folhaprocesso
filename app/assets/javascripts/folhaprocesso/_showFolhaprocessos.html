@@ -11,14 +11,29 @@
   </md-toolbar>
 
   <md-content class="md-padding" layout="column" flex >
-    <h2 class="md-title">Nome Peça: {{ folhaprocesso.nomepeca }}</h2>
     <div layout-gt-xs="row">
-      <h4 class="descricao">Desenho: {{ folhaprocesso.nrDesenho }}</h4>
+      <h2 class="md-title md-padding"> Nome Folha: {{ folhaprocesso.nomepeca }}</h2>
+      <h2 class="md-title md-padding"> Operação: {{ folhaprocesso.operacao.descricao }}</h2>
+      <h2 class="md-title md-padding"> Programador: {{ folhaprocesso.programador.nome }}</h2>
+    </div>
+    <div layout-gt-xs="row">
+      <h4 class="descricao">Desenho: {{ folhaprocesso.desenho.codigo }}</h4>
+      <h4 class="descricao">Título: {{ folhaprocesso.desenho.titulo }}</h4>
+      <h4 class="descricao">Maquina: {{ folhaprocesso.desenho.modelo.descricao }}</h4>
+      <h4 class="descricao">Grupo: {{ folhaprocesso.desenho.grupomodelo.descricao }}</h4>
       <h4 class="descricao">Data Projeto: {{ folhaprocesso.dtProjeto }}</h4>
     </div>
     <div layout-gt-xs="row">
-      <h4 class="descricao">Maquina: {{ folhaprocesso.modelo.descricao }}</h4>
-      <h4 class="descricao">Grupo Modelo: {{ folhaprocesso.grupomodelo.descricao }}</h4>
+      <md-chips ng-repeat="ace in folhaprocesso.acessoriofolhas">
+        <md-chip>
+          {{ace.acessorio.descricao}}
+        </md-chip>
+      </md-chips>
+      <md-chips ng-repeat="com in folhaprocesso.comandofolhas">
+        <md-chip>
+          {{com.comando.descricao}}
+        </md-chip>
+      </md-chips>
     </div>
     
     <md-data-table-container>
@@ -26,17 +41,21 @@
            
           <thead >
             <tr>
+              <th name="Posição" ></th>
               <th name="Suporte" ></th>
               <th name="Inserto" ></th>
               <th name="Fabricante" ></th>
+              <th name="Altura" ></th>
             </tr>
           </thead>
 
           <tbody>
             <tr ng-repeat="ferramentafolha in folhaprocesso.ferramentafolhas">
+              <td>{{ ferramentafolha.posicao }}</td>
               <td>{{ ferramentafolha.suporte.descricao }}</td>
               <td>{{ ferramentafolha.inserto.descricao }}</td>
               <td>{{ ferramentafolha.fabricante.descricao }}</td>
+              <td>{{ ferramentafolha.altura }}</td>
             </tr>
           </tbody>
         </table>

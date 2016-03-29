@@ -318,12 +318,16 @@ angular.module('StarterApp', ['md.data.table',
           initialData: ['operacaos', 
                         'programadors',
                         'suportes', 
+                        'acessorios',
+                        'comandos',
                         '$q', 
-                        function (operacaos, programadors, suportes, $q) {
+                        function (operacaos, programadors, suportes, acessorios, comandos, $q) {
             return $q.all({
                operacaos: operacaos.getAll(),
                programadors: programadors.getAll(),
                suportes: suportes.getAll(),
+               acessorios: acessorios.getAll(),
+               comandos: comandos.getAll(),
              });
           }]
         }
@@ -346,12 +350,16 @@ angular.module('StarterApp', ['md.data.table',
           initialData: ['operacaos', 
                         'programadors',
                         'suportes', 
+                        'acessorios',
+                        'comandos',
                         '$q', 
-                        function (operacaos, programadors, suportes, $q) {
+                        function (operacaos, programadors, suportes, acessorios, comandos, $q) {
             return $q.all({
                operacaos: operacaos.getAll(),
                programadors: programadors.getAll(),
                suportes: suportes.getAll(),
+               acessorios: acessorios.getAll(),
+               comandos: comandos.getAll(),
              });
           }]
         }

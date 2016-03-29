@@ -45,7 +45,7 @@ function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, insertos,fabric
   function createFilterFor(query) {
     var lowercaseQuery = angular.lowercase(query);
     return function filterFn(fabricante) {
-      return (fabricante._lowerdescricao.indexOf(lowercaseQuery) == 0);
+      return (fabricante._lowerdescricao.indexOf(lowercaseQuery) != -1);
     };
   }
 

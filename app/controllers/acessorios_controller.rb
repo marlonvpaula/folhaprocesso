@@ -11,7 +11,7 @@ class AcessoriosController < ApplicationController
   def update
     @acessorio = Acessorio.find(params[:id])
     
-    respond_with @acessorio.update(fabricante_params)
+    respond_with @acessorio.update(acessorio_params)
   end
 
   def show

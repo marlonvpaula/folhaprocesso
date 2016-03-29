@@ -11,16 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160326205410) do
+ActiveRecord::Schema.define(version: 20160328223718) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "acessoriofolhas", force: true do |t|
+    t.integer  "folhaprocesso_id"
+    t.integer  "acessorio_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "acessoriofolhas", ["acessorio_id"], name: "index_acessoriofolhas_on_acessorio_id", using: :btree
+  add_index "acessoriofolhas", ["folhaprocesso_id"], name: "index_acessoriofolhas_on_folhaprocesso_id", using: :btree
 
   create_table "acessorios", force: true do |t|
     t.string   "descricao"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "comandofolhas", force: true do |t|
+    t.integer  "folhaprocesso_id"
+    t.integer  "comando_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comandofolhas", ["comando_id"], name: "index_comandofolhas_on_comando_id", using: :btree
+  add_index "comandofolhas", ["folhaprocesso_id"], name: "index_comandofolhas_on_folhaprocesso_id", using: :btree
 
   create_table "comandos", force: true do |t|
     t.string   "descricao"

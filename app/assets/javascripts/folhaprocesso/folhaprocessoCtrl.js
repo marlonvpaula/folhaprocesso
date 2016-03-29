@@ -42,16 +42,16 @@ function getFolhaprocesso(query) {
       return;
     }
     folhaprocessos.get($scope.selected[0].id).then(function(folhaprocesso){
-      var doc = new jsPDF();
+      var doc = new jsPDF('p', 'pt');
       var linhas = 10;
       doc.text(80, linhas, " Folha de Processo ");
       doc.setFontSize(10);
       linhas += 20;
       doc.text(10, linhas, " Nome da Peça: " + folhaprocesso.nomepeca);
       linhas += 10;
-      doc.text(10, linhas, " Desenho: " + folhaprocesso.nrDesenho + "    Data Projeto: " + folhaprocesso.dtProjeto);
+      doc.text(10, linhas, " Desenho: " + folhaprocesso.desenho.codigo + "    Data Projeto: " + folhaprocesso.dtProjeto);
       linhas += 10;
-      doc.text(10, linhas, " Maquina: " + folhaprocesso.modelo.descricao + "    Grupo Modelo: " + folhaprocesso.grupomodelo.descricao);
+      doc.text(10, linhas, " Maquina: " + folhaprocesso.desenho.modelo.descricao + "    Grupo Modelo: " + folhaprocesso.desenho.grupomodelo.descricao);
       
       linhas += 20;
       doc.text(010, linhas, "Suporte");
