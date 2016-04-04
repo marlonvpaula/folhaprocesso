@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160328223718) do
+ActiveRecord::Schema.define(version: 20160403231814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20160328223718) do
     t.datetime "updated_at"
   end
 
+  add_index "desenhos", ["codigo"], name: "index_desenhos_on_codigo", unique: true, using: :btree
   add_index "desenhos", ["grupomodelo_id"], name: "index_desenhos_on_grupomodelo_id", using: :btree
   add_index "desenhos", ["modelo_id"], name: "index_desenhos_on_modelo_id", using: :btree
 

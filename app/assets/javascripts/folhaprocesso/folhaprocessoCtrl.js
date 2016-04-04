@@ -128,8 +128,9 @@ function getFolhaprocesso(query) {
                     doc.rect(cell.x, cell.y, cell.width, cell.height * 1, 'S');
                     doc.autoTableText('Comandos programados', cell.x + cell.width / 2, cell.y + cell.height * 1 / 2, {
                         halign: 'center',
-                        valign: 'middle'
+                        valign: 'middle',
                     });
+                    //data.row.styles.fillColor = [217, 217, 217];
                 }
 
                 if (data.row.index % 4 === 0) {
@@ -141,7 +142,7 @@ function getFolhaprocesso(query) {
                 }
                 return false;
             }
-        }
+        },
       });
 
       columns = [];
@@ -173,15 +174,7 @@ function getFolhaprocesso(query) {
         drawHeaderRow: function() {
             // Don't draw header row
             return false;
-        },  
-        /*drawRow: function (row, data) {
-            // Colspan
-            doc.setFontStyle('bold');
-            doc.setFontSize(10);
-            if (row.index === 1) {
-              doc.setTextColor(200, 0, 0);
-            }
-        },*/
+        },
         
         drawRow: function (row, data) {
           if (row.index == 1) {
@@ -204,33 +197,6 @@ function getFolhaprocesso(query) {
         }
       });
 
-
-      /*doc.setFontSize(10);
-      linhas += 20;
-      doc.text(10, linhas, " Nome da Peça: " + folhaprocesso.nomepeca);
-      linhas += 10;
-      doc.text(10, linhas, " Desenho: " + folhaprocesso.desenho.codigo + "    Data Projeto: " + folhaprocesso.dtProjeto);
-      linhas += 10;
-      doc.text(10, linhas, " Maquina: " + folhaprocesso.desenho.modelo.descricao + "    Grupo Modelo: " + folhaprocesso.desenho.grupomodelo.descricao);
-      */
-      /*
-      var res1 = doc.autoTableHtmlToJson(document.getElementById("table-folha"));
-      doc.autoTable(res1.columns, res1.data, {
-                     theme: 'grid',
-                     fontSize: 6,
-                     startY: 30
-                   });
-      */
-      /*linhas += 20;
-      doc.text(010, linhas, "Suporte");
-      doc.text(050, linhas, "Inserto");
-      doc.text(090, linhas, "Fabricante");
-      linhas += 10;
-      folhaprocesso.ferramentafolhas.forEach(function(ferramentafolha, i){
-          doc.text(010, linhas + (i * 10), ferramentafolha.suporte.descricao);
-          doc.text(050, linhas + (i * 10), ferramentafolha.inserto.descricao);
-          doc.text(090, linhas + (i * 10), ferramentafolha.fabricante.descricao);
-      });*/
       columns = [];
       columns = [{title: "FERRAMENTAL", dataKey: "ferramental"}]; 
 
@@ -306,27 +272,19 @@ function getFolhaprocesso(query) {
         }
       };
       doc.autoTable(columns, rows, {
-      theme: 'grid',
-      fontSize: 8,
-      margin: {top: 300},
+        theme: 'grid',
+        fontSize: 8,
+        margin: {top: 300},
 
-      //bodyStyles: {rowHeight: 30},
-      createdHeaderCell: function (cell, data) {
-    
-        cell.styles.fillColor = [217, 217, 217];
-        cell.styles.fontSize = 8;
-        cell.styles.textColor = 0;
+        //bodyStyles: {rowHeight: 30},
+        createdHeaderCell: function (cell, data) {
+      
+          cell.styles.fillColor = [217, 217, 217];
+          cell.styles.fontSize = 8;
+          cell.styles.textColor = 0;
 
-      }
-    });
-      /*
-      var res = doc.autoTableHtmlToJson(document.getElementById("basic-table"));
-      doc.autoTable(res.columns, res.data, {
-                     theme: 'grid',
-                     fontSize: 6,
-                     startY: 300
-                   });
-      */
+        }
+      });
 
       //doc.save('FolhaProcesso' + folhaprocesso.id + '.pdf');
       doc.output('dataurlnewwindow');

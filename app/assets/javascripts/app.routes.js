@@ -1,6 +1,7 @@
 angular.module('StarterApp', ['md.data.table', 
                                'ngMaterial', 
                                'ui.router', 
+                               'ui.mask',
                                'templates',
                                'Devise',
                                'StarterApp.controllers'

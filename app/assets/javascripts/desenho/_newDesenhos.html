@@ -16,14 +16,14 @@
       
       <md-input-container class="md-block" flex-gt-sm>
 	      <label>Código do Desenho</label>
-	      <input name="codigo" ng-model="desenho.codigo" ng-pattern="/^[0-9]{3}.[0-9]{3}.[0-9]{3}$/" required/>
+	      <input name="codigo" ng-model="desenho.codigo" ui-mask="999.999.999" ng-pattern="/^[0-9]{3}.[0-9]{3}.[0-9]{3}$/" required/>
         <div class="hint">###.###.###</div>
 	    </md-input-container>
 
       <md-input-container class="md-block" flex-gt-sm>
         <label>Título do Desenho</label>
         <input name="titulo" ng-model="desenho.titulo"
-               required minlength="6" maxlength="100"/>
+               required minlength="2" maxlength="100"/>
       </md-input-container>
 
       <div layout-gt-xs="row">

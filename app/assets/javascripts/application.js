@@ -17,4 +17,5 @@
 //= require angular-material
 //= require angular-animate
 //= require angular-aria
+//= require angular-ui-mask
 //= require_tree .

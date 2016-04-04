@@ -36,13 +36,13 @@
             </md-option>
           </md-select>
         </md-input-container>
-        <md-datepicker ng-model="folhaprocesso.dtProjeto" md-placeholder="Data do projeto/verificação">
+        <md-datepicker class="md-block" ng-model="folhaprocesso.dtProjeto" md-placeholder="Data do projeto">
         </md-datepicker>
       </div>
       <div layout-gt-xs="row">
         <md-input-container class="md-block" flex-gt-sm>
           <label>Numero do desenho</label>
-          <input name="codigoDesenho" ng-model="folhaprocesso.desenho.codigo" ng-change="updateDesenho()"
+          <input name="codigoDesenho" ng-model="folhaprocesso.desenho.codigo" ng-change="updateDesenho()" ui-mask="999.999.999"
                   ng-pattern="/^[0-9]{3}.[0-9]{3}.[0-9]{3}$/" required/>
           <div class="hint">###.###.###</div>
         </md-input-container>

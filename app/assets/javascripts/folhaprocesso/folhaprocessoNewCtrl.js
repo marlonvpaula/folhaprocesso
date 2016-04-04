@@ -128,6 +128,7 @@ function($scope, $state, $mdSidenav, $timeout, $q, $mdToast, folhaprocessos, sup
 
   
   $scope.updateDesenho = function () {
+    console.log($scope.folhaprocesso.desenho.codigo);
     desenhos.getCodigo($scope.folhaprocesso.desenho.codigo).then(function(desenho){
       $scope.folhaprocesso.desenho = desenho[0];
     });
