@@ -21,6 +21,7 @@
     "angular-devise": "~1.1.0",
     "jspdf": "~1.2.61",
     "jspdf-autotable": "~2.0.24",
-    "angular-ui-mask": "~1.8.3"
+    "angular-ui-mask": "~1.8.3",
+    "angular-file-model": "~0.3.1"
   }
 }

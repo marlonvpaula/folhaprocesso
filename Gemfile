@@ -25,6 +25,12 @@ gem 'angular_rails_csrf'
 
 gem 'font-awesome-rails', '4.0.3.0'
 
+gem 'carrierwave'
+
+gem 'cloudinary'
+
+gem 'angularjs-file-upload-rails'
+
 group :production do
   gem 'rails_12factor'
 end

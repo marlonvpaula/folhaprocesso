@@ -30,7 +30,7 @@ class DesenhosController < ApplicationController
 
   private
   def desenho_params
-    params.require(:desenho).permit(:codigo, :titulo, :grupomodelo_id, :modelo_id)
+    params.require(:desenho).permit(:codigo, :titulo, :grupomodelo_id, :modelo_id, :picture)
   end
 
 end

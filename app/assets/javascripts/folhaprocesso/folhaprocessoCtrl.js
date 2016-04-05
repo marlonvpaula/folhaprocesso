@@ -74,7 +74,7 @@ function getFolhaprocesso(query) {
 
       rows.push({"logo"    : "Logo", 
                  "titulo"  : "Tempo estimado", 
-                 "dados"   : folhaprocesso.dtProjeto, 
+                 "dados"   : folhaprocesso.tempo, 
                  "titulo1" : "Grupo",
                  "dados1"  : folhaprocesso.desenho.grupomodelo.descricao, 
                  "comandos": "comandos", 

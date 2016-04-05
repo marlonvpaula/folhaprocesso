@@ -25,11 +25,13 @@ function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, desenhos, grupo
   };
 
   $scope.salvar = function() {
+    console.log($scope.fileModel);
   	if(!$scope.desenho.titulo || $scope.desenho.titulo === '') { return; }
 	  desenhos.update($scope.desenho.id, {
       id: $scope.desenho.id,
 	    codigo: $scope.desenho.codigo,
       titulo: $scope.desenho.titulo,
+      picture: $scope.fileModel,
       modelo_id: $scope.desenho.modelo,
       grupomodelo_id: $scope.desenho.grupomodelo,
 	  });

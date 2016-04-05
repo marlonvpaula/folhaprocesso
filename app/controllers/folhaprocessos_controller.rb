@@ -73,7 +73,7 @@ class FolhaprocessosController < ApplicationController
 
   private
   def folhaprocesso_params
-    params.require(:folhaprocesso).permit(:nomepeca, :dtProjeto, :dtVerificacao, 
+    params.require(:folhaprocesso).permit(:nomepeca, :dtProjeto, :dtVerificacao, :tempo,
     	                                    :operacao_id, :programador_id, :desenho_id,
     	                                    ferramentafolhas_attributes: [:id, :posicao, :suporte_id, :inserto_id, 
                                                                         :fabricante_id, :altura],

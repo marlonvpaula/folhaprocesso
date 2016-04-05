@@ -18,4 +18,5 @@
 //= require angular-animate
 //= require angular-aria
 //= require angular-ui-mask
+//= require angular-file-model
 //= require_tree .

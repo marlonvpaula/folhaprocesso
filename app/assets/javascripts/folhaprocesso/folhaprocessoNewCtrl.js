@@ -128,7 +128,6 @@ function($scope, $state, $mdSidenav, $timeout, $q, $mdToast, folhaprocessos, sup
 
   
   $scope.updateDesenho = function () {
-    console.log($scope.folhaprocesso.desenho.codigo);
     desenhos.getCodigo($scope.folhaprocesso.desenho.codigo).then(function(desenho){
       $scope.folhaprocesso.desenho = desenho[0];
     });
@@ -206,28 +205,24 @@ function($scope, $state, $mdSidenav, $timeout, $q, $mdToast, folhaprocessos, sup
     }
     $scope.errorFerramenta = "";
 
-
     var suporteGet = null;
     for (var i = 0; i < $scope.suportes.length; i++) {
       if ($scope.suportes[i].id = $scope.ferramentafolha.suporte) {
         suporteGet = $scope.suportes[i];
       }
     }
-
-    var insertoGet = null;
+    var insertoGet = null;  
     for (var i = 0; i < $scope.insertos.length; i++) {
       if ($scope.insertos[i].id = $scope.ferramentafolha.inserto) {
         insertoGet = $scope.insertos[i];
       }
     }
-
     var fabricanteGet = null;
     for (var i = 0; i < $scope.fabricantes.length; i++) {
       if ($scope.fabricantes[i].id = $scope.ferramentafolha.fabricante) {
         fabricanteGet = $scope.fabricantes[i];
       }
     }
-
     $scope.ferramentas.push({posicao: $scope.ferramentafolha.posicao,
                              suporte: {id: $scope.ferramentafolha.suporte,
                                        descricao: suporteGet.descricao
@@ -295,6 +290,7 @@ function($scope, $state, $mdSidenav, $timeout, $q, $mdToast, folhaprocessos, sup
       desenho_id: $scope.folhaprocesso.desenho.id,
 	    nomepeca: $scope.folhaprocesso.nomepeca,
       dtProjeto: $scope.folhaprocesso.dtProjeto,
+      tempo: $scope.folhaprocesso.tempo,
       acessoriofolhas: $scope.acessorsSelected,
       comandofolhas: $scope.comandsSelected,
       ferramentafolhas: ferramentas,

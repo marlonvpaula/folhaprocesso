@@ -12,6 +12,11 @@ angular.module('StarterApp.controllers')
 function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, desenhos, grupomodelos, modelos){
   $scope.grupomodelos = grupomodelos.grupomodelos;
   $scope.modelos = modelos.modelos;
+
+  $scope.upload = function () {
+    angular.element(document.querySelector('#fileInput')).click();
+  };
+
 	$scope.cancel = function() {
     $state.go('desenhos');
   };
@@ -21,6 +26,7 @@ function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, desenhos, grupo
 	  desenhos.create({
 	    codigo: $scope.desenho.codigo,
       titulo: $scope.desenho.titulo,
+      picture: $scope.desenho.picture,
       modelo_id: $scope.desenho.modelo,
       grupomodelo_id: $scope.desenho.grupomodelo,
 	  });

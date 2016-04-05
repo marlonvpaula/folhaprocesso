@@ -12,11 +12,11 @@
 
   <md-content class="md-padding" layout="column" flex >
     <h2 class="md-title">Novo Desenho</h2>
-    <form name="insertoForm" ng-submit="salvar()">
+    <form name="desenhoForm" ng-submit="salvar()">
       
       <md-input-container class="md-block" flex-gt-sm>
 	      <label>Código do Desenho</label>
-	      <input name="codigo" ng-model="desenho.codigo" ui-mask="999.999.999" ng-pattern="/^[0-9]{3}.[0-9]{3}.[0-9]{3}$/" required/>
+	      <input name="codigo" ng-model="desenho.codigo" model-view-value="true" ui-mask="999.999.999" ng-pattern="/^[0-9]{3}.[0-9]{3}.[0-9]{3}$/" required/>
         <div class="hint">###.###.###</div>
 	    </md-input-container>
 
@@ -44,6 +44,11 @@
             </md-option>
           </md-select>
         </md-input-container>
+
+      </div>
+
+      <div layout-gt-xs="row">
+        <input type='file' file-model='fileModel'>
         
       </div>
 

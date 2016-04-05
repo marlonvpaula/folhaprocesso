@@ -35,7 +35,7 @@ function($http){
     return $http.put('/desenhos/' + id + '.json', desenho).success(function(data){
       for(var i = o.desenhos.length - 1; i >= 0; i--) {
         if(o.desenhos[i].id === id) {
-          o.desenhos[i] = inserto;
+          o.desenhos[i] = desenho;
         }
       }
     });

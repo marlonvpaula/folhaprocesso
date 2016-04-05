@@ -315,6 +315,7 @@ function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, $mdToast, folha
       desenho_id: $scope.folhaprocesso.desenho.id,
       nomepeca: $scope.folhaprocesso.nomepeca,
       dtProjeto: $scope.folhaprocesso.dtProjeto,
+      tempo: $scope.folhaprocesso.tempo,
       acessoriofolhas: $scope.acessorsSelected,
       comandofolhas: $scope.comandsSelected,
       ferramentafolhas: ferramentas,

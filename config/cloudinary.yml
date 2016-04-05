@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: dje1zntec
+  api_key: '111573216641817'
+  api_secret: _Hn5cV0DVuhelxszbRd9bscRmeI
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: dje1zntec
+  api_key: '111573216641817'
+  api_secret: _Hn5cV0DVuhelxszbRd9bscRmeI
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: dje1zntec
+  api_key: '111573216641817'
+  api_secret: _Hn5cV0DVuhelxszbRd9bscRmeI
+  enhance_image_tag: true
+  static_image_support: false

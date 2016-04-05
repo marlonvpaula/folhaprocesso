@@ -42,7 +42,7 @@
       <div layout-gt-xs="row">
         <md-input-container class="md-block" flex-gt-sm>
           <label>Numero do desenho</label>
-          <input name="codigoDesenho" ng-model="folhaprocesso.desenho.codigo" ng-change="updateDesenho()" ui-mask="999.999.999"
+          <input name="codigoDesenho" ng-model="folhaprocesso.desenho.codigo" ng-change="updateDesenho()" ui-mask="999.999.999" model-view-value="true" 
                   ng-pattern="/^[0-9]{3}.[0-9]{3}.[0-9]{3}$/" required/>
           <div class="hint">###.###.###</div>
         </md-input-container>
@@ -97,6 +97,12 @@
             <strong>{{$chip.descricao}}</strong>
           </md-chip-template>
         </md-chips>
+
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Tempo Estimado</label>
+          <input name="tempo" ng-model="folhaprocesso.tempo" ui-mask="99:99:99" model-view-value="true" ng-pattern="/^[0-9]{2}:[0-9]{2}:[0-9]{2}$/" required/>
+          <div class="hint">##:##:##</div>
+        </md-input-container>
       </div>
       <div layout-gt-xs="row">
         <h2 class="md-title">Adicionar Ferramentas</h2>
