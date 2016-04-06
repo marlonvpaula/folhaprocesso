@@ -19,6 +19,12 @@ function($http){
     });
   };
 
+  o.getTable = function(query, success) {
+    return $http.get('/folhaprocessos.json?order=' + query.order).success(function(data){
+      return data;
+    });
+  };
+
   o.create = function(folhaprocesso) {
 	  return $http.post('/folhaprocessos.json', folhaprocesso).success(function(data){
 	    o.folhaprocessos.push(data);

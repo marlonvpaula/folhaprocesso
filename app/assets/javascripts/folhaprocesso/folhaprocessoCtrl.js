@@ -8,8 +8,9 @@ angular.module('StarterApp.controllers')
       		                        'folhaprocessos',  
 function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, folhaprocessos){
 	$scope.folhaprocessos = folhaprocessos.folhaprocessos;
-
+  
   $scope.selected = [];
+  $scope.limitOptions = [5, 10, 15];
 
   $scope.query = {
     order: 'nomepeca',
@@ -17,12 +18,30 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, folhaprocessos){
     page: 1
   };
 
+  $scope.toggleLimitOptions = function () {
+    $scope.limitOptions = $scope.limitOptions ? undefined : [5, 10, 15];
+  };
+
+  $scope.logItem = function (item) {
+    console.log(item.name, 'was selected');
+  };
+  
+  $scope.logOrder = function (order) {
+    console.log('order: ', order);
+  };
+  
+  $scope.logPagination = function (page, limit) {
+    console.log('page: ', page);
+    console.log('limit: ', limit);
+  }
+
   function success(folhaprocessos) {
     $scope.folhaprocessos = $scope.folhaprocessos;
   }
 
   function getFolhaprocesso(query) {
-    $scope.promise = folhaprocessos.get(query, success).$promise;
+    console.log(query);
+    $scope.promise = folhaprocessos.getTable(query, success).$promise;
   }
 
 	$scope.newFolhaprocesso = function() {
@@ -38,8 +57,6 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, folhaprocessos){
   };
 
   $scope.imprimir = function () {
-    console.log($scope.selected);
-    return;
     if ($scope.selected.length > 1) {
       $scope.error = "Para impressão deve ser selecionado apenas um";
       return;

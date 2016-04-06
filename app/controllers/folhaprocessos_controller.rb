@@ -1,6 +1,30 @@
 class FolhaprocessosController < ApplicationController
 	def index
-    respond_with Folhaprocesso.all
+    if params['item_per_page'].present?
+      items_per_page = parms['item_per_page']
+    end
+    
+    if params['order'].present?
+      sort = case params['order']
+             when "id"  then "id"
+             when "nomepeca"  then "nomepeca"
+             when "qty"   then "quantity"
+             when "price" then "price"
+             when "name_reverse"  then "name DESC"
+             when "qty_reverse"   then "quantity DESC"
+             when "price_reverse" then "price DESC"
+             end
+    end
+
+
+    if params['order'].present?
+      respond_with Folhaprocesso.order(sort).all
+    else
+      respond_with Folhaprocesso.all
+    end
+
+
+
   end
 
   def create
@@ -26,10 +50,7 @@ class FolhaprocessosController < ApplicationController
   def show
     
     respond_with Folhaprocesso.find(params[:id])
-    #@folhaprocesso = Folhaprocesso.find(params[:id])
-    #respond_to { |format|
-    #  format.json { render json: @folhaprocesso, :include => [:operacao,:programador, :desenho => [:modelo, :grupomodelo]] }
-    #}
+    
 
   end
 
