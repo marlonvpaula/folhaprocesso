@@ -9,6 +9,18 @@ angular.module('StarterApp.controllers')
 function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, fabricantes){
 	$scope.fabricantes = fabricantes.fabricantes;
 
+  $scope.selected = [];
+  $scope.limitOptions = [5, 10, 15];
+
+  $scope.query = {
+    order: 'nomepeca',
+    limit: 5,
+    page: 1
+  };
+
+  $scope.toggleLimitOptions = function () {
+    $scope.limitOptions = $scope.limitOptions ? undefined : [5, 10, 15];
+  };
 
 	function showAdvanced(ev) {
     var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;

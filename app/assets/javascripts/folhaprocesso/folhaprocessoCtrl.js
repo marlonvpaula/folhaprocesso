@@ -14,26 +14,13 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, folhaprocessos){
 
   $scope.query = {
     order: 'nomepeca',
-    limit: 2,
+    limit: 5,
     page: 1
   };
 
   $scope.toggleLimitOptions = function () {
     $scope.limitOptions = $scope.limitOptions ? undefined : [5, 10, 15];
   };
-
-  $scope.logItem = function (item) {
-    console.log(item.name, 'was selected');
-  };
-  
-  $scope.logOrder = function (order) {
-    console.log('order: ', order);
-  };
-  
-  $scope.logPagination = function (page, limit) {
-    console.log('page: ', page);
-    console.log('limit: ', limit);
-  }
 
   function success(folhaprocessos) {
     $scope.folhaprocessos = $scope.folhaprocessos;

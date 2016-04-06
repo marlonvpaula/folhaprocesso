@@ -24,34 +24,22 @@
           Excluir
         </md-button>
       </div>
-      <md-data-table-container>
-        <table md-data-table md-row-select="selected" md-data-table md-progress="deferred">
-           <!--thead md-order="query.order" md-trigger="onOrderChange">
-           <thead >
-            <tr>
-              <th name="Dessert" unit="100g serving" order-by="name"></th>
-              <th numeric name="Calories" order-by="calories.value"></th>
-              <th numeric name="Fat" unit="g" order-by="fat.value"></th>
-              <th numeric name="Carbs" unit="g" order-by="carbs.value"></th>
-              <th numeric name="Protein" unit="g" order-by="protein.value"></th>
-              <th numeric name="Sodium" unit="mg" order-by="sodium.value"></th>
-              <th numeric name="Calcium" unit="%" order-by="calcium.value"></th>
-              <th numeric name="Iron" unit="%" order-by="iron.value"></th>
-            </tr>
-          </thead-->
-          <thead >
-            <tr>
-              <th name="Id" ></th>
-              <th name="Descrição" ></th>
-              <th name="Ações" ></th>
+      <md-table-container>
+        <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
+           
+          <thead md-head md-order="query.order">
+            <tr md-row>
+              <th md-column md-numeric md-order-by="id"><span>Id</span></th>
+              <th md-column><span>Descrição</span></th>
+              <th md-column><span>Ações</span></th>
             </tr>
           </thead>
 
-          <tbody>
-            <tr ng-repeat="fabricante in fabricantes">
-              <td>{{ fabricante.id }}</td>
-              <td>{{ fabricante.descricao }}</td>
-              <td>
+          <tbody md-body>
+            <tr md-row md-select="fabricante" ng-repeat="fabricante in fabricantes">
+              <td md-cell>{{ fabricante.id }}</td>
+              <td md-cell>{{ fabricante.descricao }}</td>
+              <td md-cell>
                 <md-button class="md-fab md-mini md-primary" ng-click="editar(fabricante.id, $event)" aria-label="Editar">
                   <i class="fa fa-pencil-square-o"></i>
                   <md-tooltip md-visible="demo.showTooltip" md-direction="right">
@@ -62,7 +50,9 @@
             </tr>
           </tbody>
         </table>
-      </md-data-table-container>
+      </md-table-container>
+
+      <md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page" md-total="{{fabricantes.length}}" md-page-select="true"></md-table-pagination>
 
     </md-content>
 </md-content >
