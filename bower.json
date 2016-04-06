@@ -22,6 +22,8 @@
     "jspdf": "~1.2.61",
     "jspdf-autotable": "~2.0.24",
     "angular-ui-mask": "~1.8.3",
-    "angular-file-model": "~0.3.1"
+    "angular-file-model": "~0.3.1",
+    "angular-animate": "~1.5.3",
+    "angular-aria": "~1.5.3"
   }
 }

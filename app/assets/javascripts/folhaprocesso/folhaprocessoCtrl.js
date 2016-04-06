@@ -9,6 +9,7 @@ angular.module('StarterApp.controllers')
 function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, folhaprocessos){
 	$scope.folhaprocessos = folhaprocessos.folhaprocessos;
 
+  $scope.selected = [];
 
   $scope.query = {
     order: 'nomepeca',
@@ -16,13 +17,13 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, folhaprocessos){
     page: 1
   };
 
-function getFolhaprocesso(query) {
-    $scope.promise = folhaprocessos.get(query, success).$promise;
+  function success(folhaprocessos) {
+    $scope.folhaprocessos = $scope.folhaprocessos;
   }
 
-  $scope.onPaginate = function (page, limit) {
-    getFolhaprocesso(angular.extend({}, $scope.query, {page: page, limit: limit}));
-  };
+  function getFolhaprocesso(query) {
+    $scope.promise = folhaprocessos.get(query, success).$promise;
+  }
 
 	$scope.newFolhaprocesso = function() {
     $state.go('folhaprocesso');
@@ -37,6 +38,8 @@ function getFolhaprocesso(query) {
   };
 
   $scope.imprimir = function () {
+    console.log($scope.selected);
+    return;
     if ($scope.selected.length > 1) {
       $scope.error = "Para impressão deve ser selecionado apenas um";
       return;

@@ -19,4 +19,5 @@
 //= require angular-aria
 //= require angular-ui-mask
 //= require angular-file-model
+//= require angular-material-data-table
 //= require_tree .
