@@ -10,188 +10,210 @@
     </div>
   </md-toolbar>
 
-  <md-content class="md-padding" layout="column" flex >
-    <h2 class="md-title">Nova Folha de Processo</h2>
-    <form name="modeloForm" ng-submit="salvar()">
-      <div layout-gt-xs="row">
-        
-        <md-input-container class="md-block" flex-gt-sm>
-          <label>Nome da folha</label>
-          <input name="nomepeca" ng-model="folhaprocesso.nomepeca"
-                 required minlength="4" maxlength="100"/>
-        </md-input-container>
-        <md-input-container class="md-block" flex-gt-sm>
-          <label>Operação</label>
-          <md-select ng-model="folhaprocesso.operacao">
-            <md-option ng-repeat="ope in operacaos" value="{{ope.id}}">
-              {{ope.descricao}}
-            </md-option>
-          </md-select>
-        </md-input-container>
-        <md-input-container class="md-block" flex-gt-sm>
-          <label>Programador</label>
-          <md-select ng-model="folhaprocesso.programador">
-            <md-option ng-repeat="prog in programadors" value="{{prog.id}}">
-              {{prog.nome}}
-            </md-option>
-          </md-select>
-        </md-input-container>
-        <md-datepicker class="md-block" ng-model="folhaprocesso.dtProjeto" md-placeholder="Data do projeto">
-        </md-datepicker>
-      </div>
-      <div layout-gt-xs="row">
-        <md-input-container class="md-block" flex-gt-sm>
-          <label>Numero do desenho</label>
-          <input name="codigoDesenho" ng-model="folhaprocesso.desenho.codigo" ng-change="updateDesenho()" ui-mask="999.999.999" model-view-value="true" 
-                  ng-pattern="/^[0-9]{3}.[0-9]{3}.[0-9]{3}$/" required/>
-          <div class="hint">###.###.###</div>
-        </md-input-container>
-        <md-input-container class="md-block" flex-gt-sm>
-          <label>Título do Desenho</label>
-          <input name="descricaoDesenho" ng-model="folhaprocesso.desenho.titulo"
-                 ng-disabled="true"/>
-        </md-input-container>
-        <md-input-container class="md-block" flex-gt-sm>
-          <label>Maquina</label>
-          <input name="descricaoDesenho" ng-model="folhaprocesso.desenho.modelo.descricao"
-                 ng-disabled="true"/>
-        </md-input-container>
+  
+  <md-card>
+    <md-content class="md-padding" layout="column" flex >
+      <h2 class="md-title">Nova Folha de Processo</h2>
+      <form name="modeloForm" ng-submit="salvar()">
+        <div layout-gt-xs="row">
+          
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Nome da folha</label>
+            <input name="nomepeca" ng-model="folhaprocesso.nomepeca"
+                   required minlength="4" maxlength="100"/>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Operação</label>
+            <md-select ng-model="folhaprocesso.operacao">
+              <md-option ng-repeat="ope in operacaos" value="{{ope.id}}">
+                {{ope.descricao}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Programador</label>
+            <md-select ng-model="folhaprocesso.programador">
+              <md-option ng-repeat="prog in programadors" value="{{prog.id}}">
+                {{prog.nome}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <md-datepicker class="md-block" ng-model="folhaprocesso.dtProjeto" md-placeholder="Data do projeto" flex-gt-sm>
+          </md-datepicker>
+        </div>
+        <div layout-gt-xs="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Numero do desenho</label>
+            <input name="codigoDesenho" ng-model="folhaprocesso.desenho.codigo" ng-change="updateDesenho()" ui-mask="999.999.999" model-view-value="true" 
+                    ng-pattern="/^[0-9]{3}.[0-9]{3}.[0-9]{3}$/" required/>
+            <div class="hint">###.###.###</div>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Título do Desenho</label>
+            <input name="descricaoDesenho" ng-model="folhaprocesso.desenho.titulo"
+                   ng-disabled="true"/>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Maquina</label>
+            <input name="descricaoDesenho" ng-model="folhaprocesso.desenho.modelo.descricao"
+                   ng-disabled="true"/>
+          </md-input-container>
 
-        <md-input-container class="md-block" flex-gt-sm>
-          <label>Grupo de Maquina</label>
-          <input name="descricaoDesenho" ng-model="folhaprocesso.desenho.grupomodelo.descricao"
-                 ng-disabled="true"/>
-        </md-input-container>
-      </div>
-      <div layout-gt-xs="row">
-        <md-chips ng-model="acessorsSelected" md-autocomplete-snap
-                md-transform-chip="transformChip($chip)"
-                md-require-match="autocompleteDemoRequireMatch" flex-gt-sm>
-          <md-autocomplete
-              md-selected-item="selectedItemA"
-              md-search-text="searchTextA"
-              md-items="aces in querySearchA(searchTextA)"
-              md-item-text="aces.descricao"
-              placeholder="Procure por um acessório">
-            <span md-highlight-text="searchTextA">{{aces.descricao}}</span>
-          </md-autocomplete>
-          <md-chip-template>
-            <strong>{{$chip.descricao}}</strong>
-          </md-chip-template>
-        </md-chips>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Grupo de Maquina</label>
+            <input name="descricaoDesenho" ng-model="folhaprocesso.desenho.grupomodelo.descricao"
+                   ng-disabled="true"/>
+          </md-input-container>
+        </div>
+        <div layout-gt-xs="row">
+          <md-chips ng-model="acessorsSelected" md-autocomplete-snap
+                  md-transform-chip="transformChip($chip)"
+                  md-require-match="autocompleteDemoRequireMatch" flex-gt-sm>
+            <md-autocomplete
+                md-selected-item="selectedItemA"
+                md-search-text="searchTextA"
+                md-items="aces in querySearchA(searchTextA)"
+                md-item-text="aces.descricao"
+                placeholder="Procure por um acessório">
+              <span md-highlight-text="searchTextA">{{aces.descricao}}</span>
+            </md-autocomplete>
+            <md-chip-template>
+              <strong>{{$chip.descricao}}</strong>
+            </md-chip-template>
+          </md-chips>
 
-        <md-chips ng-model="comandsSelected" md-autocomplete-snap
-                md-transform-chip="transformChip($chip)"
-                md-require-match="autocompleteDemoRequireMatch" flex-gt-sm>
-          <md-autocomplete
-              md-selected-item="selectedItemC"
-              md-search-text="searchTextC"
-              md-items="com in querySearchC(searchTextC)"
-              md-item-text="com.descricao"
-              placeholder="Procure por um comando">
-            <span md-highlight-text="searchTextC">{{com.descricao}}</span>
-          </md-autocomplete>
+          <md-chips ng-model="comandsSelected" md-autocomplete-snap
+                  md-transform-chip="transformChip($chip)"
+                  md-require-match="autocompleteDemoRequireMatch" flex-gt-sm>
+            <md-autocomplete
+                md-selected-item="selectedItemC"
+                md-search-text="searchTextC"
+                md-items="com in querySearchC(searchTextC)"
+                md-item-text="com.descricao"
+                placeholder="Procure por um comando">
+              <span md-highlight-text="searchTextC">{{com.descricao}}</span>
+            </md-autocomplete>
 
 
-          <md-chip-template>
-            <strong>{{$chip.descricao}}</strong>
-          </md-chip-template>
-        </md-chips>
+            <md-chip-template>
+              <strong>{{$chip.descricao}}</strong>
+            </md-chip-template>
+          </md-chips>
 
-        <md-input-container class="md-block" flex-gt-sm>
-          <label>Tempo Estimado</label>
-          <input name="tempo" ng-model="folhaprocesso.tempo" ui-mask="99:99:99" model-view-value="true" ng-pattern="/^[0-9]{2}:[0-9]{2}:[0-9]{2}$/" required/>
-          <div class="hint">##:##:##</div>
-        </md-input-container>
-      </div>
-      <div layout-gt-xs="row">
-        <h2 class="md-title">Adicionar Ferramentas</h2>
-      </div>
-      <div layout-gt-xs="row">
-        <md-input-container class="md-block" flex-gt-sm>
-          <label>Posição</label>
-          <md-select ng-model="ferramentafolha.posicao">
-            <md-option ng-repeat="pos in posicaos" value="{{pos.id}}">
-              {{pos.descricao}}
-            </md-option>
-          </md-select>
-        </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Tempo Estimado</label>
+            <input name="tempo" ng-model="folhaprocesso.tempo" ui-mask="99:99:99" model-view-value="true" ng-pattern="/^[0-9]{2}:[0-9]{2}:[0-9]{2}$/" required/>
+            <div class="hint">##:##:##</div>
+          </md-input-container>
+        </div>
+        <div layout-gt-xs="row">
+          <h2 class="md-title">Adicionar Ferramentas</h2>
+        </div>
+        <div layout-gt-xs="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Posição</label>
+            <md-select ng-model="ferramentafolha.posicao">
+              <md-option ng-repeat="pos in posicaos" value="{{pos.id}}">
+                {{pos.descricao}}
+              </md-option>
+            </md-select>
+          </md-input-container>
 
-        <md-input-container class="md-block" flex-gt-sm>
-          <label>Ferramenta</label>
-          <md-select ng-model="ferramentafolha.suporte" ng-change="updateSuporte()">
-            <md-option ng-repeat="sup in suportes" value="{{sup.id}}">
-              {{sup.descricao}}
-            </md-option>
-          </md-select>
-        </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Ferramenta</label>
+            <md-select ng-model="ferramentafolha.suporte" ng-change="updateSuporte()">
+              <md-option ng-repeat="sup in suportes" value="{{sup.id}}">
+                {{sup.descricao}}
+              </md-option>
+            </md-select>
+          </md-input-container>
 
-        <md-input-container class="md-block" flex-gt-sm>
-          <label>Inserto</label>
-          <md-select ng-model="ferramentafolha.inserto" ng-change="updateInserto()">
-            <md-option ng-repeat="ins in insertos" value="{{ins.id}}">
-              {{ins.descricao}}
-            </md-option>
-          </md-select>
-        </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Inserto</label>
+            <md-select ng-model="ferramentafolha.inserto" ng-change="updateInserto()">
+              <md-option ng-repeat="ins in insertos" value="{{ins.id}}">
+                {{ins.descricao}}
+              </md-option>
+            </md-select>
+          </md-input-container>
 
-        <md-input-container class="md-block" flex-gt-sm>
-          <label>Fabricante</label>
-          <md-select ng-model="ferramentafolha.fabricante">
-            <md-option ng-repeat="fab in fabricantes" value="{{fab.id}}">
-              {{fab.descricao}}
-            </md-option>
-          </md-select>
-        </md-input-container>
-        <md-input-container class="md-block" flex-gt-sm>
-          <label>Altura</label>
-          <input name="altura" ng-model="ferramentafolha.altura"/>
-        </md-input-container>
-      </div>
-      <div role="alert" class="error" ng-show="errorFerramenta">
-        {{errorFerramenta}}
-      </div>
-      <div layout-gt-xs="row">
-        <md-button class="md-raised md-primary" ng-click="adicionarFerramenta()">
-         Adicionar Ferramenta
-        </md-button>
-        
-        <md-button class="md-raised md-warn" ng-show="selected.length > 0" ng-click="removerFerramenta()">
-         Remover Ferramenta
-        </md-button>
-      </div>
-      <md-data-table-container>
-        <table md-data-table md-row-select="selected" md-data-table md-progress="deferred">
-          <thead >
-            <tr>
-              <th name="Posição" ></th>
-              <th name="Suporte" ></th>
-              <th name="Inserto" ></th>
-              <th name="Fabricante" ></th>
-              <th name="Altura" ></th>
-            </tr>
-          </thead>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Fabricante</label>
+            <md-select ng-model="ferramentafolha.fabricante">
+              <md-option ng-repeat="fab in fabricantes" value="{{fab.id}}">
+                {{fab.descricao}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Altura</label>
+            <input name="altura" ng-model="ferramentafolha.altura"/>
+          </md-input-container>
+        </div>
+        <div role="alert" class="error" ng-show="errorFerramenta">
+          {{errorFerramenta}}
+        </div>
 
-          <tbody>
-            <tr ng-repeat="ferramenta in ferramentas">
-              <td>{{ ferramenta.posicao }}</td>
-              <td>{{ ferramenta.suporte.descricao }}</td>
-              <td>{{ ferramenta.inserto.descricao }}</td>
-              <td>{{ ferramenta.fabricante.descricao }}</td>
-              <td>{{ ferramenta.altura }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </md-data-table>
+        <div layout-gt-xs="row">
+          <md-button class="md-raised md-primary" ng-click="adicionarFerramenta()">
+           Adicionar Ferramenta
+          </md-button>
+          
+          <md-button class="md-raised md-warn" ng-show="selected.length > 0" ng-click="removerFerramenta()">
+           Remover Ferramenta
+          </md-button>
+        </div>
 
-      <div layout-gt-xs="row">
-        <md-button class="md-raised md-warn" ng-click="cancel()">
-         Cancelar
-        </md-button>
-        <md-button class="md-raised md-primary" type="submit" style="margin-right:20px;">
-          Salvar
-        </md-button>
-      </div>
-    </form>
-  </md-content>
+        <md-toolbar class="md-table-toolbar md-default" ng-show="!selected.length">
+          <div class="md-toolbar-tools">
+            <span>Adicionar Ferramentas</span>
+            <div flex="" class="flex"></div>
+            <button class="md-icon-button md-button md-ink-ripple" type="button" ng-transclude="" ng-click="new()" aria-label="add">
+              <md-icon class="material-icons">add</md-icon>
+              <div class="md-ripple-container"></div>
+              <md-tooltip md-visible="demo.showTooltip" md-direction="top">
+                Novo
+              </md-tooltip>
+            </button>
+          </div>
+        </md-toolbar>
+
+        <md-table-container>
+          <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
+            <thead md-head md-order="query.order">
+              <tr md-row>
+                <th md-column md-numeric md-order-by="posicao"><span>Posição</span></th>
+                <th md-column ><span>Suporte</span></th>
+                <th md-column ><span>Inserto</span></th>
+                <th md-column ><span>Fabricante</span></th>
+                <th md-column ><span>Altura</span></th>
+              </tr>
+            </thead>
+
+            <tbody md-body>
+              <tr md-row md-select="ferramenta" ng-repeat="ferramenta in ferramentas | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                <td md-cell>{{ ferramenta.posicao }}</td>
+                <td md-cell>{{ ferramenta.suporte.descricao }}</td>
+                <td md-cell>{{ ferramenta.inserto.descricao }}</td>
+                <td md-cell>{{ ferramenta.fabricante.descricao }}</td>
+                <td md-cell>{{ ferramenta.altura }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </md-table-container>
+
+        <md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page" md-total="{{ferramentas.length}}" md-page-select="true"></md-table-pagination>
+
+        <div layout-gt-xs="row">
+          <md-button class="md-raised md-warn" ng-click="cancel()">
+           Cancelar
+          </md-button>
+          <md-button class="md-raised md-primary" type="submit" style="margin-right:20px;">
+            Salvar
+          </md-button>
+        </div>
+      </form>
+    
+    </md-content>
+  </md-card>
 </md-content>

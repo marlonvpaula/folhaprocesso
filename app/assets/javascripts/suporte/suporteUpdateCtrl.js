@@ -32,6 +32,7 @@ function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, suportes, inser
   //$scope.insertsSelected = []; 
   $scope.autocompleteDemoRequireMatch = true;
   
+
   /**
    * Return the proper object when the append is called.
    */

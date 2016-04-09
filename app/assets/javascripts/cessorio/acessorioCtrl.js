@@ -10,6 +10,25 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, acessorios){
 	$scope.acessorios = acessorios.acessorios;
 
 
+  $scope.selected = [];
+  $scope.limitOptions = [5, 10, 15];
+  
+  $scope.filter = {
+    show: false,
+    search: ''
+  };
+
+  $scope.query = {
+    order: 'id',
+    limit: 5,
+    page: 1
+  };
+
+  $scope.removeFilter = function () {
+    $scope.filter.show = false;
+    $scope.filter.search = '';
+  }
+  
   function showAdvanced(ev) {
     var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
     $mdDialog.show({

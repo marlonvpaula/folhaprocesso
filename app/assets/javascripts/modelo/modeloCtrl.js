@@ -9,6 +9,26 @@ angular.module('StarterApp.controllers')
 function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, modelos){
 	$scope.modelos = modelos.modelos;
 
+  
+  $scope.selected = [];
+  $scope.limitOptions = [5, 10, 15];
+  
+  $scope.filter = {
+    show: false,
+    search: ''
+  };
+
+  $scope.query = {
+    order: 'id',
+    limit: 5,
+    page: 1
+  };
+
+  $scope.removeFilter = function () {
+    $scope.filter.show = false;
+    $scope.filter.search = '';
+  }
+  
 
 	$scope.newModelo = function() {
     $state.go('modelo');

@@ -24,6 +24,17 @@ function($scope, $state, $mdSidenav, $timeout, $q, $mdToast, folhaprocessos, sup
   $scope.fabricantes = [];
   $scope.ferramentafolha = null;
 
+  
+  $scope.selected = [];
+  $scope.limitOptions = [5];
+
+  $scope.query = {
+    order: 'posicao',
+    limit: 5,
+    page: 1
+  };
+
+  
   $scope.posicaos = [
     {id: 01, descricao: 'T01'},
     {id: 02, descricao: 'T02'},
