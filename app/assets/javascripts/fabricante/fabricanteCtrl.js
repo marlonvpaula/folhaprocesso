@@ -29,6 +29,22 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, fabricantes){
     $scope.filter.search = '';
   }
 
+  $scope.delete = function(ev) {
+    // Appending dialog to document.body to cover sidenav in docs app
+    var confirm = $mdDialog.confirm()
+          .title('Você tem certeza que deseja remover o(s) ' + $scope.selected.length + ' fabricante(s) selecionado(s)?')
+          .textContent('O(s) fabricante(s) será(am) removido(s) permanentemente do sistema.')
+          .ariaLabel('Lucky day')
+          .targetEvent(ev)
+          .ok('Remover')
+          .cancel('Cancelar');
+    $mdDialog.show(confirm).then(function() {
+      remover();
+    }, function() {
+      $scope.status = 'You decided to keep your debt.';
+    });
+  }
+
   $scope.toggleLimitOptions = function () {
     $scope.limitOptions = $scope.limitOptions ? undefined : [5, 10, 15];
   };
@@ -71,7 +87,7 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, fabricantes){
     });
   }
 
-  $scope.remover = function() {
+  function remover () {
   	for (var i = 0; i < $scope.selected.length; i++) {
   		fabricantes.remove(
 		    $scope.selected[i].id

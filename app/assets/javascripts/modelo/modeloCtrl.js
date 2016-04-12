@@ -24,6 +24,22 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, modelos){
     page: 1
   };
 
+  $scope.delete = function(ev) {
+    // Appending dialog to document.body to cover sidenav in docs app
+    var confirm = $mdDialog.confirm()
+          .title('Você tem certeza que deseja remover a(s) ' + $scope.selected.length + ' Maquina(s) selecionada(s)?')
+          .textContent('A(s) maquina(s) será(am) removida(s) permanentemente do sistema.')
+          .ariaLabel('Lucky day')
+          .targetEvent(ev)
+          .ok('Remover')
+          .cancel('Cancelar');
+    $mdDialog.show(confirm).then(function() {
+      remover();
+    }, function() {
+      $scope.status = 'You decided to keep your debt.';
+    });
+  }
+
   $scope.removeFilter = function () {
     $scope.filter.show = false;
     $scope.filter.search = '';
@@ -42,7 +58,7 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, modelos){
     $state.go('updateModelo', { "id": id});
   };
 
-  $scope.remover = function() {
+  function remover () {
   	for (var i = 0; i < $scope.selected.length; i++) {
   		modelos.remove(
 		    $scope.selected[i].id

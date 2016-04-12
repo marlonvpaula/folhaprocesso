@@ -18,6 +18,6 @@
 //= require angular-animate
 //= require angular-aria
 //= require angular-ui-mask
-//= require angular-file-model
 //= require angular-material-data-table
+//= require angularjs-file-upload
 //= require_tree .

@@ -5,13 +5,16 @@ angular.module('StarterApp.controllers')
                                '$stateParams',
 															 '$mdSidenav', 
                                '$timeout', 
+                               'FileUploader',
                                '$q',
 			                         'desenhos',
 			                         'grupomodelos',
                                'modelos',
-function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, desenhos, grupomodelos, modelos){
+function($scope, $state, $stateParams, $mdSidenav, $timeout, FileUploader, $q, desenhos, grupomodelos, modelos){
   $scope.grupomodelos = grupomodelos.grupomodelos;
   $scope.modelos = modelos.modelos;
+
+  $scope.uploader = new FileUploader();
 
 	desenhos.get($stateParams.id).then(function(desenho){
 		$scope.desenho = desenho;
@@ -25,13 +28,14 @@ function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, desenhos, grupo
   };
 
   $scope.salvar = function() {
-    console.log($scope.fileModel);
+    
+    console.log($scope.uploader);
   	if(!$scope.desenho.titulo || $scope.desenho.titulo === '') { return; }
 	  desenhos.update($scope.desenho.id, {
       id: $scope.desenho.id,
 	    codigo: $scope.desenho.codigo,
       titulo: $scope.desenho.titulo,
-      picture: $scope.fileModel,
+      picture: $scope.uploader,
       modelo_id: $scope.desenho.modelo,
       grupomodelo_id: $scope.desenho.grupomodelo,
 	  });

@@ -14,8 +14,9 @@ class DesenhosController < ApplicationController
 
   def update
     @desenho = Desenho.find(params[:id])
-    
-    respond_with @desenho.update(desenho_params)
+    #@desenho 
+    #puts " Desenho: #{params.inspect}" 
+    respond_with = @desenho.update(desenho_params)
   end
 
   def show

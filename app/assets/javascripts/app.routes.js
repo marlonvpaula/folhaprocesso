@@ -2,7 +2,7 @@ angular.module('StarterApp', ['md.data.table',
                                'ngMaterial', 
                                'ui.router', 
                                'ui.mask',
-                               'file-model',
+                               'angularFileUpload',
                                'templates',
                                'Devise',
                                'StarterApp.controllers'

@@ -28,6 +28,23 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, folhaprocessos){
     $scope.filter.search = '';
   }
 
+  $scope.delete = function(ev) {
+    // Appending dialog to document.body to cover sidenav in docs app
+    var confirm = $mdDialog.confirm()
+          .title('Você tem certeza que deseja remover a(s) ' + $scope.selected.length + ' folha(s) de processo selecionada(s)?')
+          .textContent('A(s) folha(s) de processo será(am) removida(s) permanentemente do sistema.')
+          .ariaLabel('Lucky day')
+          .targetEvent(ev)
+          .ok('Remover')
+          .cancel('Cancelar');
+    $mdDialog.show(confirm).then(function() {
+      remover();
+    }, function() {
+      $scope.status = 'You decided to keep your debt.';
+    });
+  }
+
+
   $scope.toggleLimitOptions = function () {
     $scope.limitOptions = $scope.limitOptions ? undefined : [5, 10, 15];
   };
@@ -308,7 +325,7 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, folhaprocessos){
     });
   }
 
-  $scope.remover = function() {
+  function remover () {
   	for (var i = 0; i < $scope.selected.length; i++) {
   		folhaprocessos.remove(
 		    $scope.selected[i].id

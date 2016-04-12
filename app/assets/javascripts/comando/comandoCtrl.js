@@ -28,6 +28,22 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, comandos){
     $scope.filter.show = false;
     $scope.filter.search = '';
   }
+
+  $scope.delete = function(ev) {
+    // Appending dialog to document.body to cover sidenav in docs app
+    var confirm = $mdDialog.confirm()
+          .title('Você tem certeza que deseja remover o(s) ' + $scope.selected.length + ' comando(s) selecionado(s)?')
+          .textContent('O(s) comando(s) será(am) removido(s) permanentemente do sistema.')
+          .ariaLabel('Lucky day')
+          .targetEvent(ev)
+          .ok('Remover')
+          .cancel('Cancelar');
+    $mdDialog.show(confirm).then(function() {
+      remover();
+    }, function() {
+      $scope.status = 'You decided to keep your debt.';
+    });
+  }
   
 
   function showAdvanced(ev) {
@@ -60,7 +76,7 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, comandos){
     showAdvanced(ev);
   }
 
-  $scope.remover = function() {
+  function remover() {
   	for (var i = 0; i < $scope.selected.length; i++) {
   		comandos.remove(
 		    $scope.selected[i].id

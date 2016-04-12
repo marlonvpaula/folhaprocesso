@@ -28,6 +28,22 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, programadors){
     $scope.filter.show = false;
     $scope.filter.search = '';
   }
+
+  $scope.delete = function(ev) {
+    // Appending dialog to document.body to cover sidenav in docs app
+    var confirm = $mdDialog.confirm()
+          .title('Você tem certeza que deseja remover o(s) ' + $scope.selected.length + ' programador(es) selecionado(s)?')
+          .textContent('O(s) programador(es) será(am) removido(s) permanentemente do sistema.')
+          .ariaLabel('Lucky day')
+          .targetEvent(ev)
+          .ok('Remover')
+          .cancel('Cancelar');
+    $mdDialog.show(confirm).then(function() {
+      remover();
+    }, function() {
+      $scope.status = 'You decided to keep your debt.';
+    });
+  }
   
 	function showAdvanced(ev) {
     var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
@@ -67,7 +83,7 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, programadors){
     });
   }
 
-  $scope.remover = function() {
+  function remover () {
   	for (var i = 0; i < $scope.selected.length; i++) {
   		programadors.remove(
 		    $scope.selected[i].id

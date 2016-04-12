@@ -28,6 +28,22 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, operacaos){
     $scope.filter.show = false;
     $scope.filter.search = '';
   }
+
+  $scope.delete = function(ev) {
+    // Appending dialog to document.body to cover sidenav in docs app
+    var confirm = $mdDialog.confirm()
+          .title('Você tem certeza que deseja remover a(s) ' + $scope.selected.length + ' operação(ões) selecionada(s)?')
+          .textContent('A(s) operação(ões) será(am) removida(s) permanentemente do sistema.')
+          .ariaLabel('Lucky day')
+          .targetEvent(ev)
+          .ok('Remover')
+          .cancel('Cancelar');
+    $mdDialog.show(confirm).then(function() {
+      remover();
+    }, function() {
+      $scope.status = 'You decided to keep your debt.';
+    });
+  }
   
   function showAdvanced(ev) {
     var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
@@ -59,7 +75,7 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, operacaos){
     showAdvanced(ev);
   }
 
-  $scope.remover = function() {
+  function remover () {
   	for (var i = 0; i < $scope.selected.length; i++) {
   		operacaos.remove(
 		    $scope.selected[i].id
