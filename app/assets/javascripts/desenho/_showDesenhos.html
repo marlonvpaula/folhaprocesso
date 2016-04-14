@@ -11,15 +11,18 @@
   </md-toolbar>
 
   <md-content class="md-padding" layout="column" flex >
-    <h2 class="md-title">{{ desenho.codigo }}</h2>
+    <h2 class="md-title">Código: {{ desenho.codigo }}</h2>
 
-    <h2 class="md-title">{{ desenho.titulo }}</h2>
+    <h2 class="md-title">Título: {{ desenho.titulo }}</h2>
     
     <div layout-gt-xs="row">
       <h4 class="descricao">Maquina: {{ desenho.modelo.descricao }}</h4>
       <h4 class="descricao">Grupo Maquina: {{ desenho.grupomodelo.descricao }}</h4>
+      
     </div>
-    
+    <div layout-gt-xs="row">
+      <img ng-src="{{ desenho.picture.url }}" style="width: 300px; height: 200px">
+    </div>
 
     <ul class="menuLogout">
       <li>

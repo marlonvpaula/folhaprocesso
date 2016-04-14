@@ -16,8 +16,11 @@
 //= require angular-rails-templates
 //= require angular-material
 //= require angular-animate
+//= require angular-resource
 //= require angular-aria
+//= require angular-cookies
 //= require angular-ui-mask
+//= require ng-file-upload-shim
+//= require ng-file-upload
 //= require angular-material-data-table
-//= require angularjs-file-upload
 //= require_tree .

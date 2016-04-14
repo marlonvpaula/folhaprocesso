@@ -5,16 +5,16 @@ angular.module('StarterApp.controllers')
                                '$stateParams',
 															 '$mdSidenav', 
                                '$timeout', 
-                               'FileUploader',
                                '$q',
+                               'Upload',
 			                         'desenhos',
 			                         'grupomodelos',
                                'modelos',
-function($scope, $state, $stateParams, $mdSidenav, $timeout, FileUploader, $q, desenhos, grupomodelos, modelos){
+function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, Upload, desenhos, grupomodelos, modelos){
   $scope.grupomodelos = grupomodelos.grupomodelos;
   $scope.modelos = modelos.modelos;
 
-  $scope.uploader = new FileUploader();
+  //$scope.uploader = new FileUploader();
 
 	desenhos.get($stateParams.id).then(function(desenho){
 		$scope.desenho = desenho;
@@ -27,15 +27,39 @@ function($scope, $state, $stateParams, $mdSidenav, $timeout, FileUploader, $q, d
     $state.go('desenhos');
   };
 
+  $scope.upload = function (file) {
+    Upload.upload({
+      url: 'desenhos/' + $scope.desenho.id + '.json',
+      method: 'PUT',
+      headers: { 'Content-Type': false },
+      fields: {
+        'desenho[codigo]': $scope.desenho.codigo,
+        'desenho[titulo]': $scope.desenho.titulo,
+        'desenho[modelo_id]': $scope.desenho.modelo,
+        'desenho[grupomodelo_id]': $scope.desenho.grupomodelo,
+        'desenho[picture]': file
+      },
+      file: file,
+      sendFieldsAs: 'json'
+    }).then(function (resp) {
+      console.log('Success ' + resp.config.file.name + 'uploaded. Response: ' + resp.data);
+    }, function (resp) {
+      console.log('Error status: ' + resp.status);
+    }, function (evt) {
+      var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+      console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
+    });
+  };
+
   $scope.salvar = function() {
     
-    console.log($scope.uploader);
+    //console.log($scope.uploader);
   	if(!$scope.desenho.titulo || $scope.desenho.titulo === '') { return; }
 	  desenhos.update($scope.desenho.id, {
       id: $scope.desenho.id,
 	    codigo: $scope.desenho.codigo,
       titulo: $scope.desenho.titulo,
-      picture: $scope.uploader,
+      //picture: $scope.uploader,
       modelo_id: $scope.desenho.modelo,
       grupomodelo_id: $scope.desenho.grupomodelo,
 	  });
