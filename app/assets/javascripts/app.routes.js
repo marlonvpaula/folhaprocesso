@@ -19,7 +19,7 @@ angular.module('StarterApp', ['md.data.table',
 }])
 .config(['$httpProvider', '$stateProvider', '$urlRouterProvider', '$logProvider', 
   function ($httpProvider, $stateProvider, $urlRouterProvider) {
-    $httpProvider.interceptors.push('authInterceptor');
+    //$httpProvider.interceptors.push('authInterceptor');
 
     $stateProvider
       .state('home', {
