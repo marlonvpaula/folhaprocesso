@@ -3,7 +3,6 @@ angular.module('StarterApp', ['md.data.table',
                                'ui.router', 
                                'ui.mask',
                                'ngCookies',
-                               //'angularFileUpload',
                                'ngFileUpload',
                                'templates',
                                'Devise',
@@ -18,7 +17,6 @@ angular.module('StarterApp', ['md.data.table',
     });
 }])
 .config(['$httpProvider', function ($httpProvider) {
-  //$httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
   $httpProvider.interceptors.push('authInterceptor');
 }])
 .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {
@@ -50,8 +48,6 @@ angular.module('StarterApp', ['md.data.table',
 
 .config(['$stateProvider', '$urlRouterProvider', '$logProvider', 
   function ($stateProvider, $urlRouterProvider) {
-    
-
     $stateProvider
       .state('home', {
         url: '/home',

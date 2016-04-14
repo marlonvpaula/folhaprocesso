@@ -79,7 +79,6 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, folhaprocessos){
       var doc = new jsPDF('landscape', 'pt');
       var linhas = 50;
       doc.text(350, linhas, " Folha de Processo ");
-      doc.addImage(folhaprocesso.desenho.picture.url, 'png', 15, 40, 180, 160);
       var columns = [
         {title: "logo"    , dataKey: "logo"},
         {title: "titulo"  , dataKey: "titulo"},
