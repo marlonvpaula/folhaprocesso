@@ -16,11 +16,10 @@ angular.module('StarterApp', ['md.data.table',
         }
     });
 }])
-.config(['$httpProvider', function ($httpProvider) {
-  $httpProvider.interceptors.push('authInterceptor');
-}])
-.config(['$stateProvider', '$urlRouterProvider', '$logProvider', 
-  function ($stateProvider, $urlRouterProvider) {
+.config(['$httpProvider', '$stateProvider', '$urlRouterProvider', '$logProvider', 
+  function ($httpProvider, $stateProvider, $urlRouterProvider) {
+    $httpProvider.interceptors.push('authInterceptor');
+
     $stateProvider
       .state('home', {
         url: '/home',
