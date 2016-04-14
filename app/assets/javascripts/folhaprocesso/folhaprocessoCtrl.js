@@ -79,6 +79,36 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, folhaprocessos){
       var doc = new jsPDF('landscape', 'pt');
       var linhas = 50;
       doc.text(350, linhas, " Folha de Processo ");
+
+      /*function getBase64Image(img) {
+
+          var canvas = document.createElement("canvas");
+
+          canvas.width = img.width;
+          canvas.height = img.height;
+          var ctx = canvas.getContext("2d");
+
+          ctx.drawImage(img, 0, 0);
+
+          var dataURL = canvas.toDataURL("image/jpeg");
+
+          return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+
+      }
+      var img = new Image();
+
+      img.onload = function(){
+          var dataURI = getBase64Image(img);
+          return dataURI;
+
+      }
+
+      img.src = folhaprocesso.desenho.picture.url;
+
+      doc.addImage(img.onload(), 'png', 15, 40, 180, 100);
+      */
+
+
       var columns = [
         {title: "logo"    , dataKey: "logo"},
         {title: "titulo"  , dataKey: "titulo"},

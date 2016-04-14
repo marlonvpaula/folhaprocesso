@@ -6,6 +6,7 @@ angular.module('StarterApp', ['md.data.table',
                                'ngFileUpload',
                                'templates',
                                'Devise',
+                               'common.services',
                                'StarterApp.controllers'
                                ])
 .run(['$rootScope', '$location', 'Auth', function ($rootScope, $location, Auth) {
