@@ -80,6 +80,48 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, folhaprocessos){
       var linhas = 50;
       doc.text(350, linhas, " Folha de Processo ");
 
+
+
+
+
+
+
+
+      function getBase64Image(img) {
+
+          var canvas = document.createElement("canvas");
+
+          canvas.width = img.width;
+          canvas.height = img.height;
+          var ctx = canvas.getContext("2d");
+
+          ctx.drawImage(img, 0, 0);
+
+          var dataURL = canvas.toDataURL("image/jpeg");
+
+          return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+
+      }
+      var img = new Image();
+
+      img.onload = function(){
+          var dataURI = getBase64Image(img);
+          return dataURI;
+
+      }
+      img.setAttribute('crossOrigin', 'anonymous');
+      img.src = "http://res.cloudinary.com/dje1zntec/image/upload/v1460650607/ligl6ldhsdvz6o9iaxnt.png";
+
+      /*var myImage = new Image();
+      myImage.src = 'http://res.cloudinary.com/dje1zntec/image/upload/v1460650607/ligl6ldhsdvz6o9iaxnt.png';
+      myImage .onload = function(){
+       doc.addImage(myImage , 'png', 5, 5, 40, 10);
+       
+      };*/
+      doc.addImage(img.onload(), "png", 60,50); 
+
+
+
       /*function getBase64Image(img) {
 
           var canvas = document.createElement("canvas");

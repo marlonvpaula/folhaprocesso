@@ -11,64 +11,89 @@
   </md-toolbar>
 
   <md-content class="md-padding" layout="column" flex >
-    <div layout-gt-xs="row">
-      <h2 class="md-title md-padding"> Nome Folha: {{ folhaprocesso.nomepeca }}</h2>
-      <h2 class="md-title md-padding"> Tempo Estimado: {{ folhaprocesso.tempo }}</h2>
-      <h2 class="md-title md-padding"> Operação: {{ folhaprocesso.operacao.descricao }}</h2>
-      <h2 class="md-title md-padding"> Programador: {{ folhaprocesso.programador.nome }}</h2>
-    </div>
-    <div layout-gt-xs="row">
-      <h4 class="descricao">Desenho: {{ folhaprocesso.desenho.codigo }}</h4>
-      <h4 class="descricao">Título: {{ folhaprocesso.desenho.titulo }}</h4>
-      <h4 class="descricao">Maquina: {{ folhaprocesso.desenho.modelo.descricao }}</h4>
-      <h4 class="descricao">Grupo: {{ folhaprocesso.desenho.grupomodelo.descricao }}</h4>
-      <h4 class="descricao">Data Projeto: {{ folhaprocesso.dtProjeto }}</h4>
-    </div>
-    <div layout-gt-xs="row">
-      <md-chips ng-repeat="ace in folhaprocesso.acessoriofolhas">
-        <md-chip>
-          {{ace.acessorio.descricao}}
-        </md-chip>
-      </md-chips>
-      <md-chips ng-repeat="com in folhaprocesso.comandofolhas">
-        <md-chip>
-          {{com.comando.descricao}}
-        </md-chip>
-      </md-chips>
-    </div>
-    
-    <md-data-table-container>
-        <table md-data-table md-progress="deferred">
+    <md-card>
+      <md-toolbar class="md-table-toolbar md-default" ng-show="!filter.show && !selected.length">
+        <div class="md-toolbar-tools">
+          <span>Folha de Processos - {{ folhaprocesso.nomepeca }}</span>
+          <div flex="" class="flex"></div>
+
+          <md-button class="md-fab md-mini md-primary" ng-click="imprimir()" aria-label="print">
+            <md-icon class="material-icons">print</md-icon>
+            <div class="md-ripple-container"></div>
+            <md-tooltip md-visible="demo.showTooltip" md-direction="top">
+              Imprimir
+            </md-tooltip>
+          </md-button>
+          <md-button class="md-fab md-mini md-primary" ng-click="editar(folhaprocesso.id)" aria-label="edit">
+            <md-icon class="material-icons">mode_edit</md-icon>
+            <div class="md-ripple-container"></div>
+            <md-tooltip md-visible="demo.showTooltip" md-direction="top">
+              Editar
+            </md-tooltip>
+          </button>
+        </div>
+      </md-toolbar>
+
+      <div layout-gt-xs="row">
+        <h2 class="md-title"> Operação: {{ folhaprocesso.operacao.descricao }}</h2>
+        <h2 class="md-title">Data Projeto: {{ folhaprocesso.dtProjeto }}</h2>
+      </div>
+      <div layout-gt-xs="row">
+        <h2 class="md-title"> Programador: {{ folhaprocesso.programador.nome }}</h2>
+        <h2 class="md-title"> Tempo Estimado: {{ folhaprocesso.tempo }}</h2>
+      </div>
+      
+      <div layout-gt-xs="row">
+        <h4 class="descricao">Desenho: {{ folhaprocesso.desenho.codigo }}</h4>
+        <h4 class="descricao">Título: {{ folhaprocesso.desenho.titulo }}</h4>
+        <h4 class="descricao">Maquina: {{ folhaprocesso.desenho.modelo.descricao }}</h4>
+        <h4 class="descricao">Grupo: {{ folhaprocesso.desenho.grupomodelo.descricao }}</h4>
+      </div>
+      <div layout-gt-xs="row">
+        <md-chips ng-repeat="ace in folhaprocesso.acessoriofolhas">
+          <md-chip>
+            {{ace.acessorio.descricao}}
+          </md-chip>
+        </md-chips>
+        <md-chips ng-repeat="com in folhaprocesso.comandofolhas">
+          <md-chip>
+            {{com.comando.descricao}}
+          </md-chip>
+        </md-chips>
+      </div>
+      
+      <md-table-container>
+        <table md-table md-progress="deferred">
            
-          <thead >
-            <tr>
-              <th name="Posição" ></th>
-              <th name="Suporte" ></th>
-              <th name="Inserto" ></th>
-              <th name="Fabricante" ></th>
-              <th name="Altura" ></th>
+          <thead md-head>
+            <tr md-row>
+              <th md-row ><span>Posição</span></th>
+              <th md-row ><span>Suporte</span></th>
+              <th md-row ><span>Inserto</span></th>
+              <th md-row ><span>Fabricante</span></th>
+              <th md-row ><span>Altura</span></th>
             </tr>
           </thead>
 
-          <tbody>
-            <tr ng-repeat="ferramentafolha in folhaprocesso.ferramentafolhas">
-              <td>{{ ferramentafolha.posicao }}</td>
-              <td>{{ ferramentafolha.suporte.descricao }}</td>
-              <td>{{ ferramentafolha.inserto.descricao }}</td>
-              <td>{{ ferramentafolha.fabricante.descricao }}</td>
-              <td>{{ ferramentafolha.altura }}</td>
+          <tbody md-body>
+            <tr md-row ng-repeat="ferramentafolha in folhaprocesso.ferramentafolhas | limitTo: query.limit : (query.page -1) * query.limit">
+              <td md-cell>{{ ferramentafolha.posicao }}</td>
+              <td md-cell>{{ ferramentafolha.suporte.descricao }}</td>
+              <td md-cell>{{ ferramentafolha.inserto.descricao }}</td>
+              <td md-cell>{{ ferramentafolha.fabricante.descricao }}</td>
+              <td md-cell>{{ ferramentafolha.altura }}</td>
             </tr>
           </tbody>
         </table>
-      </md-data-table>
+      </md-table-container>
 
-    <ul class="menuLogout">
-      <li>
+      <md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page" md-total="{{folhaprocesso.ferramentafolhas.length}}" md-page-select="true"></md-table-pagination>
+
+      <div layout-gt-xs="row">
         <md-button class="md-raised md-warn" ng-click="voltar()">
          Voltar
         </md-button>
-      </li>
-    </ul>
-    
+      </div>
+    <md-card>
   </md-content>
 </md-content>
