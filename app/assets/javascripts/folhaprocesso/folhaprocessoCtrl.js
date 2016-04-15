@@ -110,7 +110,7 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, folhaprocessos){
 
       }
       img.setAttribute('crossOrigin', 'anonymous');
-      img.src = "http://res.cloudinary.com/dje1zntec/image/upload/v1460650607/ligl6ldhsdvz6o9iaxnt.png";
+      img.src = folhaprocesso.desenho.picture.url;
 
       /*var myImage = new Image();
       myImage.src = 'http://res.cloudinary.com/dje1zntec/image/upload/v1460650607/ligl6ldhsdvz6o9iaxnt.png';
@@ -118,7 +118,7 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, folhaprocessos){
        doc.addImage(myImage , 'png', 5, 5, 40, 10);
        
       };*/
-      doc.addImage(img.onload(), "png", 60,50); 
+      //doc.addImage(img.onload(), "png", 60,50); 
 
 
 
