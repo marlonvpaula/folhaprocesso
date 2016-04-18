@@ -119,23 +119,25 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, folhaprocessos){
           return dataURL;//.replace(/^data:image\/(png|jpg);base64,/, "");
 
       }
-      var img = new Image();
-      img.crossOrigin = 'Anonymous';
-      img.src = folhaprocesso.desenho.picture.url;
-      img.onload = function(){
-          //var dataURI = getBase64Image(img);
-          var canvas = document.createElement('CANVAS');
-          var ctx = canvas.getContext('2d');
-          var dataURL;
-          canvas.height = this.height;
-          canvas.width = this.width;
-          ctx.drawImage(this, 0, 0);
-          dataURL = canvas.toDataURL();
-          //callback(dataURL);
-          //canvas = null; 
-          //console.log(dataURL);
-          return dataURL;
+      if (folhaprocesso.desenho.picture.url != 'undefined') {
+        var img = new Image();
+        img.crossOrigin = 'Anonymous';
+        img.src = folhaprocesso.desenho.picture.url;
+        img.onload = function(){
+            //var dataURI = getBase64Image(img);
+            var canvas = document.createElement('CANVAS');
+            var ctx = canvas.getContext('2d');
+            var dataURL;
+            canvas.height = this.height;
+            canvas.width = this.width;
+            ctx.drawImage(this, 0, 0);
+            dataURL = canvas.toDataURL();
+            //callback(dataURL);
+            //canvas = null; 
+            //console.log(dataURL);
+            return dataURL;
 
+        }
       }
       //img.setAttribute('crossOrigin', 'anonymous');
       
@@ -147,7 +149,7 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, folhaprocessos){
        
       };*/
       //$scope.imagem = img.onload();
-      doc.addImage(img.onload(), 'PNG', 15, 40, 180, 160 );
+      
 
 
 
@@ -179,7 +181,7 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, folhaprocessos){
       doc.addImage(img.onload(), 'png', 15, 40, 180, 100);
       */
 
-/*
+
       var columns = [
         {title: "logo"    , dataKey: "logo"},
         {title: "titulo"  , dataKey: "titulo"},
@@ -419,9 +421,11 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, folhaprocessos){
 
         }
       });
-*/
-      doc.save('FolhaProcesso' + folhaprocesso.id + '.pdf');
-      //doc.output('dataurlnewwindow');
+      if (folhaprocesso.desenho.picture.url != 'undefined') {
+        doc.addImage(img.onload(), 'PNG', 40, 140);
+      }
+      //doc.save('FolhaProcesso' + folhaprocesso.id + '.pdf');
+      doc.output('dataurlnewwindow');
     });
   }
 
