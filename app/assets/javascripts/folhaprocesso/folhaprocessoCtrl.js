@@ -84,33 +84,61 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, folhaprocessos){
 
 
 
+      function convertImgToDataURLviaCanvas(url, callback, outputFormat){
+          var img = new Image();
+          img.crossOrigin = 'Anonymous';
+          img.onload = function(){
+              var canvas = document.createElement('CANVAS');
+              var ctx = canvas.getContext('2d');
+              var dataURL;
+              canvas.height = this.height;
+              canvas.width = this.width;
+              ctx.drawImage(this, 0, 0);
+              dataURL = canvas.toDataURL(outputFormat);
+              callback(dataURL);
+              canvas = null; 
+          };
+          img.src = url;
+      }
+
+
 
 
 
       function getBase64Image(img) {
 
-          var canvas = document.createElement("canvas");
+          var canvas = document.createElement("CANVAS");
+          var ctx = canvas.getContext("2d");
 
           canvas.width = img.width;
           canvas.height = img.height;
-          var ctx = canvas.getContext("2d");
-
           ctx.drawImage(img, 0, 0);
 
-          var dataURL = canvas.toDataURL("image/jpeg");
-
-          return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+          var dataURL = canvas.toDataURL();
+          
+          return dataURL;//.replace(/^data:image\/(png|jpg);base64,/, "");
 
       }
       var img = new Image();
-
+      img.crossOrigin = 'Anonymous';
+      img.src = folhaprocesso.desenho.picture.url;
       img.onload = function(){
-          var dataURI = getBase64Image(img);
-          return dataURI;
+          //var dataURI = getBase64Image(img);
+          var canvas = document.createElement('CANVAS');
+          var ctx = canvas.getContext('2d');
+          var dataURL;
+          canvas.height = this.height;
+          canvas.width = this.width;
+          ctx.drawImage(this, 0, 0);
+          dataURL = canvas.toDataURL();
+          //callback(dataURL);
+          //canvas = null; 
+          //console.log(dataURL);
+          return dataURL;
 
       }
-      img.setAttribute('crossOrigin', 'anonymous');
-      img.src = folhaprocesso.desenho.picture.url;
+      //img.setAttribute('crossOrigin', 'anonymous');
+      
 
       /*var myImage = new Image();
       myImage.src = 'http://res.cloudinary.com/dje1zntec/image/upload/v1460650607/ligl6ldhsdvz6o9iaxnt.png';
@@ -118,7 +146,8 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, folhaprocessos){
        doc.addImage(myImage , 'png', 5, 5, 40, 10);
        
       };*/
-      //doc.addImage(img.onload(), "png", 60,50); 
+      //$scope.imagem = img.onload();
+      doc.addImage(img.onload(), 'PNG', 15, 40, 180, 160 );
 
 
 
@@ -150,7 +179,7 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, folhaprocessos){
       doc.addImage(img.onload(), 'png', 15, 40, 180, 100);
       */
 
-
+/*
       var columns = [
         {title: "logo"    , dataKey: "logo"},
         {title: "titulo"  , dataKey: "titulo"},
@@ -390,9 +419,9 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, folhaprocessos){
 
         }
       });
-
-      //doc.save('FolhaProcesso' + folhaprocesso.id + '.pdf');
-      doc.output('dataurlnewwindow');
+*/
+      doc.save('FolhaProcesso' + folhaprocesso.id + '.pdf');
+      //doc.output('dataurlnewwindow');
     });
   }
 

@@ -5,7 +5,10 @@ body {
 
 .descricao {
   margin: 0px;
-  padding: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 
 .fill-height{
