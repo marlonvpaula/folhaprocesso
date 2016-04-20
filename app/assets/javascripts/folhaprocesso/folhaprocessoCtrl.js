@@ -84,7 +84,7 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, folhaprocessos){
 
 
 
-      function convertImgToDataURLviaCanvas(url, callback, outputFormat){
+      /*function convertImgToDataURLviaCanvas(url, callback, outputFormat){
           var img = new Image();
           img.crossOrigin = 'Anonymous';
           img.onload = function(){
@@ -118,27 +118,7 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, folhaprocessos){
           
           return dataURL;//.replace(/^data:image\/(png|jpg);base64,/, "");
 
-      }
-      if (folhaprocesso.desenho.picture.url != 'undefined') {
-        var img = new Image();
-        img.crossOrigin = 'Anonymous';
-        img.src = folhaprocesso.desenho.picture.url;
-        img.onload = function(){
-            //var dataURI = getBase64Image(img);
-            var canvas = document.createElement('CANVAS');
-            var ctx = canvas.getContext('2d');
-            var dataURL;
-            canvas.height = this.height;
-            canvas.width = this.width;
-            ctx.drawImage(this, 0, 0);
-            dataURL = canvas.toDataURL();
-            //callback(dataURL);
-            //canvas = null; 
-            //console.log(dataURL);
-            return dataURL;
-
-        }
-      }
+      }*/
       //img.setAttribute('crossOrigin', 'anonymous');
       
 
@@ -421,14 +401,59 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, folhaprocessos){
 
         }
       });
-      if (folhaprocesso.desenho.picture.url != 'undefined') {
-        doc.addImage(img.onload(), 'PNG', 40, 140);
+
+      if (folhaprocesso.desenho.picture.url != 'undefined' &&
+          folhaprocesso.desenho.picture.url != null) {
+        var img = new Image();
+        img.crossOrigin = 'Anonymous';
+        
+        img.onload = function(){
+            //var dataURI = getBase64Image(img);
+            var canvas = document.createElement('CANVAS');
+            var ctx = canvas.getContext('2d');
+            var dataURL;
+            canvas.height = img.height;
+            canvas.width = img.width;
+            ctx.drawImage(img, 0, 0);
+            dataUrl = canvas.toDataURL();
+            canvas = null;
+            doc.addImage(dataUrl, 'PNG', 40, 140, 112, 110);
+        }
+        img.src = folhaprocesso.desenho.picture.url;
+        
+        
+        img.onload();
+
       }
-      //doc.save('FolhaProcesso' + folhaprocesso.id + '.pdf');
-      doc.output('dataurlnewwindow');
+
+      doc.save('FolhaProcesso' + folhaprocesso.id + '.pdf');
+      //doc.output('dataurlnewwindow', 'FolhaProcesso' + folhaprocesso.id + '.pdf');
     });
   }
 
+/*
+  function genereteUrl (url) {
+    //var dataURI = getBase64Image(img);
+    var img = new Image();
+    img.crossOrigin = 'Anonymous';
+    console.log(url);
+    img.src = url;
+    var canvas = document.createElement('CANVAS');
+    var ctx = canvas.getContext('2d');
+    var dataURL;
+    canvas.height = img.height;
+    canvas.width = img.width;
+    ctx.drawImage(img, 0, 0);
+    dataUrl = canvas.toDataURL('image/png');
+    console.log(dataUrl);
+    canvas = null;
+    //callback(dataURL);
+    //canvas = null; 
+    //console.log(dataURL);
+    
+    return dataURL;
+  };
+*/
   function remover () {
   	for (var i = 0; i < $scope.selected.length; i++) {
   		folhaprocessos.remove(
