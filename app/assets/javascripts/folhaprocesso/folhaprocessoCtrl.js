@@ -18,7 +18,7 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, folhaprocessos){
   };
 
   $scope.query = {
-    order: 'nomepeca',
+    order: 'id',
     limit: 5,
     page: 1
   };
@@ -79,87 +79,6 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, folhaprocessos){
       var doc = new jsPDF('landscape', 'pt');
       var linhas = 50;
       doc.text(350, linhas, " Folha de Processo ");
-
-
-
-
-
-      /*function convertImgToDataURLviaCanvas(url, callback, outputFormat){
-          var img = new Image();
-          img.crossOrigin = 'Anonymous';
-          img.onload = function(){
-              var canvas = document.createElement('CANVAS');
-              var ctx = canvas.getContext('2d');
-              var dataURL;
-              canvas.height = this.height;
-              canvas.width = this.width;
-              ctx.drawImage(this, 0, 0);
-              dataURL = canvas.toDataURL(outputFormat);
-              callback(dataURL);
-              canvas = null; 
-          };
-          img.src = url;
-      }
-
-
-
-
-
-      function getBase64Image(img) {
-
-          var canvas = document.createElement("CANVAS");
-          var ctx = canvas.getContext("2d");
-
-          canvas.width = img.width;
-          canvas.height = img.height;
-          ctx.drawImage(img, 0, 0);
-
-          var dataURL = canvas.toDataURL();
-          
-          return dataURL;//.replace(/^data:image\/(png|jpg);base64,/, "");
-
-      }*/
-      //img.setAttribute('crossOrigin', 'anonymous');
-      
-
-      /*var myImage = new Image();
-      myImage.src = 'http://res.cloudinary.com/dje1zntec/image/upload/v1460650607/ligl6ldhsdvz6o9iaxnt.png';
-      myImage .onload = function(){
-       doc.addImage(myImage , 'png', 5, 5, 40, 10);
-       
-      };*/
-      //$scope.imagem = img.onload();
-      
-
-
-
-      /*function getBase64Image(img) {
-
-          var canvas = document.createElement("canvas");
-
-          canvas.width = img.width;
-          canvas.height = img.height;
-          var ctx = canvas.getContext("2d");
-
-          ctx.drawImage(img, 0, 0);
-
-          var dataURL = canvas.toDataURL("image/jpeg");
-
-          return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
-
-      }
-      var img = new Image();
-
-      img.onload = function(){
-          var dataURI = getBase64Image(img);
-          return dataURI;
-
-      }
-
-      img.src = folhaprocesso.desenho.picture.url;
-
-      doc.addImage(img.onload(), 'png', 15, 40, 180, 100);
-      */
 
 
       var columns = [
@@ -431,29 +350,6 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, folhaprocessos){
     });
   }
 
-/*
-  function genereteUrl (url) {
-    //var dataURI = getBase64Image(img);
-    var img = new Image();
-    img.crossOrigin = 'Anonymous';
-    console.log(url);
-    img.src = url;
-    var canvas = document.createElement('CANVAS');
-    var ctx = canvas.getContext('2d');
-    var dataURL;
-    canvas.height = img.height;
-    canvas.width = img.width;
-    ctx.drawImage(img, 0, 0);
-    dataUrl = canvas.toDataURL('image/png');
-    console.log(dataUrl);
-    canvas = null;
-    //callback(dataURL);
-    //canvas = null; 
-    //console.log(dataURL);
-    
-    return dataURL;
-  };
-*/
   function remover () {
   	for (var i = 0; i < $scope.selected.length; i++) {
   		folhaprocessos.remove(
