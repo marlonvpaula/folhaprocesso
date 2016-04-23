@@ -3,7 +3,6 @@
     .factory('menu', [
       '$location',
       function ($location) {
-
         var sections = [{
           name: 'Inicio',
           state: 'home',

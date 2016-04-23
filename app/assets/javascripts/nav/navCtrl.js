@@ -2,11 +2,12 @@
   angular.module('StarterApp.controllers')
 
 .controller('NavCtrl', ['$scope', 
+                        '$rootScope',
                         '$mdSidenav', 
                         'menu', 
                         '$state', 
                         'Auth', 
-function($scope, $mdSidenav, menu, $state, Auth){
+function($scope, $rootScope, $mdSidenav, menu, $state, Auth){
 
 	var vm = this;
   vm.isOpen = isOpen;
@@ -14,6 +15,9 @@ function($scope, $mdSidenav, menu, $state, Auth){
   vm.isSectionSelected = isSectionSelected;
   vm.autoFocusContent = false;
   vm.menu = menu;
+
+  //$scope.ngShow = showMenu.getProperty();
+  $rootScope.ngShow = true;
 
   $scope.signedIn = Auth.isAuthenticated;
 

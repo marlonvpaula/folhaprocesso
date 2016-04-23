@@ -17,7 +17,7 @@
           <span>Folha de Processos - {{ folhaprocesso.nomepeca }}</span>
           <div flex="" class="flex"></div>
 
-          <md-button class="md-fab md-mini md-primary" ng-click="imprimir()" aria-label="print">
+          <md-button class="md-fab md-mini md-primary" ng-click="imprimir(folhaprocesso.id)" aria-label="print">
             <md-icon class="material-icons">print</md-icon>
             <div class="md-ripple-container"></div>
             <md-tooltip md-visible="demo.showTooltip" md-direction="top">

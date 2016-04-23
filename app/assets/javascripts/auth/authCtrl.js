@@ -5,7 +5,7 @@ angular.module('StarterApp.controllers')
 '$mdSidenav',
 'Auth',
 function($scope, $state, $mdSidenav, Auth){
-
+  
 	$scope.showHints = true;
 
   $scope.login = function() {

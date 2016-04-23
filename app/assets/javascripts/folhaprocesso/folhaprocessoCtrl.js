@@ -75,7 +75,9 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, folhaprocessos){
       $scope.error = "Para impressão deve ser selecionado apenas um";
       return;
     }
-    folhaprocessos.get($scope.selected[0].id).then(function(folhaprocesso){
+    var url = $state.href('relFolhaprocesso', { "id": $scope.selected[0].id});
+    window.open(url,'_blank');
+    /*folhaprocessos.get($scope.selected[0].id).then(function(folhaprocesso){
       var doc = new jsPDF('landscape', 'pt');
       var linhas = 50;
       doc.text(350, linhas, " Folha de Processo ");
@@ -347,7 +349,7 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, folhaprocessos){
 
       doc.save('FolhaProcesso' + folhaprocesso.id + '.pdf');
       //doc.output('dataurlnewwindow', 'FolhaProcesso' + folhaprocesso.id + '.pdf');
-    });
+    });*/
   }
 
   function remover () {

@@ -347,6 +347,16 @@ angular.module('StarterApp', ['md.data.table',
           }]
         }
       })
+      .state('relFolhaprocesso', {
+        url: '/folhaprocessos/rel/{id}',
+        templateUrl: 'folhaprocesso/_relFolhaprocessos.html',
+        controller: 'FolhaprocessoRelCtrl',
+        resolve: {
+          folhaprocesso: ['$stateParams', 'folhaprocessos', function($stateParams, folhaprocessos) {
+            return folhaprocessos.get($stateParams.id);
+          }]
+        }
+      })
       .state('updateFolhaprocesso', {
         url: '/folhaprocessos/update/{id}',
         templateUrl: 'folhaprocesso/_newFolhaprocessos.html',
