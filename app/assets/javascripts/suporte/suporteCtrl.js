@@ -23,6 +23,23 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, suportes){
     page: 1
   };
 
+
+  $scope.delete = function(ev) {
+    // Appending dialog to document.body to cover sidenav in docs app
+    var confirm = $mdDialog.confirm()
+          .title('Você tem certeza que deseja remover a(s) ' + $scope.selected.length + ' Ferramenta(s) selecionada(s)?')
+          .textContent('A(s) ferramenta(s) será(am) removida(s) permanentemente do sistema.')
+          .ariaLabel('Lucky day')
+          .targetEvent(ev)
+          .ok('Remover')
+          .cancel('Cancelar');
+    $mdDialog.show(confirm).then(function() {
+      remover();
+    }, function() {
+      $scope.status = 'You decided to keep your debt.';
+    });
+  }
+
   $scope.removeFilter = function () {
     $scope.filter.show = false;
     $scope.filter.search = '';

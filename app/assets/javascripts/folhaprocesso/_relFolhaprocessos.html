@@ -1,9 +1,18 @@
 <style type="text/css">
 	@media print{@page {size: landscape}}
 
+
+	html, body {
+    /*changing width to 100% causes huge overflow and wrap*/
+    height:100%; 
+    overflow: hidden;
+    background: #FFF; 
+    font-size: 8pt;
+  }
+
 	table {
     border-collapse: collapse;
-    width: 1200px;
+    width: 900px;
 	}
 
 	table, th, td, tbody {
@@ -17,11 +26,15 @@
 	}
 
 	.ferramental {
-		margin-top: 30px; 
+		margin-top: 15px; 
 	}
 
 	.linha {
 		height: 20px;
+	}
+
+	.dados {
+		text-align:right;
 	}
 
 </style>
@@ -31,18 +44,18 @@
 	<table>
 		<tbody>
 			<tr>
-				<td rowspan=4> LOGO </td>
-				<td class="tdTitulo"> Código folha de processo </td>
-				<td> {{ folhaprocesso.id }} </td>
+				<td rowspan=4 style="width: 100px; text-align:center;"> LOGO </td>
+				<td class="tdTitulo" style="width: 150px;"> Código folha de processo </td>
+				<td class="dados"> {{ folhaprocesso.id }} </td>
 				<td class="tdTitulo"> Código desenho </td>
-				<td> {{ folhaprocesso.id }} </td>
+				<td class="dados"> {{ folhaprocesso.desenho.codigo }} </td>
 				<td class="tdTitulo" style="text-align:center"> Comandos programados </td>
 			</tr>
 			<tr>
 				<td class="tdTitulo"> Operação </td>
-				<td> {{ folhaprocesso.operacao.descricao }} </td>
+				<td class="dados"> {{ folhaprocesso.operacao.descricao }} </td>
 				<td class="tdTitulo"> Título do desenho </td>
-				<td> {{ folhaprocesso.desenho.titulo }} </td>
+				<td class="dados"> {{ folhaprocesso.desenho.titulo }} </td>
 				<td rowspan=3 style="vertical-align: top;">
 					<label ng-repeat="comando in folhaprocesso.comandofolhas">
 						{{comando.comando.descricao}} <br> 
@@ -51,15 +64,15 @@
 			</tr>
 			<tr>
 				<td class="tdTitulo"> Tempo estimado </td>
-				<td> {{ folhaprocesso.tempo }} </td>
+				<td class="dados"> {{ folhaprocesso.tempo }} </td>
 				<td class="tdTitulo"> Grupo </td>
-				<td> {{ folhaprocesso.desenho.grupomodelo.descricao }} </td>
+				<td class="dados"> {{ folhaprocesso.desenho.grupomodelo.descricao }} </td>
 			</tr>
 			<tr>
 				<td class="tdTitulo"> Programador </td>
-				<td> {{ folhaprocesso.programador.nome }} </td>
+				<td class="dados"> {{ folhaprocesso.programador.nome }} </td>
 				<td class="tdTitulo"> Máquina </td>
-				<td> {{ folhaprocesso.desenho.modelo.descricao }} </td>
+				<td class="dados"> {{ folhaprocesso.desenho.modelo.descricao }} </td>
 			</tr>
 
 			
@@ -69,7 +82,7 @@
 	<table>
 		<tbody>
 			<tr>
-				<td rowspan=2 style="width: 180px;"> <img src="{{folhaprocesso.desenho.picture.url}}" style="width: 180px; height: 180px;"> </td>
+				<td rowspan=2 style="width: 180px;"> <img src="{{folhaprocesso.desenho.picture.url}}" style="width: 180px; height: 150px;"> </td>
 				<td class="tdTitulo"> Descrição do Material</td>
 				<td class="tdTitulo"> Instrumento de Medição, fixação e outros </td>
 			</tr>
@@ -86,14 +99,15 @@
 				<td style="text-align: center;" class="tdTitulo" colspan=8 > FERRAMENTAL </td>
 			</tr>
 			<tr>
-				<td class="tdTitulo"> Posição da Ferramenta</td>
-				<td class="tdTitulo"> Descrição da Ferramenta </td>
+				<td class="tdTitulo" style="width: 80px;"> Posição da Ferramenta</td>
+				<td class="tdTitulo" style="width: 120px;"> Descrição da Ferramenta </td>
 				<td class="tdTitulo"> Descrição do Inserto </td>
-				<td class="tdTitulo"> Altura </td>
-				<td class="tdTitulo"> Posição da Ferramenta</td>
-				<td class="tdTitulo"> Descrição da Ferramenta </td>
+				<td class="tdTitulo" style="width: 60px;"> Altura </td>
+				<td class="tdTitulo" style="width: 80px;"> Posição da Ferramenta</td>
+				<td class="tdTitulo" style="width: 120px;"> Descrição da Ferramenta </td>
 				<td class="tdTitulo"> Descrição do Inserto </td>
-				<td class="tdTitulo"> Altura </td>
+				<td class="tdTitulo" style="width: 60px;"> Altura </td>
+
 			</tr>
 			<tr ng-repeat="n in [0,1,2,3,4,5,6,7,8,9]">
 				<td class="linha"> {{ folhaprocesso.ferramentafolhas[n].posicao }}</td>
@@ -107,5 +121,4 @@
 			</tr>
 		</tbody>	
 	</table>
-
 </div>

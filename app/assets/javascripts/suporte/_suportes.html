@@ -22,14 +22,20 @@
               <md-icon class="material-icons">filter_list</md-icon>
             <div class="md-ripple-container"></div></button>
           </div>
-          
+          <button class="md-icon-button md-button md-ink-ripple" type="button" ng-transclude="" ng-click="newSuporte()" aria-label="add">
+            <md-icon class="material-icons">add</md-icon>
+            <div class="md-ripple-container"></div>
+            <md-tooltip md-visible="demo.showTooltip" md-direction="top">
+              Novo
+            </md-tooltip>
+          </button>
         </md-toolbar>
         <md-toolbar class="md-table-toolbar md-default ng-hide" ng-show="filter.show && !selected.length" aria-hidden="true">
           <div class="md-toolbar-tools">
             <md-icon class="material-icons">search</md-icon>
             <form flex="" name="filter.form" class="ng-pristine ng-valid flex">
-              <md-input-container style="padding: 0;" md-no-float>
-                <input type="text" ng-model="filter.search" placeholder="Procurar">
+              <md-input-container class="buscar" md-no-float>
+                <input type="text" ng-model="filter.search" placeholder="Buscar">
               </md-input-container>
             </form>
             <button class="md-icon-button md-button md-ink-ripple" type="button" ng-transclude="" ng-click="removeFilter()" aria-label="close">
@@ -46,14 +52,14 @@
           </div>
         </md-toolbar>
 
-        <div layout-gt-xs="row">
+        <!--div layout-gt-xs="row">
           <md-button class="md-primary md-raised" ng-click="newSuporte()" style="width: 150px;">
             Nova Ferramenta
           </md-button>
           <md-button class="md-primary md-raised" ng-show="selected.length > 0" ng-click="remover()" style="width: 150px;">
             Excluir
           </md-button>
-        </div>
+        </div-->
         
         <md-table-container>
           <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
