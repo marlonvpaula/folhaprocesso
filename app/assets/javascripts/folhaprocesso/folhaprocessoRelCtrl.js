@@ -9,7 +9,6 @@ angular.module('StarterApp.controllers')
 						                        'folhaprocesso',
 function($scope, $rootScope, $state, $stateParams, $mdSidenav, folhaprocessos, folhaprocesso){
 	
-	//showMenu.setProperty(false);
 	$rootScope.ngShow = false;
 
 	$scope.folhaprocesso = folhaprocesso;

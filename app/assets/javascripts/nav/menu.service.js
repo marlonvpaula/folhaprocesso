@@ -6,7 +6,8 @@
         var sections = [{
           name: 'Inicio',
           state: 'home',
-          type: 'link'
+          type: 'link',
+          icon: 'store'
         }];
 
         sections.push({
@@ -17,13 +18,13 @@
             name: 'Fabricante',
             state: 'fabricantes',
             type: 'link',
-            icon: 'fa fa-building-o'
+            icon: 'business'
           }, 
           {
             name: 'Programador',
             state: 'programadors',
             type: 'link',
-            icon: 'fa fa-child'
+            icon: 'dvr'
           }]
         });
 
@@ -35,19 +36,19 @@
             name: 'Desenho',
             state: 'desenhos',
             type: 'link',
-            icon: 'fa fa-picture-o'
+            icon: 'photo'
           },
           {
             name: 'Maquina',
             state: 'modelos',
             type: 'link',
-            icon: 'fa fa-hdd-o'
+            icon: 'phonelink'
           },
           {
             name: 'Grupo de Maquina',
             state: 'grupomodelos',
             type: 'link',
-            icon: 'fa fa-folder-o'
+            icon: 'folder'
           }]
         });
 
@@ -59,31 +60,31 @@
             name: 'Operação',
             type: 'link',
             state: 'operacaos',
-            icon: 'fa fa-cog'
+            icon: 'settings_applications'
           }, 
           {
             name: 'Inserto',
             state: 'insertos',
             type: 'link',
-            icon: 'fa fa-object-group'
+            icon: 'dashboard'
           },
           {
             name: 'Ferramenta',
             state: 'suportes',
             type: 'link',
-            icon: 'fa fa-wrench'
+            icon: 'build'
           },
           {
             name: 'Acessório',
             state: 'acessorios',
             type: 'link',
-            icon: 'fa fa-link'
+            icon: 'equalizer'
           },
           {
             name: 'Comando',
             state: 'comandos',
             type: 'link',
-            icon: 'fa fa-cogs'
+            icon: 'games'
           }]
         });
 
@@ -94,7 +95,7 @@
             name: 'Emitir Folha Processo',
             type: 'link',
             state: 'folhaprocessos',
-            icon: 'fa fa-clipboard'
+            icon: 'content_paste'
           }]
         });
 
@@ -105,12 +106,12 @@
             name: 'Novo Usuário',
             type: 'link',
             state: 'register',
-            icon: 'fa fa-user'
+            icon: 'person'
           }, {
             name: 'Usuários',
             type: 'link',
             state: 'users',
-            icon: 'fa fa-group'
+            icon: 'group'
           }]
         });
 

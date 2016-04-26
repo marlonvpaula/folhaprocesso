@@ -4,20 +4,23 @@
 
 
   <md-toolbar class="md-theme-indigo">
-    <div layout-gt-xs="row">
-      <img ng-src="/assets/user.png" class="md-card-image userimage" width="128px" height="128px" alt="User">
+    <div layout-gt-xs="row" class="userimage">
+      <img ng-src="/assets/user.png" class="md-card-image" width="128px" height="128px" alt="User">
     </div>
-    <div class="md-padding" layout-gt-xs="row">
-      <p class="email" flex>{{ user.email }}</p>
+    <div class="md-padding">
+      
       <md-menu md-position-mode="target-right target" >
-        <md-button aria-label="Abrir Menu Usuário" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+        
+        
+        <md-button aria-label="Abrir Menu Usuário" ng-click="$mdOpenMenu($event)">
+          <span class="email">{{ user.email }}</span>
           <i class="fa fa-chevron-down"></i>
         </md-button>
         <md-menu-content width="3" >
           <md-menu-item>
             <md-button ng-click="home()">
                 <div layout="row" flex>
-                  <md-icon md-menu-origin class="fa fa-user" aria-label="Home"></md-icon>
+                  <md-icon class="material-icons" aria-label="Home">person</md-icon>
                   <p flex>{{ user.username }}</p>
                 </div>
             </md-button>
@@ -25,7 +28,7 @@
           <md-menu-item>
             <md-button ng-click="logout()">
                 <div layout="row" flex>
-                  <md-icon md-menu-origin class="fa fa-sign-out" aria-label="Sair"></md-icon>
+                  <md-icon class="material-icons" aria-label="Sair">exit_to_app</md-icon>
                   <p flex>Sair</p>
                 </div>
             </md-button>

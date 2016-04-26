@@ -11,70 +11,66 @@
   </md-toolbar>
 
   <md-content class="md-padding" layout="column" flex >
-    <h2 class="md-title">Nova Ferramenta</h2>
-    <form name="insertoForm" ng-submit="salvar()">
-      
-      <md-input-container class="md-block" flex-gt-sm>
-	      <label>Descrição da Ferramenta</label>
-	      <input name="descricao" ng-model="suporte.descricao"
-	             required minlength="6" maxlength="100"/>
-	    </md-input-container>
+    <md-card>
+      <h2 class="md-title">Nova Ferramenta</h2>
+      <form name="insertoForm" ng-submit="salvar()">
+        
+        <md-input-container class="md-block" flex-gt-sm>
+  	      <label>Descrição da Ferramenta</label>
+  	      <input name="descricao" ng-model="suporte.descricao"
+  	             required minlength="6" maxlength="100"/>
+  	    </md-input-container>
 
-      <md-input-container>
-        <label>Operação</label>
-        <md-select ng-model="suporte.operacao">
-          <md-option ng-repeat="ope in operacaos" value="{{ope.id}}">
-            {{ope.descricao}}
-          </md-option>
-        </md-select>
-      </md-input-container>
+        <md-input-container>
+          <label>Operação</label>
+          <md-select ng-model="suporte.operacao">
+            <md-option ng-repeat="ope in operacaos" value="{{ope.id}}">
+              {{ope.descricao}}
+            </md-option>
+          </md-select>
+        </md-input-container>
 
-      <md-chips ng-model="insertsSelected" md-autocomplete-snap
-                md-transform-chip="transformChip($chip)"
-                md-require-match="autocompleteDemoRequireMatch">
-
-
-        <md-autocomplete
-            md-selected-item="selectedItem"
-            md-search-text="searchText"
-            md-items="item in querySearch(searchText)"
-            md-item-text="item.descricao"
-            placeholder="Procure por um inserto">
-          <span md-highlight-text="searchText">{{item.descricao}}</span>
-        </md-autocomplete>
+        <md-chips ng-model="insertsSelected" md-autocomplete-snap
+                  md-transform-chip="transformChip($chip)"
+                  md-require-match="autocompleteDemoRequireMatch">
 
 
-        <md-chip-template>
-          <strong>{{$chip.descricao}}</strong>
-        </md-chip-template>
-      </md-chips>
-
-      <h2 class="md-title">Opção de Insertos</h2>
-      <md-list class="blocoChips">
-        <md-list-item class="md-2-line veggie-option" ng-repeat="ins in inserts" layout="row"
-            layout-wrap>
-          <div class="md-item-text md-whiteframe-z1" flex>
-            <h3>{{ins.descricao}}</h3>
-          </div>
-        </md-list-item>
-      </md-list>
+          <md-autocomplete
+              md-selected-item="selectedItem"
+              md-search-text="searchText"
+              md-items="item in querySearch(searchText)"
+              md-item-text="item.descricao"
+              placeholder="Procure por um inserto">
+            <span md-highlight-text="searchText">{{item.descricao}}</span>
+          </md-autocomplete>
 
 
+          <md-chip-template>
+            <strong>{{$chip.descricao}}</strong>
+          </md-chip-template>
+        </md-chips>
 
-      <div class="menuDiv">
-        <ul class="menuLogout">
-          <li>
-            <md-button class="md-raised md-warn" ng-click="cancel()">
-             Cancelar
-            </md-button>
-          </li>
-          <li>
-            <md-button class="md-raised md-primary" type="submit" style="margin-right:20px;">
-              Salvar
-            </md-button>
-          </li>
-        </ul>
-      </div>
-    </form>
+        <!--h2 class="md-title">Opção de Insertos</h2>
+        <md-list class="blocoChips">
+          <md-list-item class="md-2-line veggie-option" ng-repeat="ins in inserts" layout="row"
+              layout-wrap>
+            <div class="md-item-text md-whiteframe-z1" flex>
+              <h3>{{ins.descricao}}</h3>
+            </div>
+          </md-list-item>
+        </md-list-->
+
+
+
+        <div layout-gt-xs="row">
+          <md-button class="md-raised md-warn" ng-click="cancel()">
+           Cancelar
+          </md-button>
+          <md-button class="md-raised md-primary" type="submit" style="margin-right:20px;">
+            Salvar
+          </md-button>
+        </div>
+      </form>
+    </md-card>
   </md-content>
 </md-content>
