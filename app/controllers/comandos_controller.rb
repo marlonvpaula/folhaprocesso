@@ -1,5 +1,6 @@
 class ComandosController < ApplicationController
-
+  before_filter :authenticate_user!
+  
 	def index
     respond_with Comando.all
   end

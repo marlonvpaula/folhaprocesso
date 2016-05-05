@@ -1,5 +1,6 @@
 class SuporteInsertosController < ApplicationController
-
+  before_filter :authenticate_user!
+  
 	def index
     respond_with SuporteInserto.all
   end

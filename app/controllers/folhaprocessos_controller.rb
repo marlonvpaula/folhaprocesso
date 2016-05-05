@@ -1,4 +1,6 @@
 class FolhaprocessosController < ApplicationController
+  before_filter :authenticate_user!
+  
 	def index
     if params['item_per_page'].present?
       items_per_page = parms['item_per_page']

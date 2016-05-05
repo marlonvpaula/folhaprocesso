@@ -1,5 +1,6 @@
 class DesenhosController < ApplicationController
-
+  before_filter :authenticate_user!
+  
 	def index
     if params[:codigo].present?
       respond_with Desenho.where(codigo: params[:codigo])

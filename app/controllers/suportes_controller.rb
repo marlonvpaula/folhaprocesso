@@ -1,5 +1,6 @@
 class SuportesController < ApplicationController
-
+  before_filter :authenticate_user!
+  
 	def index
     respond_with Suporte.all
   end

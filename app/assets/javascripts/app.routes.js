@@ -22,10 +22,20 @@ angular.module('StarterApp', ['md.data.table',
     //$httpProvider.interceptors.push('authInterceptor');
 
     $stateProvider
+      .state('homePage', {
+        url: '/',
+        templateUrl: 'homePage/_homePage.html',
+        controller: 'HomePageCtrl'
+      })
       .state('home', {
         url: '/home',
         templateUrl: 'home/_home.html',
-        controller: 'HomeCtrl'
+        controller: 'HomeCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          if (!Auth.isAuthenticated) {
+            $state.go('login');
+          }
+        }]
       })
       .state('login', {
         url: '/login',
@@ -40,17 +50,22 @@ angular.module('StarterApp', ['md.data.table',
       .state('register', {
         url: '/register',
         templateUrl: 'auth/_register.html',
-        controller: 'AuthCtrl'/*,
+        controller: 'AuthCtrl',
         onEnter: ['$state', 'Auth', function($state, Auth) {
-          Auth.currentUser().then(function (){
-            $state.go('home');
-          })
-        }]*/
+          if (!Auth.isAuthenticated) {
+            $state.go('login');
+          }
+        }]
       })
       .state('users', {
         url: '/users',
         templateUrl: 'user/_users.html',
         controller: 'UserCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          if (!Auth.isAuthenticated) {
+            $state.go('login');
+          }
+        }],
         resolve: {
           postPromise: ['users', function(users){
             return users.getAll();
@@ -61,6 +76,11 @@ angular.module('StarterApp', ['md.data.table',
         url: '/users/{id}',
         templateUrl: 'user/_userPerm.html',
         controller: 'UserPermCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          if (!Auth.isAuthenticated) {
+            $state.go('login');
+          }
+        }],
         resolve: {
           user: ['$stateParams', 'users', function($stateParams, users) {
             return users.get($stateParams.id);
@@ -71,6 +91,11 @@ angular.module('StarterApp', ['md.data.table',
         url: '/operacaos',
         templateUrl: 'operacao/_operacaos.html',
         controller: 'OperacaoCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          if (!Auth.isAuthenticated) {
+            $state.go('login');
+          }
+        }],
         resolve: {
           postPromise: ['operacaos', function(operacaos){
             return operacaos.getAll();
@@ -81,6 +106,11 @@ angular.module('StarterApp', ['md.data.table',
         url: '/fabricantes',
         templateUrl: 'fabricante/_fabricantes.html',
         controller: 'FabricanteCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          if (!Auth.isAuthenticated) {
+            $state.go('login');
+          }
+        }],
         resolve: {
           postPromise: ['fabricantes', function(fabricantes){
             return fabricantes.getAll();
@@ -91,6 +121,11 @@ angular.module('StarterApp', ['md.data.table',
         url: '/programadors',
         templateUrl: 'programador/_programadors.html',
         controller: 'ProgramadorCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          if (!Auth.isAuthenticated) {
+            $state.go('login');
+          }
+        }],
         resolve: {
           postPromise: ['programadors', function(programadors){
             return programadors.getAll();
@@ -101,6 +136,11 @@ angular.module('StarterApp', ['md.data.table',
         url: '/acessorios',
         templateUrl: 'cessorio/_acessorios.html',
         controller: 'AcessorioCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          if (!Auth.isAuthenticated) {
+            $state.go('login');
+          }
+        }],
         resolve: {
           postPromise: ['acessorios', function(acessorios){
             return acessorios.getAll();
@@ -111,6 +151,11 @@ angular.module('StarterApp', ['md.data.table',
         url: '/comandos',
         templateUrl: 'comando/_comandos.html',
         controller: 'ComandoCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          if (!Auth.isAuthenticated) {
+            $state.go('login');
+          }
+        }],
         resolve: {
           postPromise: ['comandos', function(comandos){
             return comandos.getAll();
@@ -121,6 +166,11 @@ angular.module('StarterApp', ['md.data.table',
         url: '/insertos',
         templateUrl: 'inserto/_insertos.html',
         controller: 'InsertoCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          if (!Auth.isAuthenticated) {
+            $state.go('login');
+          }
+        }],
         resolve: {
           postPromise: ['insertos', function(insertos){
             return insertos.getAll();
@@ -131,6 +181,11 @@ angular.module('StarterApp', ['md.data.table',
         url: '/insertos/new',
         templateUrl: 'inserto/_newInsertos.html',
         controller: 'InsertoNewCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          if (!Auth.isAuthenticated) {
+            $state.go('login');
+          }
+        }],
         resolve: {
           postPromise: ['fabricantes', function(fabricantes){
             return fabricantes.getAll();
@@ -141,6 +196,11 @@ angular.module('StarterApp', ['md.data.table',
         url: '/insertos/{id}',
         templateUrl: 'inserto/_showInsertos.html',
         controller: 'InsertoShowCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          if (!Auth.isAuthenticated) {
+            $state.go('login');
+          }
+        }],
         resolve: {
           inserto: ['$stateParams', 'insertos', function($stateParams, insertos) {
             return insertos.get($stateParams.id);
@@ -151,6 +211,11 @@ angular.module('StarterApp', ['md.data.table',
         url: '/insertos/update/{id}',
         templateUrl: 'inserto/_newInsertos.html',
         controller: 'InsertoUpdateCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          if (!Auth.isAuthenticated) {
+            $state.go('login');
+          }
+        }],
         resolve: {
           postPromise: ['fabricantes', function (fabricantes) {
             return fabricantes.getAll();
@@ -161,6 +226,11 @@ angular.module('StarterApp', ['md.data.table',
         url: '/suportes',
         templateUrl: 'suporte/_suportes.html',
         controller: 'SuporteCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          if (!Auth.isAuthenticated) {
+            $state.go('login');
+          }
+        }],
         resolve: {
           postPromise: ['suportes', function(suportes){
             return suportes.getAll();
@@ -171,6 +241,11 @@ angular.module('StarterApp', ['md.data.table',
         url: '/suportes/new',
         templateUrl: 'suporte/_newSuportes.html',
         controller: 'SuporteNewCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          if (!Auth.isAuthenticated) {
+            $state.go('login');
+          }
+        }],
         resolve: {
           initialData: ['insertos', 'operacaos','$q', function (insertos, operacaos, $q) {
             return $q.all({
@@ -184,6 +259,11 @@ angular.module('StarterApp', ['md.data.table',
         url: '/suportes/{id}',
         templateUrl: 'suporte/_showSuportes.html',
         controller: 'SuporteShowCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          if (!Auth.isAuthenticated) {
+            $state.go('login');
+          }
+        }],
         resolve: {
           suporte: ['$stateParams', 'suportes', function($stateParams, suportes) {
             return suportes.get($stateParams.id);
@@ -194,6 +274,11 @@ angular.module('StarterApp', ['md.data.table',
         url: '/suportes/update/{id}',
         templateUrl: 'suporte/_newSuportes.html',
         controller: 'SuporteUpdateCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          if (!Auth.isAuthenticated) {
+            $state.go('login');
+          }
+        }],
         resolve: {
           initialData: ['insertos', 'operacaos','$q', function (insertos, operacaos, $q) {
             return $q.all({
@@ -207,6 +292,11 @@ angular.module('StarterApp', ['md.data.table',
         url: '/grupomodelos',
         templateUrl: 'grupomodelo/_grupomodelos.html',
         controller: 'GrupomodeloCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          if (!Auth.isAuthenticated) {
+            $state.go('login');
+          }
+        }],
         resolve: {
           postPromise: ['grupomodelos', function(grupomodelos){
             return grupomodelos.getAll();
@@ -217,6 +307,11 @@ angular.module('StarterApp', ['md.data.table',
         url: '/modelos',
         templateUrl: 'modelo/_modelos.html',
         controller: 'ModeloCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          if (!Auth.isAuthenticated) {
+            $state.go('login');
+          }
+        }],
         resolve: {
           postPromise: ['modelos', function(modelos){
             return modelos.getAll();
@@ -227,6 +322,11 @@ angular.module('StarterApp', ['md.data.table',
         url: '/modelos/new',
         templateUrl: 'modelo/_newModelos.html',
         controller: 'ModeloNewCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          if (!Auth.isAuthenticated) {
+            $state.go('login');
+          }
+        }],
         resolve: {
           postPromise: ['grupomodelos', function(grupomodelos){
             return grupomodelos.getAll();
@@ -237,6 +337,11 @@ angular.module('StarterApp', ['md.data.table',
         url: '/modelos/{id}',
         templateUrl: 'modelo/_showModelos.html',
         controller: 'ModeloShowCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          if (!Auth.isAuthenticated) {
+            $state.go('login');
+          }
+        }],
         resolve: {
           modelo: ['$stateParams', 'modelos', function($stateParams, modelos) {
             return modelos.get($stateParams.id);
@@ -247,6 +352,11 @@ angular.module('StarterApp', ['md.data.table',
         url: '/modelos/update/{id}',
         templateUrl: 'modelo/_newModelos.html',
         controller: 'ModeloUpdateCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          if (!Auth.isAuthenticated) {
+            $state.go('login');
+          }
+        }],
         resolve: {
           postPromise: ['grupomodelos', function(grupomodelos){
             return grupomodelos.getAll();
@@ -257,6 +367,11 @@ angular.module('StarterApp', ['md.data.table',
         url: '/desenhos',
         templateUrl: 'desenho/_desenhos.html',
         controller: 'DesenhoCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          if (!Auth.isAuthenticated) {
+            $state.go('login');
+          }
+        }],
         resolve: {
           postPromise: ['desenhos', function(desenhos){
             return desenhos.getAll();
@@ -267,6 +382,11 @@ angular.module('StarterApp', ['md.data.table',
         url: '/desenhos/new',
         templateUrl: 'desenho/_newDesenhos.html',
         controller: 'DesenhoNewCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          if (!Auth.isAuthenticated) {
+            $state.go('login');
+          }
+        }],
         resolve: {
           initialData: ['grupomodelos', 
                         'modelos',
@@ -283,6 +403,11 @@ angular.module('StarterApp', ['md.data.table',
         url: '/desenhos/{id}',
         templateUrl: 'desenho/_showDesenhos.html',
         controller: 'DesenhoShowCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          if (!Auth.isAuthenticated) {
+            $state.go('login');
+          }
+        }],
         resolve: {
           desenho: ['$stateParams', 'desenhos', function($stateParams, desenhos) {
             return desenhos.get($stateParams.id);
@@ -293,6 +418,11 @@ angular.module('StarterApp', ['md.data.table',
         url: '/desenhos/update/{id}',
         templateUrl: 'desenho/_newDesenhos.html',
         controller: 'DesenhoUpdateCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          if (!Auth.isAuthenticated) {
+            $state.go('login');
+          }
+        }],
         resolve: {
           initialData: ['grupomodelos', 
                         'modelos',
@@ -309,6 +439,11 @@ angular.module('StarterApp', ['md.data.table',
         url: '/folhaprocessos',
         templateUrl: 'folhaprocesso/_folhaprocessos.html',
         controller: 'FolhaprocessoCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          if (!Auth.isAuthenticated) {
+            $state.go('login');
+          }
+        }],
         resolve: {
           postPromise: ['folhaprocessos', function(folhaprocessos){
             return folhaprocessos.getAll();
@@ -319,6 +454,11 @@ angular.module('StarterApp', ['md.data.table',
         url: '/folhaprocessos/new',
         templateUrl: 'folhaprocesso/_newFolhaprocessos.html',
         controller: 'FolhaprocessoNewCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          if (!Auth.isAuthenticated) {
+            $state.go('login');
+          }
+        }],
         resolve: {
           initialData: ['operacaos', 
                         'programadors',
@@ -341,6 +481,11 @@ angular.module('StarterApp', ['md.data.table',
         url: '/folhaprocessos/{id}',
         templateUrl: 'folhaprocesso/_showFolhaprocessos.html',
         controller: 'FolhaprocessoShowCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          if (!Auth.isAuthenticated) {
+            $state.go('login');
+          }
+        }],
         resolve: {
           folhaprocesso: ['$stateParams', 'folhaprocessos', function($stateParams, folhaprocessos) {
             return folhaprocessos.get($stateParams.id);
@@ -351,6 +496,11 @@ angular.module('StarterApp', ['md.data.table',
         url: '/folhaprocessos/rel/{id}',
         templateUrl: 'folhaprocesso/_relFolhaprocessos.html',
         controller: 'FolhaprocessoRelCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          if (!Auth.isAuthenticated) {
+            $state.go('login');
+          }
+        }],
         resolve: {
           folhaprocesso: ['$stateParams', 'folhaprocessos', function($stateParams, folhaprocessos) {
             return folhaprocessos.get($stateParams.id);
@@ -361,6 +511,11 @@ angular.module('StarterApp', ['md.data.table',
         url: '/folhaprocessos/update/{id}',
         templateUrl: 'folhaprocesso/_newFolhaprocessos.html',
         controller: 'FolhaprocessoUpdateCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          if (!Auth.isAuthenticated) {
+            $state.go('login');
+          }
+        }],
         resolve: {
           initialData: ['operacaos', 
                         'programadors',
@@ -379,7 +534,7 @@ angular.module('StarterApp', ['md.data.table',
           }]
         }
       });
-    $urlRouterProvider.otherwise("/login");
+    $urlRouterProvider.otherwise("/");
 }])
 //take all whitespace out of string
 .filter('nospace', function () {
