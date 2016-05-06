@@ -1,21 +1,35 @@
+<md-content layout="column" flex>
+    <md-toolbar class="md-table-toolbar md-default"  layout="row" scroll>
 
-<md-content layout="column" flex >
-    <md-toolbar layout="row" md-scroll-shrink>
-
-      <div class="md-toolbar-tools">
-        <md-button ng-click="toggleSidenav('left')" hide-gt-sm class="md-icon-button">
-          <md-icon class="material-icons">menu</md-icon>
-        </md-button>
-        <h3>
-          <span>Folha de Processos</span>
+      <div class="md-toolbar-tools android-navigation" >
+        <h3 ng-click"homePage()">
+          <span class="logo-folha">Folha de Processos</span>
         </h3>
+        <div flex="" class="flex"></div>
+        <md-button class="mdl-navigation__link">
+          <md-icon class="material-icons">mail_outline</md-icon>
+          <span>Contato</span>
+        </md-button>
+        <md-button class="mdl-navigation__link">
+          <md-icon class="material-icons">business</md-icon>
+          <span>Sobre Nós</span>
+        </md-button>
+        <md-button class="mdl-navigation__link" ng-click="login()">
+        <md-icon class="material-icons">lock</md-icon>
+          Acesso ao Sistema
+        </md-button>
       </div>
     </md-toolbar>
 
 
-    <md-content layout="column" flex >
-      <h2>Bem Vindo a Folha de Processo</h2>
+
+    <md-content>
       
+      <div class="android-be-together-section textAlignCenter">
+        <div class="logo-font android-slogan">Lorem ipsum dolor sit amet</div>
+        <div class="logo-font android-sub-slogan">Lorem ipsum dolor sit amet, habitasse interdum, vitae magna phasellus sit, pede amet cras, mauris nonummy ultrices.</div>
+
+      </div>
 
     </md-content>
-</md-content >
+</md-content>

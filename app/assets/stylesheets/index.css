@@ -2,6 +2,67 @@
 
 body {
 }
+.logo-folha {
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  color: #8bc34a;
+  font-weight: bold;
+}
+
+
+.android-navigation {
+  /* ... and now make sure the content is actually LTR */
+
+  direction: ltr;
+  -webkit-justify-content: flex-end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  width: 80%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+
+.android-navigation .mdl-navigation__link {
+  display: inline-block;
+  height: 60px;
+  line-height: 68px;
+  background-color: transparent !important;
+  border-bottom: 4px solid transparent;
+}
+
+.android-navigation .mdl-navigation__link:hover {
+  border-bottom: 4px solid #8bc34a;
+}
+
+.android-be-together-section {
+  position: relative;
+  height: 800px;
+  width: auto;
+  background-color: #f3f3f3;
+  background: url('/assets/bg.jpg') center 30% no-repeat;
+  background-size: cover;
+}
+
+.logo-font {
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  line-height: 1;
+  color: #4d4d4d;
+  font-weight: 500;
+}
+
+.android-slogan {
+  font-size: 60px;
+  padding-top: 160px;
+}
+
+.android-sub-slogan {
+  font-size: 21px;
+  padding-top: 24px;
+}
+
+.textAlignCenter {
+  text-align: center;
+}
 
 .descricao {
   margin: 0px;

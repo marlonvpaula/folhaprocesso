@@ -1,10 +1,13 @@
+angular.module('StarterApp.controllers')
 
-  angular.module('StarterApp.controllers')
+.controller('HomePageCtrl', ['$scope', '$state',  '$mdToast', '$mdSidenav', function($scope, $state, $mdToast, $mdSidenav){
 
-.controller('HomePageCtrl', ['$scope',  '$mdToast', '$mdSidenav', function($scope, $mdToast, $mdSidenav){
+  //$rootScope.ngShow = false;
 
-  $rootScope.ngShow = false;
-
+  
+  $scope.login = function () {
+    $state.go('login');
+  }
   
   $scope.openToast = function($event) {
     $mdToast.show($mdToast.simple().content('Hello!'));
