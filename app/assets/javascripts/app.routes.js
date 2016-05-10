@@ -11,8 +11,8 @@ angular.module('StarterApp', ['md.data.table',
                                ])
 .run(['$rootScope', '$location', 'Auth', function ($rootScope, $location, Auth) {
     $rootScope.$on('$locationChangeStart', function (event) {
-        if (!Auth.isAuthenticated) {
-          $location.path('/login');
+        if (!Auth.isAuthenticated()) {
+          $location.path('/');
           return;
         }
     });
@@ -25,19 +25,24 @@ angular.module('StarterApp', ['md.data.table',
       .state('homePage', {
         url: '/',
         templateUrl: 'homePage/_homePage.html',
-        controller: 'HomePageCtrl'
+        controller: 'HomePageCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          Auth.currentUser().then(function (){
+            $state.go('home');
+          })
+        }]
       })
       .state('home', {
         url: '/home',
         templateUrl: 'home/_home.html',
         controller: 'HomeCtrl',
         onEnter: ['$state', 'Auth', function($state, Auth) {
-          if (!Auth.isAuthenticated) {
-            $state.go('login');
+          if (!Auth.isAuthenticated()) {
+            $state.go('homePage');
           }
         }]
       })
-      .state('login', {
+      /*.state('login', {
         url: '/login',
         templateUrl: 'auth/_login.html',
         controller: 'AuthCtrl',
@@ -46,14 +51,14 @@ angular.module('StarterApp', ['md.data.table',
             $state.go('home');
           })
         }]
-      })
+      })*/
       .state('register', {
         url: '/register',
         templateUrl: 'auth/_register.html',
         controller: 'AuthCtrl',
         onEnter: ['$state', 'Auth', function($state, Auth) {
-          if (!Auth.isAuthenticated) {
-            $state.go('login');
+          if (!Auth.isAuthenticated()) {
+            $state.go('homePage');
           }
         }]
       })
@@ -62,8 +67,8 @@ angular.module('StarterApp', ['md.data.table',
         templateUrl: 'user/_users.html',
         controller: 'UserCtrl',
         onEnter: ['$state', 'Auth', function($state, Auth) {
-          if (!Auth.isAuthenticated) {
-            $state.go('login');
+          if (!Auth.isAuthenticated()) {
+            $state.go('homePage');
           }
         }],
         resolve: {
@@ -77,8 +82,8 @@ angular.module('StarterApp', ['md.data.table',
         templateUrl: 'user/_userPerm.html',
         controller: 'UserPermCtrl',
         onEnter: ['$state', 'Auth', function($state, Auth) {
-          if (!Auth.isAuthenticated) {
-            $state.go('login');
+          if (!Auth.isAuthenticated()) {
+            $state.go('homePage');
           }
         }],
         resolve: {
@@ -92,8 +97,8 @@ angular.module('StarterApp', ['md.data.table',
         templateUrl: 'operacao/_operacaos.html',
         controller: 'OperacaoCtrl',
         onEnter: ['$state', 'Auth', function($state, Auth) {
-          if (!Auth.isAuthenticated) {
-            $state.go('login');
+          if (!Auth.isAuthenticated()) {
+            $state.go('homePage');
           }
         }],
         resolve: {
@@ -107,8 +112,8 @@ angular.module('StarterApp', ['md.data.table',
         templateUrl: 'fabricante/_fabricantes.html',
         controller: 'FabricanteCtrl',
         onEnter: ['$state', 'Auth', function($state, Auth) {
-          if (!Auth.isAuthenticated) {
-            $state.go('login');
+          if (!Auth.isAuthenticated()) {
+            $state.go('homePage');
           }
         }],
         resolve: {
@@ -122,8 +127,8 @@ angular.module('StarterApp', ['md.data.table',
         templateUrl: 'programador/_programadors.html',
         controller: 'ProgramadorCtrl',
         onEnter: ['$state', 'Auth', function($state, Auth) {
-          if (!Auth.isAuthenticated) {
-            $state.go('login');
+          if (!Auth.isAuthenticated()) {
+            $state.go('homePage');
           }
         }],
         resolve: {
@@ -137,8 +142,8 @@ angular.module('StarterApp', ['md.data.table',
         templateUrl: 'cessorio/_acessorios.html',
         controller: 'AcessorioCtrl',
         onEnter: ['$state', 'Auth', function($state, Auth) {
-          if (!Auth.isAuthenticated) {
-            $state.go('login');
+          if (!Auth.isAuthenticated()) {
+            $state.go('homePage');
           }
         }],
         resolve: {
@@ -152,8 +157,8 @@ angular.module('StarterApp', ['md.data.table',
         templateUrl: 'comando/_comandos.html',
         controller: 'ComandoCtrl',
         onEnter: ['$state', 'Auth', function($state, Auth) {
-          if (!Auth.isAuthenticated) {
-            $state.go('login');
+          if (!Auth.isAuthenticated()) {
+            $state.go('homePage');
           }
         }],
         resolve: {
@@ -167,8 +172,8 @@ angular.module('StarterApp', ['md.data.table',
         templateUrl: 'inserto/_insertos.html',
         controller: 'InsertoCtrl',
         onEnter: ['$state', 'Auth', function($state, Auth) {
-          if (!Auth.isAuthenticated) {
-            $state.go('login');
+          if (!Auth.isAuthenticated()) {
+            $state.go('homePage');
           }
         }],
         resolve: {
@@ -182,8 +187,8 @@ angular.module('StarterApp', ['md.data.table',
         templateUrl: 'inserto/_newInsertos.html',
         controller: 'InsertoNewCtrl',
         onEnter: ['$state', 'Auth', function($state, Auth) {
-          if (!Auth.isAuthenticated) {
-            $state.go('login');
+          if (!Auth.isAuthenticated()) {
+            $state.go('homePage');
           }
         }],
         resolve: {
@@ -197,8 +202,8 @@ angular.module('StarterApp', ['md.data.table',
         templateUrl: 'inserto/_showInsertos.html',
         controller: 'InsertoShowCtrl',
         onEnter: ['$state', 'Auth', function($state, Auth) {
-          if (!Auth.isAuthenticated) {
-            $state.go('login');
+          if (!Auth.isAuthenticated()) {
+            $state.go('homePage');
           }
         }],
         resolve: {
@@ -212,8 +217,8 @@ angular.module('StarterApp', ['md.data.table',
         templateUrl: 'inserto/_newInsertos.html',
         controller: 'InsertoUpdateCtrl',
         onEnter: ['$state', 'Auth', function($state, Auth) {
-          if (!Auth.isAuthenticated) {
-            $state.go('login');
+          if (!Auth.isAuthenticated()) {
+            $state.go('homePage');
           }
         }],
         resolve: {
@@ -227,8 +232,8 @@ angular.module('StarterApp', ['md.data.table',
         templateUrl: 'suporte/_suportes.html',
         controller: 'SuporteCtrl',
         onEnter: ['$state', 'Auth', function($state, Auth) {
-          if (!Auth.isAuthenticated) {
-            $state.go('login');
+          if (!Auth.isAuthenticated()) {
+            $state.go('homePage');
           }
         }],
         resolve: {
@@ -242,8 +247,8 @@ angular.module('StarterApp', ['md.data.table',
         templateUrl: 'suporte/_newSuportes.html',
         controller: 'SuporteNewCtrl',
         onEnter: ['$state', 'Auth', function($state, Auth) {
-          if (!Auth.isAuthenticated) {
-            $state.go('login');
+          if (!Auth.isAuthenticated()) {
+            $state.go('homePage');
           }
         }],
         resolve: {
@@ -260,8 +265,8 @@ angular.module('StarterApp', ['md.data.table',
         templateUrl: 'suporte/_showSuportes.html',
         controller: 'SuporteShowCtrl',
         onEnter: ['$state', 'Auth', function($state, Auth) {
-          if (!Auth.isAuthenticated) {
-            $state.go('login');
+          if (!Auth.isAuthenticated()) {
+            $state.go('homePage');
           }
         }],
         resolve: {
@@ -275,8 +280,8 @@ angular.module('StarterApp', ['md.data.table',
         templateUrl: 'suporte/_newSuportes.html',
         controller: 'SuporteUpdateCtrl',
         onEnter: ['$state', 'Auth', function($state, Auth) {
-          if (!Auth.isAuthenticated) {
-            $state.go('login');
+          if (!Auth.isAuthenticated()) {
+            $state.go('homePage');
           }
         }],
         resolve: {
@@ -293,8 +298,8 @@ angular.module('StarterApp', ['md.data.table',
         templateUrl: 'grupomodelo/_grupomodelos.html',
         controller: 'GrupomodeloCtrl',
         onEnter: ['$state', 'Auth', function($state, Auth) {
-          if (!Auth.isAuthenticated) {
-            $state.go('login');
+          if (!Auth.isAuthenticated()) {
+            $state.go('homePage');
           }
         }],
         resolve: {
@@ -308,8 +313,8 @@ angular.module('StarterApp', ['md.data.table',
         templateUrl: 'modelo/_modelos.html',
         controller: 'ModeloCtrl',
         onEnter: ['$state', 'Auth', function($state, Auth) {
-          if (!Auth.isAuthenticated) {
-            $state.go('login');
+          if (!Auth.isAuthenticated()) {
+            $state.go('homePage');
           }
         }],
         resolve: {
@@ -323,8 +328,8 @@ angular.module('StarterApp', ['md.data.table',
         templateUrl: 'modelo/_newModelos.html',
         controller: 'ModeloNewCtrl',
         onEnter: ['$state', 'Auth', function($state, Auth) {
-          if (!Auth.isAuthenticated) {
-            $state.go('login');
+          if (!Auth.isAuthenticated()) {
+            $state.go('homePage');
           }
         }],
         resolve: {
@@ -338,8 +343,8 @@ angular.module('StarterApp', ['md.data.table',
         templateUrl: 'modelo/_showModelos.html',
         controller: 'ModeloShowCtrl',
         onEnter: ['$state', 'Auth', function($state, Auth) {
-          if (!Auth.isAuthenticated) {
-            $state.go('login');
+          if (!Auth.isAuthenticated()) {
+            $state.go('homePage');
           }
         }],
         resolve: {
@@ -353,8 +358,8 @@ angular.module('StarterApp', ['md.data.table',
         templateUrl: 'modelo/_newModelos.html',
         controller: 'ModeloUpdateCtrl',
         onEnter: ['$state', 'Auth', function($state, Auth) {
-          if (!Auth.isAuthenticated) {
-            $state.go('login');
+          if (!Auth.isAuthenticated()) {
+            $state.go('homePage');
           }
         }],
         resolve: {
@@ -368,8 +373,8 @@ angular.module('StarterApp', ['md.data.table',
         templateUrl: 'desenho/_desenhos.html',
         controller: 'DesenhoCtrl',
         onEnter: ['$state', 'Auth', function($state, Auth) {
-          if (!Auth.isAuthenticated) {
-            $state.go('login');
+          if (!Auth.isAuthenticated()) {
+            $state.go('homePage');
           }
         }],
         resolve: {
@@ -383,8 +388,8 @@ angular.module('StarterApp', ['md.data.table',
         templateUrl: 'desenho/_newDesenhos.html',
         controller: 'DesenhoNewCtrl',
         onEnter: ['$state', 'Auth', function($state, Auth) {
-          if (!Auth.isAuthenticated) {
-            $state.go('login');
+          if (!Auth.isAuthenticated()) {
+            $state.go('homePage');
           }
         }],
         resolve: {
@@ -404,8 +409,8 @@ angular.module('StarterApp', ['md.data.table',
         templateUrl: 'desenho/_showDesenhos.html',
         controller: 'DesenhoShowCtrl',
         onEnter: ['$state', 'Auth', function($state, Auth) {
-          if (!Auth.isAuthenticated) {
-            $state.go('login');
+          if (!Auth.isAuthenticated()) {
+            $state.go('homePage');
           }
         }],
         resolve: {
@@ -419,8 +424,8 @@ angular.module('StarterApp', ['md.data.table',
         templateUrl: 'desenho/_newDesenhos.html',
         controller: 'DesenhoUpdateCtrl',
         onEnter: ['$state', 'Auth', function($state, Auth) {
-          if (!Auth.isAuthenticated) {
-            $state.go('login');
+          if (!Auth.isAuthenticated()) {
+            $state.go('homePage');
           }
         }],
         resolve: {
@@ -440,8 +445,8 @@ angular.module('StarterApp', ['md.data.table',
         templateUrl: 'folhaprocesso/_folhaprocessos.html',
         controller: 'FolhaprocessoCtrl',
         onEnter: ['$state', 'Auth', function($state, Auth) {
-          if (!Auth.isAuthenticated) {
-            $state.go('login');
+          if (!Auth.isAuthenticated()) {
+            $state.go('homePage');
           }
         }],
         resolve: {
@@ -455,8 +460,8 @@ angular.module('StarterApp', ['md.data.table',
         templateUrl: 'folhaprocesso/_newFolhaprocessos.html',
         controller: 'FolhaprocessoNewCtrl',
         onEnter: ['$state', 'Auth', function($state, Auth) {
-          if (!Auth.isAuthenticated) {
-            $state.go('login');
+          if (!Auth.isAuthenticated()) {
+            $state.go('homePage');
           }
         }],
         resolve: {
@@ -482,8 +487,8 @@ angular.module('StarterApp', ['md.data.table',
         templateUrl: 'folhaprocesso/_showFolhaprocessos.html',
         controller: 'FolhaprocessoShowCtrl',
         onEnter: ['$state', 'Auth', function($state, Auth) {
-          if (!Auth.isAuthenticated) {
-            $state.go('login');
+          if (!Auth.isAuthenticated()) {
+            $state.go('homePage');
           }
         }],
         resolve: {
@@ -497,8 +502,8 @@ angular.module('StarterApp', ['md.data.table',
         templateUrl: 'folhaprocesso/_relFolhaprocessos.html',
         controller: 'FolhaprocessoRelCtrl',
         onEnter: ['$state', 'Auth', function($state, Auth) {
-          if (!Auth.isAuthenticated) {
-            $state.go('login');
+          if (!Auth.isAuthenticated()) {
+            $state.go('homePage');
           }
         }],
         resolve: {
@@ -512,8 +517,8 @@ angular.module('StarterApp', ['md.data.table',
         templateUrl: 'folhaprocesso/_newFolhaprocessos.html',
         controller: 'FolhaprocessoUpdateCtrl',
         onEnter: ['$state', 'Auth', function($state, Auth) {
-          if (!Auth.isAuthenticated) {
-            $state.go('login');
+          if (!Auth.isAuthenticated()) {
+            $state.go('homePage');
           }
         }],
         resolve: {

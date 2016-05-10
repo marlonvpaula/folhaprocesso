@@ -2,6 +2,25 @@
 
 body {
 }
+
+
+.md-sidenav-left {
+  background-color: #0277BD;
+}
+
+.md-button-toggle {
+  background-color: #0277BD; 
+}
+
+.theme-blue {
+  background-color: #0277BD !important;  
+}
+
+.theme-blue-toolbar {
+ background-color: #0288D1 !important;   
+}
+
+
 .logo-folha {
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   color: #8bc34a;
@@ -36,7 +55,7 @@ body {
 
 .android-be-together-section {
   position: relative;
-  height: 800px;
+  height: 400px;
   width: auto;
   background-color: #f3f3f3;
   background: url('/assets/bg.jpg') center 30% no-repeat;
@@ -156,13 +175,6 @@ body {
   color: grey; 
 }
 
-.md-sidenav-left {
-  background-color: #3F51B5;
-}
-
-.md-button-toggle {
-  background-color: #3F51B5; 
-}
 
 .md-icon-button > .md-toggle-icon {
   background-size: 100% auto;
@@ -279,3 +291,7 @@ md-content.autocomplete {
 .blocoChips .veggie-option .md-item-text p {
   padding: 0;
   margin: 0; }
+
+.md-button {    
+  text-transform: none !important;/*For Lower case use lowercase*/
+}

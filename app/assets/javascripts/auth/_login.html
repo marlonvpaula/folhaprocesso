@@ -1,39 +1,40 @@
-<md-content class="md-padding loginCard" layout-xs="column" layout="row">
-	<div flex-xs flex-gt-xs="50"  layout="column">
-      <md-card style="width: 300px;">
-        <md-card-title>
-          <md-card-title-text>
-            <span class="md-headline">Acesso ao Sistema</span>
-            <span class="md-subhead" ng-hide="error">Informe seu usuário e senha</span>
-            <div role="alert" class="error" ng-show="error">
-						  {{error}}
-						</div>
-          </md-card-title-text>
-        </md-card-title>
+<md-dialog aria-label="Acesso ao Sistema">
+	<!--md-content class="md-padding loginCard" layout-xs="column" layout="row"-->
+		
+	      <md-card style="width: 300px;">
+	        <md-card-title>
+	          <md-card-title-text>
+	            <span class="md-headline">Acesso ao Sistema</span>
+	            <span class="md-subhead" ng-hide="error">Informe seu usuário e senha</span>
+	            <div role="alert" class="error" ng-show="error">
+							  {{error}}
+							</div>
+	          </md-card-title-text>
+	        </md-card-title>
 
-        <md-card-actions layout="row" >
-        	<form name="userForm" ng-submit="login()">
+	        <md-card-actions layout="row" >
+	        	<form name="userForm" ng-submit="login()">
 
-					  <md-input-container class="md-block" flex-gt-sm>
-		          <label>Email</label>
-		          <input name="email" ng-model="user.email"
-		                 required minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
-		          <div ng-messages="userForm.email.$error" ng-hide="showHints">
-		            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
-		              Your email must be between 10 and 100 characters long and look like an e-mail address.
-		            </div>
-		          </div>
-		        </md-input-container>
-					  <md-input-container class="md-block" flex-gt-sm>
-					  	<label>Password</label>
-		          <input type="password" ng-model="user.password" required>
-					  </md-input-container>
+						  <md-input-container class="md-block" flex-gt-sm>
+			          <label>Email</label>
+			          <input name="email" ng-model="user.email"
+			                 required minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+			          <div ng-messages="userForm.email.$error" ng-hide="showHints">
+			            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+			              Your email must be between 10 and 100 characters long and look like an e-mail address.
+			            </div>
+			          </div>
+			        </md-input-container>
+						  <md-input-container class="md-block" flex-gt-sm>
+						  	<label>Password</label>
+			          <input type="password" ng-model="user.password" required>
+						  </md-input-container>
 
-		        
-		        <md-button class="md-raised md-primary" type="submit">Login</md-button>
-					  <!--input type="submit" class="btn btn-default" value="Log In"-->
-					</form>
-        </md-card-actions>
-      </md-card>
-  </div>
-</md-content>
+			        
+			        <md-button class="md-raised md-primary" type="submit">Login</md-button>
+						  <!--input type="submit" class="btn btn-default" value="Log In"-->
+						</form>
+	        </md-card-actions>
+	      </md-card>
+	<!--/md-content-->
+</md-dialog>

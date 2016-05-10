@@ -47,7 +47,7 @@ function($scope, $rootScope, $mdSidenav, menu, $state, Auth){
 
   $scope.$on('devise:logout', function (e, user){
     $scope.user = {};
-    $state.go('login');
+    $state.go('homePage');
   });
 
   function isOpen(section) {

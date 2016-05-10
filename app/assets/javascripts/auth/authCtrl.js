@@ -2,9 +2,10 @@ angular.module('StarterApp.controllers')
 .controller('AuthCtrl', [
 '$scope',
 '$state',
+'$mdDialog',
 '$mdSidenav',
 'Auth',
-function($scope, $state, $mdSidenav, Auth){
+function($scope, $state, $mdDialog, $mdSidenav, Auth){
   
 	$scope.showHints = true;
 
@@ -12,6 +13,7 @@ function($scope, $state, $mdSidenav, Auth){
     Auth.login($scope.user).then(function(){
       $state.go('home');
       $scope.error = '';
+      $mdDialog.hide();
     }, function(error) {
       $scope.error = 'Usuário ou senha incorreta!';
     });
@@ -25,6 +27,14 @@ function($scope, $state, $mdSidenav, Auth){
 
   $scope.toggleSidenav = function(menuId) {
     $mdSidenav(menuId).toggle();
+  };
+
+
+  $scope.hide = function() {
+    $mdDialog.hide();
+  };
+  $scope.cancel = function() {
+    $mdDialog.cancel();
   };
 
 }]);
