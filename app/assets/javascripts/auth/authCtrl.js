@@ -5,7 +5,9 @@ angular.module('StarterApp.controllers')
 '$mdDialog',
 '$mdSidenav',
 'Auth',
-function($scope, $state, $mdDialog, $mdSidenav, Auth){
+'empresas',
+'users',
+function($scope, $state, $mdDialog, $mdSidenav, Auth, empresas, users){
   
 	$scope.showHints = true;
 
@@ -22,6 +24,23 @@ function($scope, $state, $mdDialog, $mdSidenav, Auth){
   $scope.register = function() {
     Auth.register($scope.user).then(function(){
       $state.go('home');
+    });
+  };
+
+
+  $scope.registerEmpresa = function() {
+    empresas.create({
+      nome: $scope.user.username,
+    }).then(function(empresa){
+      Auth.register($scope.user).then(function(){
+        Auth.currentUser().then(function (user){
+          console.log(user);
+          user.empresa_id = empresa.data.id;
+          users.update(user.id, user);
+        });
+        $mdDialog.hide();
+        $state.go('home');
+      });
     });
   };
 

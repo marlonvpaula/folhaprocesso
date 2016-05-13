@@ -56,8 +56,8 @@ Folhaprocmultipet::Application.routes.draw do
   #   end
   root to: 'application#angular'
 
-  resources :users, only: [:index, :show]
-
+  resources :users, only: [:index, :show, :update]
+  resources :empresas
   resources :operacaos
   resources :fabricantes do
     resources :inserto_fabricantes

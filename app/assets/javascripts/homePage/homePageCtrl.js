@@ -18,7 +18,12 @@ function($scope,
   
   $scope.login = function (ev) {
     //$state.go('login');
-    showAdvanced(ev);
+    showAdvancedLogin(ev);
+  }
+
+  $scope.cadastre = function (ev) {
+    //$state.go('login');
+    showAdvancedEmpresa(ev);
   }
   
   $scope.openToast = function($event) {
@@ -32,11 +37,33 @@ function($scope,
     $mdSidenav(menuId).toggle();
   };
 
-  function showAdvanced(ev) {
+  function showAdvancedLogin(ev) {
     var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
     $mdDialog.show({
       controller: 'AuthCtrl',
       templateUrl: 'auth/_login.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose:true,
+      fullscreen: useFullScreen
+    })
+    .then(function(answer) {
+      $scope.status = 'You said the information was "' + answer + '".';
+    }, function() {
+      $scope.status = 'You cancelled the dialog.';
+    });
+    $scope.$watch(function() {
+      return $mdMedia('xs') || $mdMedia('sm');
+    }, function(wantsFullScreen) {
+      $scope.customFullscreen = (wantsFullScreen === true);
+    });
+  };
+
+  function showAdvancedEmpresa(ev) {
+    var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+    $mdDialog.show({
+      controller: 'AuthCtrl',
+      templateUrl: 'auth/_empresa.html',
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose:true,
