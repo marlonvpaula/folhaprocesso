@@ -2,19 +2,23 @@ class InsertoFabricanteController < ApplicationController
   before_filter :authenticate_user!
   
 	def index
-    respond_with InsertoFabricante.all
+    respond_with InsertoFabricante.where(empresa_id: current_user.empresa_id)
   end
 
   def create
-    respond_with InsertoFabricante.create(inserto_fabricante_params)
+    @insertoFabricante = InsertoFabricante.create(inserto_fabricante_params)
+    @insertoFabricante.empresa_id = current_user.empresa_id
+    @insertoFabricante.user_id = current_user.id
+    @insertoFabricante.save
+    respond_with @insertoFabricante
   end
 
   def show
-    respond_with InsertoFabricante.find(params[:id])
+    respond_with InsertoFabricante.where(empresa_id: current_user.empresa_id).find(params[:id])
   end
 
   def destroy
-    @insertoFabricante = InsertoFabricante.find(params[:id])
+    @insertoFabricante = InsertoFabricante.where(empresa_id: current_user.empresa_id).find(params[:id])
     respond_with @insertoFabricante.destroy
     #@operacao, location: -> { admin_clientes_path }
   end

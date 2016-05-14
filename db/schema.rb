@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160512161315) do
+ActiveRecord::Schema.define(version: 20160514013624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,15 +85,17 @@ ActiveRecord::Schema.define(version: 20160512161315) do
   add_index "desenhos", ["user_id"], name: "index_desenhos_on_user_id", using: :btree
 
   create_table "empresas", force: true do |t|
-    t.string  "nome"
-    t.string  "logo"
-    t.string  "cnpj"
-    t.string  "endereco"
-    t.integer "numero"
-    t.string  "bairro"
-    t.string  "telefone"
-    t.string  "cep"
-    t.date    "dtVencimento"
+    t.string   "nome"
+    t.string   "logo"
+    t.string   "cnpj"
+    t.string   "endereco"
+    t.integer  "numero"
+    t.string   "bairro"
+    t.string   "telefone"
+    t.string   "cep"
+    t.date     "dtVencimento"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "fabricantes", force: true do |t|
@@ -244,7 +246,6 @@ ActiveRecord::Schema.define(version: 20160512161315) do
   add_index "suportes", ["user_id"], name: "index_suportes_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "provider",                            null: false
     t.string   "uid",                    default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -259,8 +260,7 @@ ActiveRecord::Schema.define(version: 20160512161315) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.string   "name"
-    t.string   "nickname"
+    t.string   "username"
     t.string   "image"
     t.string   "email"
     t.text     "tokens"
@@ -272,6 +272,5 @@ ActiveRecord::Schema.define(version: 20160512161315) do
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["empresa_id"], name: "index_users_on_empresa_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-  add_index "users", ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
 
 end

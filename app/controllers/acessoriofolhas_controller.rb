@@ -2,25 +2,29 @@ class AcessoriofolhasController < ApplicationController
   before_filter :authenticate_user!
 
 	def index
-    respond_with Acessoriofolha.all
+    respond_with Acessoriofolha.where(empresa_id: current_user.empresa_id)
   end
 
   def create
-    respond_with Acessoriofolha.create(acessoriofolha_params)
+    @acessorio = Acessoriofolha.new(acessoriofolha_params)
+    @acessorio.empresa_id = current_user.empresa_id
+    @acessorio.user_id = current_user.id
+    @acessorio.save
+    respond_with @acessorio
   end
 
   def show
-    respond_with Acessoriofolha.find(params[:id])
+    respond_with Acessoriofolha.where(empresa_id: current_user.empresa_id).find(params[:id])
   end
 
   def update
-    @acessoriofolha = Acessoriofolha.find(params[:id])
+    @acessoriofolha = Acessoriofolha.where(empresa_id: current_user.empresa_id).find(params[:id])
     
     respond_with @acessoriofolha.update(acessoriofolha_params)
   end
 
   def destroy
-    @acessoriofolha = Acessoriofolha.find(params[:id])
+    @acessoriofolha = Acessoriofolha.where(empresa_id: current_user.empresa_id).find(params[:id])
     respond_with @acessoriofolha.destroy
     #@operacao, location: -> { admin_clientes_path }
   end

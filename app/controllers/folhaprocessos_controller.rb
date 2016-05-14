@@ -22,7 +22,7 @@ class FolhaprocessosController < ApplicationController
     if params['order'].present?
       respond_with Folhaprocesso.order(sort).all
     else
-      respond_with Folhaprocesso.all
+      respond_with Folhaprocesso.where(empresa_id: current_user.empresa_id)
     end
 
 
@@ -31,6 +31,8 @@ class FolhaprocessosController < ApplicationController
 
   def create
     @folhaprocesso = Folhaprocesso.new(folhaprocesso_params)
+    @folhaprocesso.empresa_id = current_user.empresa_id
+    @folhaprocesso.user_id = current_user.id
     if @folhaprocesso.save
       params[:ferramentafolhas].each do |a|
         @ferramenta = @folhaprocesso.ferramentafolhas.create!(:posicao       => a['posicao'],
@@ -51,14 +53,14 @@ class FolhaprocessosController < ApplicationController
 
   def show
     
-    respond_with Folhaprocesso.find(params[:id])
+    respond_with Folhaprocesso.where(empresa_id: current_user.empresa_id).find(params[:id])
     
 
   end
 
   def update
 
-    @folhaprocesso = Folhaprocesso.find(params[:id])
+    @folhaprocesso = Folhaprocesso.where(empresa_id: current_user.empresa_id).find(params[:id])
     @folhaprocesso.ferramentafolhas.each do |fer|
       fer.destroy
     end
@@ -89,7 +91,7 @@ class FolhaprocessosController < ApplicationController
   end
 
   def destroy
-    @folhaprocesso = Folhaprocesso.find(params[:id])
+    @folhaprocesso = Folhaprocesso.where(empresa_id: current_user.empresa_id).find(params[:id])
     respond_with @folhaprocesso.destroy
     #@operacao, location: -> { admin_clientes_path }
   end

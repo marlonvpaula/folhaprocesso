@@ -2,12 +2,14 @@ class SuportesController < ApplicationController
   before_filter :authenticate_user!
   
 	def index
-    respond_with Suporte.all
+    respond_with Suporte.where(empresa_id: current_user.empresa_id)
   end
 
   def create
     #respond_with Suporte.create(inserto_params)
     @suporte = Suporte.new(suporte_params)
+    @suporte.empresa_id = current_user.empresa_id
+    @suporte.user_id = current_user.id
     if @suporte.save
       params[:insertos].each do |a|
         @inserto_fab = @suporte.suporte_insertos.create!(:inserto_id => a['id'])
@@ -18,7 +20,7 @@ class SuportesController < ApplicationController
 
   def update
     #respond_with Suporte.create(inserto_params)
-    @suporte = Suporte.find(params[:id])
+    @suporte = Suporte.where(empresa_id: current_user.empresa_id).find(params[:id])
     @suporte.suporte_insertos.each do |fab|
       fab.destroy
     end
@@ -32,11 +34,11 @@ class SuportesController < ApplicationController
   end
 
   def show
-    respond_with Suporte.find(params[:id])
+    respond_with Suporte.where(empresa_id: current_user.empresa_id).find(params[:id])
   end
 
   def destroy
-    @suporte = Suporte.find(params[:id])
+    @suporte = Suporte.where(empresa_id: current_user.empresa_id).find(params[:id])
     respond_with @suporte.destroy
     #@operacao, location: -> { admin_clientes_path }
   end

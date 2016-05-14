@@ -2,25 +2,29 @@ class GrupomodelosController < ApplicationController
   before_filter :authenticate_user!
   
 	def index
-    respond_with Grupomodelo.all
+    respond_with Grupomodelo.where(empresa_id: current_user.empresa_id)
   end
 
   def create
-    respond_with Grupomodelo.create(grupomodelo_params)
+    @grupomodelo = Grupomodelo.new(grupomodelo_params)
+    @grupomodelo.empresa_id = current_user.empresa_id
+    @grupomodelo.user_id = current_user.id
+    @grupomodelo.save
+    respond_with @grupomodelo
   end
 
   def show
-    respond_with Grupomodelo.find(params[:id])
+    respond_with Grupomodelo.where(empresa_id: current_user.empresa_id).find(params[:id])
   end
 
   def update
-    @grupomodelo = Grupomodelo.find(params[:id])
+    @grupomodelo = Grupomodelo.where(empresa_id: current_user.empresa_id).find(params[:id])
     
     respond_with @grupomodelo.update(grupomodelo_params)
   end
 
   def destroy
-    @grupomodelo = Grupomodelo.find(params[:id])
+    @grupomodelo = Grupomodelo.where(empresa_id: current_user.empresa_id).find(params[:id])
     respond_with @grupomodelo.destroy
     #@operacao, location: -> { admin_clientes_path }
   end

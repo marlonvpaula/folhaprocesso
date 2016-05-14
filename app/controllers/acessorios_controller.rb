@@ -2,25 +2,29 @@ class AcessoriosController < ApplicationController
   before_filter :authenticate_user!
 
 	def index
-    respond_with Acessorio.all
+    respond_with Acessorio.where(empresa_id: current_user.empresa_id)
   end
 
   def create
-    respond_with Acessorio.create(acessorio_params)
+    @acessorio = Acessorio.new(acessorio_params)
+    @acessorio.empresa_id = current_user.empresa_id
+    @acessorio.user_id = current_user.id
+    @acessorio.save
+    respond_with @acessorio
   end
 
   def update
-    @acessorio = Acessorio.find(params[:id])
+    @acessorio = Acessorio.where(empresa_id: current_user.empresa_id).find(params[:id])
     
     respond_with @acessorio.update(acessorio_params)
   end
 
   def show
-    respond_with Acessorio.find(params[:id])
+    respond_with Acessorio.where(empresa_id: current_user.empresa_id).find(params[:id])
   end
 
   def destroy
-    @acessorio = Acessorio.find(params[:id])
+    @acessorio = Acessorio.where(empresa_id: current_user.empresa_id).find(params[:id])
     respond_with @acessorio.destroy
     #@operacao, location: -> { admin_clientes_path }
   end
