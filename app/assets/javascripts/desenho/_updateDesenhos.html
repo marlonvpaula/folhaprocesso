@@ -49,6 +49,10 @@
       </div>
 
       <div layout-gt-xs="row">
+        <input id="file-input" type="file" ngf-select="upload($file)" ng-model="image" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" ngf-min-height="100">
+      </div>
+
+      <div layout-gt-xs="row">
         <md-button class="md-raised md-warn" ng-click="cancel()">
          Cancelar
         </md-button>

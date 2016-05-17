@@ -29,6 +29,10 @@ function($scope, $rootScope, $mdSidenav, menu, $state, Auth){
     $state.go('home');
   };
 
+  $scope.updateUser = function () {
+    $state.go('updateUsuario');
+  }
+
   this.openMenu = function($mdOpenMenu, ev) {
     $mdOpenMenu(ev);
   };

@@ -14,7 +14,17 @@
 
 
     <md-content layout="column" flex >
-      <h2>Bem Vindo a Folha de Processo</h2>
+      <md-card>
+        <div  class="auto-align-center">
+          <div layout-gt-xs="row">
+            <img ng-src="{{ empresa.logo.url }}" style="width: 100px; height: 75px">
+            <h1>{{ empresa.nome }}</h1>
+          </div>
+          <div layout-gt-xs="row">
+            <h2>Bem Vindo a Folha de Processo</h2>
+          </div>
+        </div>
+
       <!--md-button ng-click="openToast()">
         Open a Toast!
       </md-button>
@@ -54,6 +64,6 @@
           
         </tr>
       </md-data-table-->
-
+      </md-card>
     </md-content>
 </md-content >

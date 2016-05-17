@@ -112,6 +112,11 @@
             type: 'link',
             state: 'users',
             icon: 'group'
+          }, {
+            name: 'Alterar Empresa',
+            type: 'link',
+            state: 'updateEmpresa',
+            icon: 'business'
           }]
         });
 

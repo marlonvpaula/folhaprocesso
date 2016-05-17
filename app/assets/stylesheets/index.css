@@ -79,6 +79,12 @@ body {
   padding-top: 24px;
 }
 
+.auto-align-center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .textAlignCenter {
   text-align: center;
 }

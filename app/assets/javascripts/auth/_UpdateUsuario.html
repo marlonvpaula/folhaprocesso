@@ -1,0 +1,70 @@
+<md-content layout="column" flex>
+  <md-toolbar layout="row" md-scroll-shrink>
+    <div class="md-toolbar-tools theme-blue-toolbar">
+      <md-button ng-click="toggleSidenav('left')" hide-gt-sm class="md-icon-button">
+        <md-icon class="material-icons">menu</md-icon>
+      </md-button>
+      <h3>
+        <span>Usuários - Alterar Usuário</span>
+      </h3>
+    </div>
+  </md-toolbar>
+
+  <div flex-xs layout="column">
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">Alterar Usuário</span>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-content>
+        <form name="empresaForm" ng-submit="salvar()" >
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Nome do Usuário</label>
+            <input name="username" ng-model="usuario.username" minlength="2" maxlength="100" required/>
+          </md-input-container>
+
+          <div layout-gt-xs="row">
+            
+            <input id="file-input" type="file" ngf-select="upload($file)" ng-model="image" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" ngf-min-height="100">
+          </div>
+
+          <div layout-gt-xs="row">
+            <md-button class="md-raised md-primary" type="submit" style="margin-right:20px;">
+              Salvar
+            </md-button>  
+          </div>
+        </form>
+      </md-card-content>
+    </md-card> 
+    <!--md-card>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">Alterar Senha</span>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-content>
+        <form name="empresaForm" ng-submit="salvarSenha()" >
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Senha Atual</label>
+            <input type="password" ng-model="usuario.passwordAtual" required>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Nova Senha</label>
+            <input type="password" ng-model="usuario.passwordNew" required>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Confirmar Senha</label>
+            <input type="password" ng-model="usuario.passwordConfirm" required>
+          </md-input-container>
+
+          <div layout-gt-xs="row">
+            <md-button class="md-raised md-primary" type="submit" style="margin-right:20px;">
+              Salvar
+            </md-button>  
+          </div>
+        </form>
+      </md-card-content>
+    </md-card-->   
+  </div>
+</md-content>
