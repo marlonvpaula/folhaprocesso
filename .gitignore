@@ -16,4 +16,4 @@
 /tmp
 
 # .gitignore
-/bower_components/
+vendor/assets/bower_components/
