@@ -17,15 +17,6 @@ angular.module('StarterApp', ['md.data.table',
         }
     });
 }])
-
-/*.run(function ($rootScope, $state, Auth) {
-  $rootScope.$on("$stateChangeStart", function(event, toState, Auth){
-    if (!Auth.isAuthenticated()) {
-      $location.path('/');
-      return;
-    }
-  });
-})*/
 .config(['$httpProvider', '$stateProvider', '$urlRouterProvider', '$logProvider', 
   function ($httpProvider, $stateProvider, $urlRouterProvider) {
     //$httpProvider.interceptors.push('authInterceptor');
