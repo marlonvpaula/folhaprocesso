@@ -24,4 +24,5 @@
 //= require ng-file-upload
 //= require angular-material-data-table
 //= require bootstrap
+//= require jquery
 //= require_tree .
