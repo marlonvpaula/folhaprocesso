@@ -23,8 +23,9 @@
 //= require ng-file-upload-shim
 //= require ng-file-upload
 //= require angular-material-data-table
-//= require bootstrap
+
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require bootstrap
 //= require_tree .
