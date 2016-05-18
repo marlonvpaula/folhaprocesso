@@ -23,4 +23,5 @@
 //= require ng-file-upload-shim
 //= require ng-file-upload
 //= require angular-material-data-table
+//= require bootstrap
 //= require_tree .

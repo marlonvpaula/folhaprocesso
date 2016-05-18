@@ -1,6 +1,46 @@
 /* Styles go here */
 
+
 body {
+  font-family: 'Roboto', sans-serif;
+  color: #666;
+  font-size: 14px;
+  font-weight: 400;
+  background: #fff;
+}
+.btn {
+  font-size: 14px;
+  font-weight: 400;
+}
+.btn-border {
+  background: transparent;
+  border: 1px solid #fff;
+  color: #fff !important;
+}
+.btn-border:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+.clear {
+  clear: both;
+}
+.row {
+  padding: 30px 0;
+}
+h1 {
+  font-size: 50px;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+ul li {
+  list-style: none;
+}
+a:hover,
+a:focus {
+  text-decoration: none;
+  outline: none;
+  color: #fff;
 }
 
 
@@ -28,39 +68,163 @@ body {
 }
 
 
-.android-navigation {
-  /* ... and now make sure the content is actually LTR */
-
-  direction: ltr;
-  -webkit-justify-content: flex-end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  width: 80%;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-
-.android-navigation .mdl-navigation__link {
-  display: inline-block;
-  height: 60px;
-  line-height: 68px;
-  background-color: transparent !important;
-  border-bottom: 4px solid transparent;
-}
-
-.android-navigation .mdl-navigation__link:hover {
-  border-bottom: 4px solid #8bc34a;
-}
-
-.android-be-together-section {
-  position: relative;
-  height: 400px;
-  width: auto;
-  background-color: #f3f3f3;
-  background: url('/assets/bg.jpg') center 30% no-repeat;
+.hero-area {
+  background: url(/assets/bg.jpg) no-repeat;
   background-size: cover;
+  background-position: center bottom;
+  color: #fff;
+  overflow: hidden;
+  padding: 90px 0;
 }
+.hero-area .sticky-navigation {
+  background: transparent;
+}
+.hero-area .contents h1 {
+  font-size: 30px;
+  font-weight: 100;
+}
+.hero-area .contents p {
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+.hero-area .contents .btn {
+  margin: 15px;
+}
+.section {
+  padding: 90px 0;
+}
+.section-header .section-title {
+  font-size: 38px;
+  text-transform: uppercase;
+  margin-top: 0;
+  font-weight: 700;
+}
+.section-header .section-subtitle {
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-top: 0;
+}
+.content-wrap {
+  -webkit-transition: -webkit-transform 0.4s;
+  transition: transform 0.4s;
+  -webkit-transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+  transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+}
+.show-menu .content-wrap {
+  -webkit-transition-delay: 0.1s;
+  transition-delay: 0.1s;
+  -webkit-transform: translate3d(-250px, 0, 0);
+  transform: translate3d(-250px, 0, 0);
+}
+.navbar-fixed-top {
+  padding: 15px 0;
+}
+.affix {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
+  padding: 0!important;
+  background: #3f51b5 !important;
+}
+
+.slider-area {
+  margin-top: -1px;
+}
+.slider-area h1 {
+  font-weight: 100;
+}
+.slider-area p {
+  font-weight: 400;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+.slider-area .sticky-navigation {
+  background: transparent;
+}
+.slider-area .btn {
+  margin: 15px;
+}
+.slider-area .large_white {
+  color: #fff;
+}
+@media (min-width: 1200px) {
+  .hero-area {
+    padding: 280px 0;
+  }
+  .hero-area h1 {
+    font-size: 50px !important;
+  }
+}
+#features {
+  background: #fff;
+}
+#features .features {
+  margin: 30px 0;
+}
+#features .features .icon {
+  float: left;
+  text-align: center;
+}
+#features .features .icon i {
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+  border-radius: 50%;
+  font-size: 36px;
+  color: #3f51b5;
+}
+#features .features h4 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #3f51b5;
+}
+#features .features .features-text {
+  padding-left: 80px;
+}
+#features .features .features-text p {
+  margin: 0;
+}
+#counter {
+  background: #ecf0f1;
+}
+#counter .counter-item .icon {
+  text-align: center;
+}
+#counter .counter-item .icon i {
+  font-size: 54px;
+  color: #ccd0d2;
+  line-height: 64px;
+}
+#counter .counter-item h5 {
+  text-align: center;
+  color: #3f51b5;
+  font-size: 16px;
+  text-transform: uppercase;
+  line-height: 32px;
+}
+#counter .counter-item hr {
+  width: 50px;
+  margin: 0px auto;
+  height: 2px;
+  background: #009688;
+}
+#counter .timer {
+  font-size: 50px;
+  font-weight: 100;
+  color: #3f51b5;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 80px;
+}
+
+
+
 
 .logo-font {
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
@@ -300,4 +464,293 @@ md-content.autocomplete {
 
 .md-button {    
   text-transform: none !important;/*For Lower case use lowercase*/
+}
+
+
+#clients .client-item-wrapper {
+  text-align: center;
+}
+
+#contact {
+  background: #ecf0f1;
+}
+#contact .info {
+  padding: 15px 0;
+}
+#contact .info .icon {
+  margin-bottom: 20px;
+}
+#contact .info .icon i {
+  font-size: 36px;
+  color: #3f51b5;
+}
+#contact .info h4 {
+  color: #385461;
+  font-size: 24px;
+  font-weight: 400;
+}
+#contact .info p {
+  color: #909090;
+}
+.contact-form {
+  margin-top: 52px;
+}
+.contact-form i {
+  position: absolute;
+  right: 15px;
+}
+.contact-form .form-control {
+  margin-bottom: 28px;
+}
+
+#footer {
+  position: relative;
+  background: #333;
+}
+#footer h3 {
+  color: #fff;
+  font-weight: 900;
+}
+#footer ul li a {
+  color: #ccc;
+  transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -webkit-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  line-height: 28px;
+  text-transform: uppercase;
+}
+#footer ul li a:hover {
+  color: #fff;
+  margin-left: 4px;
+}
+#copyright {
+  background: #191919;
+}
+#copyright .copyright-text {
+  color: #fff;
+  margin-top: 15px;
+  text-align: center;
+}
+#copyright .copyright-text a {
+  transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -webkit-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+}
+.back-to-top {
+  position: absolute;
+  top: -28px;
+  left: 50%;
+  margin: 0px -25px;
+}
+.back-to-top {
+  display: block;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  padding: 0;
+  margin: 0 -30px;
+  color: #fff;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -o-border-radius: 50%;
+  text-align: center;
+}
+.back-to-top i {
+  line-height: 56px;
+  font-size: 42px;
+}
+.social {
+  display: inline-block;
+  margin: 10px 2px;
+  color: #fff;
+}
+.social i {
+  width: 48px;
+  font-size: 16px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.18);
+  text-align: center;
+  line-height: 48px;
+  border-radius: 50%;
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+.social i:hover {
+  color: #fff;
+}
+.social .fa-facebook:hover {
+  background: #3B5998;
+}
+.social .fa-twitter:hover {
+  background: #00ACED;
+}
+.social .fa-google-plus:hover {
+  background: #DD4B39;
+}
+.social .fa-linkedin:hover {
+  background: #007BB6;
+}
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  z-index: 9999999999;
+}
+.loader-inner {
+  position: animation;
+  top: 50%;
+  left: 50%;
+}
+
+@-webkit-keyframes ball-triangle-path-1 {
+  33% {
+    -webkit-transform: translate(25px, -50px);
+    transform: translate(25px, -50px);
+  }
+  66% {
+    -webkit-transform: translate(50px, 0px);
+    transform: translate(50px, 0px);
+  }
+  100% {
+    -webkit-transform: translate(0px, 0px);
+    transform: translate(0px, 0px);
+  }
+}
+@keyframes ball-triangle-path-1 {
+  33% {
+    -webkit-transform: translate(25px, -50px);
+    transform: translate(25px, -50px);
+  }
+  66% {
+    -webkit-transform: translate(50px, 0px);
+    transform: translate(50px, 0px);
+  }
+  100% {
+    -webkit-transform: translate(0px, 0px);
+    transform: translate(0px, 0px);
+  }
+}
+@-webkit-keyframes ball-triangle-path-2 {
+  33% {
+    -webkit-transform: translate(25px, 50px);
+    transform: translate(25px, 50px);
+  }
+  66% {
+    -webkit-transform: translate(-25px, 50px);
+    transform: translate(-25px, 50px);
+  }
+  100% {
+    -webkit-transform: translate(0px, 0px);
+    transform: translate(0px, 0px);
+  }
+}
+@keyframes ball-triangle-path-2 {
+  33% {
+    -webkit-transform: translate(25px, 50px);
+    transform: translate(25px, 50px);
+  }
+  66% {
+    -webkit-transform: translate(-25px, 50px);
+    transform: translate(-25px, 50px);
+  }
+  100% {
+    -webkit-transform: translate(0px, 0px);
+    transform: translate(0px, 0px);
+  }
+}
+@-webkit-keyframes ball-triangle-path-3 {
+  33% {
+    -webkit-transform: translate(-50px, 0px);
+    transform: translate(-50px, 0px);
+  }
+  66% {
+    -webkit-transform: translate(-25px, -50px);
+    transform: translate(-25px, -50px);
+  }
+  100% {
+    -webkit-transform: translate(0px, 0px);
+    transform: translate(0px, 0px);
+  }
+}
+@keyframes ball-triangle-path-3 {
+  33% {
+    -webkit-transform: translate(-50px, 0px);
+    transform: translate(-50px, 0px);
+  }
+  66% {
+    -webkit-transform: translate(-25px, -50px);
+    transform: translate(-25px, -50px);
+  }
+  100% {
+    -webkit-transform: translate(0px, 0px);
+    transform: translate(0px, 0px);
+  }
+}
+.ball-triangle-path {
+  position: relative;
+  -webkit-transform: translate(-25px, -25px);
+  -ms-transform: translate(-25px, -25px);
+  transform: translate(-25px, -25px);
+}
+.ball-triangle-path > div:nth-child(1) {
+  -webkit-animation-name: ball-triangle-path-1;
+  animation-name: ball-triangle-path-1;
+  -webkit-animation-delay: 0;
+  animation-delay: 0;
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+.ball-triangle-path > div:nth-child(2) {
+  -webkit-animation-name: ball-triangle-path-2;
+  animation-name: ball-triangle-path-2;
+  -webkit-animation-delay: 0;
+  animation-delay: 0;
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+.ball-triangle-path > div:nth-child(3) {
+  -webkit-animation-name: ball-triangle-path-3;
+  animation-name: ball-triangle-path-3;
+  -webkit-animation-delay: 0;
+  animation-delay: 0;
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+.ball-triangle-path > div {
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  background: #3f51b5;
+}
+.ball-triangle-path > div:nth-of-type(1) {
+  top: 50px;
+}
+.ball-triangle-path > div:nth-of-type(2) {
+  left: 25px;
+}
+.ball-triangle-path > div:nth-of-type(3) {
+  top: 50px;
+  left: 50px;
 }

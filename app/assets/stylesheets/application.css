@@ -10,9 +10,12 @@
  *
  * require_self
 
+ 
  *= require angular-material
  *= require components-font-awesome
  *= require font-awesome
  *= require angular-material-data-table
+ *= require bootstrap
+ 
  *= require_tree .
  */
