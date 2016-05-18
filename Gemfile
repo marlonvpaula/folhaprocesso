@@ -25,6 +25,7 @@ gem 'angular_rails_csrf'
 
 #gem 'devise_token_auth'
 gem 'jquery-rails'
+gem "jquery-ui-rails"
 gem "therubyracer"
 gem "less-rails"
 gem 'font-awesome-rails', '4.0.3.0'
