@@ -24,6 +24,7 @@ gem 'devise', '~> 3.4.0'
 gem 'angular_rails_csrf'
 
 #gem 'devise_token_auth'
+gem 'jquery-rails'
 gem "therubyracer"
 gem "less-rails"
 gem 'font-awesome-rails', '4.0.3.0'
