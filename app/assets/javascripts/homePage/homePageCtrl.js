@@ -17,7 +17,6 @@ function($scope,
 
   
   $scope.login = function (ev) {
-    //$state.go('login');
     showAdvancedLogin(ev);
   }
 
