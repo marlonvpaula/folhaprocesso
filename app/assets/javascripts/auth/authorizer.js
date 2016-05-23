@@ -1,5 +1,5 @@
 angular.module('common.services')
-.service("Authorizer", function(APP_PERMISSIONS, USER_ROLES) {
+.service("Authorizer", ['APP_PERMISSIONS', 'USER_ROLES', function(APP_PERMISSIONS, USER_ROLES) {
   return function(user) {
     return {
       canAccess: function(permission) {
@@ -42,4 +42,4 @@ angular.module('common.services')
       }
     };
   };
-});
+}]);
