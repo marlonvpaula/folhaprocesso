@@ -18,6 +18,12 @@ angular.module('common.factory')
     });
   };
 
+  o.create = function(user) {
+    return $http.post('/users.json', user).success(function(data){
+      o.suportes.push(data);
+    });
+  };
+
   o.update = function(id, user) {
     return $http.put('/users/' + id + '.json', user).success(function(data){
       for(var i = o.users.length - 1; i >= 0; i--) {

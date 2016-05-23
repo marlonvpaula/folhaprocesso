@@ -34,6 +34,14 @@
         <label>Password</label>
         <input type="password" minlength="8" maxlength="100" ng-model="user.password" required>
       </md-input-container>
+      <md-input-container  class="md-block" flex-gt-sm>
+        <label>Permissão</label>
+        <md-select ng-model="userRole" required>
+          <md-option ng-repeat="perm in Permissoes" value="{{perm.value}}">
+            {{perm.description}}
+          </md-option>
+        </md-select>
+      </md-input-container>
       <md-button class="md-raised md-primary" type="submit">Gravar</md-button>
     </form>
   </md-content>

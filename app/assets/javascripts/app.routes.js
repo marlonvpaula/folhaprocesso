@@ -16,6 +16,21 @@ angular.module('StarterApp', ['md.data.table',
           return;
         }
     });
+
+    /*$rootScope.$on("$stateChangeStart", function(event, next) {
+      var authenticator, permissions, user;
+      permissions = next && next.data ? next.data.permissions : null;
+      user = Session.getCurrentUser();
+      authenticator = new Authorizer(user);
+      if ((permissions != null) && !authenticator.canAccess(permissions)) {
+        event.preventDefault();
+        if (!user) {
+          return $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+        } else {
+          return $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
+        }
+      }
+    });*/
 }])
 .config(['$httpProvider', '$stateProvider', '$urlRouterProvider', '$logProvider', 
   function ($httpProvider, $stateProvider, $urlRouterProvider) {
@@ -48,10 +63,23 @@ angular.module('StarterApp', ['md.data.table',
         url: '/updateEmpresa',
         templateUrl: 'auth/_UpdateEmpresa.html',
         controller: 'EmpresaUpdateCtrl',
-        onEnter: ['$state', 'Auth', function($state, Auth) {
+        onEnter: ['$state', '$mdToast', 'Auth', 'APP_PERMISSIONS', 'Authorizer', 
+          function($state, $mdToast, Auth, APP_PERMISSIONS, Authorizer) {
           Auth.currentUser().then(function (user){
             if (!user) {
               $state.go('homePage');  
+            }
+            var authenticator, permissions;
+            permissions = APP_PERMISSIONS.User;
+            authenticator = new Authorizer(user);
+            if (!authenticator.canAccess(permissions)) {
+              $state.go('homePage');  
+              $mdToast.show(
+                $mdToast.simple()
+                  .textContent('Sem Autorização!')
+                  .position("top right")
+                  .hideDelay(3000)
+              );
             }
           });
         }]
@@ -72,10 +100,23 @@ angular.module('StarterApp', ['md.data.table',
         url: '/register',
         templateUrl: 'auth/_register.html',
         controller: 'AuthCtrl',
-        onEnter: ['$state', 'Auth', function($state, Auth) {
+        onEnter: ['$state', '$mdToast', 'Auth', 'APP_PERMISSIONS', 'Authorizer', 
+          function($state, $mdToast, Auth, APP_PERMISSIONS, Authorizer) {
           Auth.currentUser().then(function (user){
             if (!user) {
               $state.go('homePage');  
+            }
+            var authenticator, permissions;
+            permissions = APP_PERMISSIONS.User;
+            authenticator = new Authorizer(user);
+            if (!authenticator.canAccess(permissions)) {
+              $state.go('homePage');  
+              $mdToast.show(
+                $mdToast.simple()
+                  .textContent('Sem Autorização!')
+                  .position("top right")
+                  .hideDelay(3000)
+              );
             }
           });
         }]
@@ -84,10 +125,23 @@ angular.module('StarterApp', ['md.data.table',
         url: '/users',
         templateUrl: 'user/_users.html',
         controller: 'UserCtrl',
-        onEnter: ['$state', 'Auth', function($state, Auth) {
+        onEnter: ['$state', '$mdToast', 'Auth', 'APP_PERMISSIONS', 'Authorizer', 
+          function($state, $mdToast, Auth, APP_PERMISSIONS, Authorizer) {
           Auth.currentUser().then(function (user){
             if (!user) {
               $state.go('homePage');  
+            }
+            var authenticator, permissions;
+            permissions = APP_PERMISSIONS.User;
+            authenticator = new Authorizer(user);
+            if (!authenticator.canAccess(permissions)) {
+              $state.go('homePage');  
+              $mdToast.show(
+                $mdToast.simple()
+                  .textContent('Sem Autorização!')
+                  .position("top right")
+                  .hideDelay(3000)
+              );
             }
           });
         }],
@@ -101,10 +155,23 @@ angular.module('StarterApp', ['md.data.table',
         url: '/users/{id}',
         templateUrl: 'user/_userPerm.html',
         controller: 'UserPermCtrl',
-        onEnter: ['$state', 'Auth', function($state, Auth) {
+        onEnter: ['$state', '$mdToast', 'Auth', 'APP_PERMISSIONS', 'Authorizer', 
+          function($state, $mdToast, Auth, APP_PERMISSIONS, Authorizer) {
           Auth.currentUser().then(function (user){
             if (!user) {
               $state.go('homePage');  
+            }
+            var authenticator, permissions;
+            permissions = APP_PERMISSIONS.User;
+            authenticator = new Authorizer(user);
+            if (!authenticator.canAccess(permissions)) {
+              $state.go('homePage');  
+              $mdToast.show(
+                $mdToast.simple()
+                  .textContent('Sem Autorização!')
+                  .position("top right")
+                  .hideDelay(3000)
+              );
             }
           });
         }],
@@ -118,10 +185,23 @@ angular.module('StarterApp', ['md.data.table',
         url: '/operacaos',
         templateUrl: 'operacao/_operacaos.html',
         controller: 'OperacaoCtrl',
-        onEnter: ['$state', 'Auth', function($state, Auth) {
+        onEnter: ['$state', '$mdToast', 'Auth', 'APP_PERMISSIONS', 'Authorizer', 
+          function($state, $mdToast, Auth, APP_PERMISSIONS, Authorizer) {
           Auth.currentUser().then(function (user){
             if (!user) {
               $state.go('homePage');  
+            }
+            var authenticator, permissions;
+            permissions = APP_PERMISSIONS.Operacao;
+            authenticator = new Authorizer(user);
+            if (!authenticator.canAccess(permissions)) {
+              $state.go('homePage');  
+              $mdToast.show(
+                $mdToast.simple()
+                  .textContent('Sem Autorização!')
+                  .position("top right")
+                  .hideDelay(3000)
+              );
             }
           });
         }],
@@ -135,10 +215,23 @@ angular.module('StarterApp', ['md.data.table',
         url: '/fabricantes',
         templateUrl: 'fabricante/_fabricantes.html',
         controller: 'FabricanteCtrl',
-        onEnter: ['$state', 'Auth', function($state, Auth) {
+        onEnter: ['$state', '$mdToast', 'Auth', 'APP_PERMISSIONS', 'Authorizer', 
+          function($state, $mdToast, Auth, APP_PERMISSIONS, Authorizer) {
           Auth.currentUser().then(function (user){
             if (!user) {
               $state.go('homePage');  
+            }
+            var authenticator, permissions;
+            permissions = APP_PERMISSIONS.Fabricante;
+            authenticator = new Authorizer(user);
+            if (!authenticator.canAccess(permissions)) {
+              $state.go('homePage');  
+              $mdToast.show(
+                $mdToast.simple()
+                  .textContent('Sem Autorização!')
+                  .position("top right")
+                  .hideDelay(3000)
+              );
             }
           });
         }],
@@ -152,10 +245,23 @@ angular.module('StarterApp', ['md.data.table',
         url: '/programadors',
         templateUrl: 'programador/_programadors.html',
         controller: 'ProgramadorCtrl',
-        onEnter: ['$state', 'Auth', function($state, Auth) {
+        onEnter: ['$state', '$mdToast', 'Auth', 'APP_PERMISSIONS', 'Authorizer', 
+          function($state, $mdToast, Auth, APP_PERMISSIONS, Authorizer) {
           Auth.currentUser().then(function (user){
             if (!user) {
               $state.go('homePage');  
+            }
+            var authenticator, permissions;
+            permissions = APP_PERMISSIONS.Programador;
+            authenticator = new Authorizer(user);
+            if (!authenticator.canAccess(permissions)) {
+              $state.go('homePage');  
+              $mdToast.show(
+                $mdToast.simple()
+                  .textContent('Sem Autorização!')
+                  .position("top right")
+                  .hideDelay(3000)
+              );
             }
           });
         }],
@@ -169,10 +275,23 @@ angular.module('StarterApp', ['md.data.table',
         url: '/acessorios',
         templateUrl: 'cessorio/_acessorios.html',
         controller: 'AcessorioCtrl',
-        onEnter: ['$state', 'Auth', function($state, Auth) {
+        onEnter: ['$state', '$mdToast', 'Auth', 'APP_PERMISSIONS', 'Authorizer', 
+          function($state, $mdToast, Auth, APP_PERMISSIONS, Authorizer) {
           Auth.currentUser().then(function (user){
             if (!user) {
               $state.go('homePage');  
+            }
+            var authenticator, permissions;
+            permissions = APP_PERMISSIONS.Acessorio;
+            authenticator = new Authorizer(user);
+            if (!authenticator.canAccess(permissions)) {
+              $state.go('homePage');  
+              $mdToast.show(
+                $mdToast.simple()
+                  .textContent('Sem Autorização!')
+                  .position("top right")
+                  .hideDelay(3000)
+              );
             }
           });
         }],
@@ -186,10 +305,23 @@ angular.module('StarterApp', ['md.data.table',
         url: '/comandos',
         templateUrl: 'comando/_comandos.html',
         controller: 'ComandoCtrl',
-        onEnter: ['$state', 'Auth', function($state, Auth) {
+        onEnter: ['$state', '$mdToast', 'Auth', 'APP_PERMISSIONS', 'Authorizer', 
+          function($state, $mdToast, Auth, APP_PERMISSIONS, Authorizer) {
           Auth.currentUser().then(function (user){
             if (!user) {
               $state.go('homePage');  
+            }
+            var authenticator, permissions;
+            permissions = APP_PERMISSIONS.Comando;
+            authenticator = new Authorizer(user);
+            if (!authenticator.canAccess(permissions)) {
+              $state.go('homePage');  
+              $mdToast.show(
+                $mdToast.simple()
+                  .textContent('Sem Autorização!')
+                  .position("top right")
+                  .hideDelay(3000)
+              );
             }
           });
         }],
@@ -203,10 +335,23 @@ angular.module('StarterApp', ['md.data.table',
         url: '/insertos',
         templateUrl: 'inserto/_insertos.html',
         controller: 'InsertoCtrl',
-        onEnter: ['$state', 'Auth', function($state, Auth) {
+        onEnter: ['$state', '$mdToast', 'Auth', 'APP_PERMISSIONS', 'Authorizer', 
+          function($state, $mdToast, Auth, APP_PERMISSIONS, Authorizer) {
           Auth.currentUser().then(function (user){
             if (!user) {
               $state.go('homePage');  
+            }
+            var authenticator, permissions;
+            permissions = APP_PERMISSIONS.Inserto;
+            authenticator = new Authorizer(user);
+            if (!authenticator.canAccess(permissions)) {
+              $state.go('homePage');  
+              $mdToast.show(
+                $mdToast.simple()
+                  .textContent('Sem Autorização!')
+                  .position("top right")
+                  .hideDelay(3000)
+              );
             }
           });
         }],
@@ -220,10 +365,23 @@ angular.module('StarterApp', ['md.data.table',
         url: '/insertos/new',
         templateUrl: 'inserto/_newInsertos.html',
         controller: 'InsertoNewCtrl',
-        onEnter: ['$state', 'Auth', function($state, Auth) {
+        onEnter: ['$state', '$mdToast', 'Auth', 'APP_PERMISSIONS', 'Authorizer', 
+          function($state, $mdToast, Auth, APP_PERMISSIONS, Authorizer) {
           Auth.currentUser().then(function (user){
             if (!user) {
               $state.go('homePage');  
+            }
+            var authenticator, permissions;
+            permissions = APP_PERMISSIONS.Inserto;
+            authenticator = new Authorizer(user);
+            if (!authenticator.canAccess(permissions)) {
+              $state.go('homePage');  
+              $mdToast.show(
+                $mdToast.simple()
+                  .textContent('Sem Autorização!')
+                  .position("top right")
+                  .hideDelay(3000)
+              );
             }
           });
         }],
@@ -237,10 +395,23 @@ angular.module('StarterApp', ['md.data.table',
         url: '/insertos/{id}',
         templateUrl: 'inserto/_showInsertos.html',
         controller: 'InsertoShowCtrl',
-        onEnter: ['$state', 'Auth', function($state, Auth) {
+        onEnter: ['$state', '$mdToast', 'Auth', 'APP_PERMISSIONS', 'Authorizer', 
+          function($state, $mdToast, Auth, APP_PERMISSIONS, Authorizer) {
           Auth.currentUser().then(function (user){
             if (!user) {
               $state.go('homePage');  
+            }
+            var authenticator, permissions;
+            permissions = APP_PERMISSIONS.Inserto;
+            authenticator = new Authorizer(user);
+            if (!authenticator.canAccess(permissions)) {
+              $state.go('homePage');  
+              $mdToast.show(
+                $mdToast.simple()
+                  .textContent('Sem Autorização!')
+                  .position("top right")
+                  .hideDelay(3000)
+              );
             }
           });
         }],
@@ -254,10 +425,23 @@ angular.module('StarterApp', ['md.data.table',
         url: '/insertos/update/{id}',
         templateUrl: 'inserto/_newInsertos.html',
         controller: 'InsertoUpdateCtrl',
-        onEnter: ['$state', 'Auth', function($state, Auth) {
+        onEnter: ['$state', '$mdToast', 'Auth', 'APP_PERMISSIONS', 'Authorizer', 
+          function($state, $mdToast, Auth, APP_PERMISSIONS, Authorizer) {
           Auth.currentUser().then(function (user){
             if (!user) {
               $state.go('homePage');  
+            }
+            var authenticator, permissions;
+            permissions = APP_PERMISSIONS.Inserto;
+            authenticator = new Authorizer(user);
+            if (!authenticator.canAccess(permissions)) {
+              $state.go('homePage');  
+              $mdToast.show(
+                $mdToast.simple()
+                  .textContent('Sem Autorização!')
+                  .position("top right")
+                  .hideDelay(3000)
+              );
             }
           });
         }],
@@ -271,10 +455,23 @@ angular.module('StarterApp', ['md.data.table',
         url: '/suportes',
         templateUrl: 'suporte/_suportes.html',
         controller: 'SuporteCtrl',
-        onEnter: ['$state', 'Auth', function($state, Auth) {
+        onEnter: ['$state', '$mdToast', 'Auth', 'APP_PERMISSIONS', 'Authorizer', 
+          function($state, $mdToast, Auth, APP_PERMISSIONS, Authorizer) {
           Auth.currentUser().then(function (user){
             if (!user) {
               $state.go('homePage');  
+            }
+            var authenticator, permissions;
+            permissions = APP_PERMISSIONS.Suporte;
+            authenticator = new Authorizer(user);
+            if (!authenticator.canAccess(permissions)) {
+              $state.go('homePage');  
+              $mdToast.show(
+                $mdToast.simple()
+                  .textContent('Sem Autorização!')
+                  .position("top right")
+                  .hideDelay(3000)
+              );
             }
           });
         }],
@@ -288,10 +485,23 @@ angular.module('StarterApp', ['md.data.table',
         url: '/suportes/new',
         templateUrl: 'suporte/_newSuportes.html',
         controller: 'SuporteNewCtrl',
-        onEnter: ['$state', 'Auth', function($state, Auth) {
+        onEnter: ['$state', '$mdToast', 'Auth', 'APP_PERMISSIONS', 'Authorizer', 
+          function($state, $mdToast, Auth, APP_PERMISSIONS, Authorizer) {
           Auth.currentUser().then(function (user){
             if (!user) {
               $state.go('homePage');  
+            }
+            var authenticator, permissions;
+            permissions = APP_PERMISSIONS.Suporte;
+            authenticator = new Authorizer(user);
+            if (!authenticator.canAccess(permissions)) {
+              $state.go('homePage');  
+              $mdToast.show(
+                $mdToast.simple()
+                  .textContent('Sem Autorização!')
+                  .position("top right")
+                  .hideDelay(3000)
+              );
             }
           });
         }],
@@ -308,10 +518,23 @@ angular.module('StarterApp', ['md.data.table',
         url: '/suportes/{id}',
         templateUrl: 'suporte/_showSuportes.html',
         controller: 'SuporteShowCtrl',
-        onEnter: ['$state', 'Auth', function($state, Auth) {
+        onEnter: ['$state', '$mdToast', 'Auth', 'APP_PERMISSIONS', 'Authorizer', 
+          function($state, $mdToast, Auth, APP_PERMISSIONS, Authorizer) {
           Auth.currentUser().then(function (user){
             if (!user) {
               $state.go('homePage');  
+            }
+            var authenticator, permissions;
+            permissions = APP_PERMISSIONS.Suporte;
+            authenticator = new Authorizer(user);
+            if (!authenticator.canAccess(permissions)) {
+              $state.go('homePage');  
+              $mdToast.show(
+                $mdToast.simple()
+                  .textContent('Sem Autorização!')
+                  .position("top right")
+                  .hideDelay(3000)
+              );
             }
           });
         }],
@@ -325,10 +548,23 @@ angular.module('StarterApp', ['md.data.table',
         url: '/suportes/update/{id}',
         templateUrl: 'suporte/_newSuportes.html',
         controller: 'SuporteUpdateCtrl',
-        onEnter: ['$state', 'Auth', function($state, Auth) {
+        onEnter: ['$state', '$mdToast', 'Auth', 'APP_PERMISSIONS', 'Authorizer', 
+          function($state, $mdToast, Auth, APP_PERMISSIONS, Authorizer) {
           Auth.currentUser().then(function (user){
             if (!user) {
               $state.go('homePage');  
+            }
+            var authenticator, permissions;
+            permissions = APP_PERMISSIONS.Suporte;
+            authenticator = new Authorizer(user);
+            if (!authenticator.canAccess(permissions)) {
+              $state.go('homePage');  
+              $mdToast.show(
+                $mdToast.simple()
+                  .textContent('Sem Autorização!')
+                  .position("top right")
+                  .hideDelay(3000)
+              );
             }
           });
         }],
@@ -345,10 +581,23 @@ angular.module('StarterApp', ['md.data.table',
         url: '/grupomodelos',
         templateUrl: 'grupomodelo/_grupomodelos.html',
         controller: 'GrupomodeloCtrl',
-        onEnter: ['$state', 'Auth', function($state, Auth) {
+        onEnter: ['$state', '$mdToast', 'Auth', 'APP_PERMISSIONS', 'Authorizer', 
+          function($state, $mdToast, Auth, APP_PERMISSIONS, Authorizer) {
           Auth.currentUser().then(function (user){
             if (!user) {
               $state.go('homePage');  
+            }
+            var authenticator, permissions;
+            permissions = APP_PERMISSIONS.GrupoModelo;
+            authenticator = new Authorizer(user);
+            if (!authenticator.canAccess(permissions)) {
+              $state.go('homePage');  
+              $mdToast.show(
+                $mdToast.simple()
+                  .textContent('Sem Autorização!')
+                  .position("top right")
+                  .hideDelay(3000)
+              );
             }
           });
         }],
@@ -362,10 +611,23 @@ angular.module('StarterApp', ['md.data.table',
         url: '/modelos',
         templateUrl: 'modelo/_modelos.html',
         controller: 'ModeloCtrl',
-        onEnter: ['$state', 'Auth', function($state, Auth) {
+        onEnter: ['$state', '$mdToast', 'Auth', 'APP_PERMISSIONS', 'Authorizer', 
+          function($state, $mdToast, Auth, APP_PERMISSIONS, Authorizer) {
           Auth.currentUser().then(function (user){
             if (!user) {
               $state.go('homePage');  
+            }
+            var authenticator, permissions;
+            permissions = APP_PERMISSIONS.Modelo;
+            authenticator = new Authorizer(user);
+            if (!authenticator.canAccess(permissions)) {
+              $state.go('homePage');  
+              $mdToast.show(
+                $mdToast.simple()
+                  .textContent('Sem Autorização!')
+                  .position("top right")
+                  .hideDelay(3000)
+              );
             }
           });
         }],
@@ -379,10 +641,23 @@ angular.module('StarterApp', ['md.data.table',
         url: '/modelos/new',
         templateUrl: 'modelo/_newModelos.html',
         controller: 'ModeloNewCtrl',
-        onEnter: ['$state', 'Auth', function($state, Auth) {
+        onEnter: ['$state', '$mdToast', 'Auth', 'APP_PERMISSIONS', 'Authorizer', 
+          function($state, $mdToast, Auth, APP_PERMISSIONS, Authorizer) {
           Auth.currentUser().then(function (user){
             if (!user) {
               $state.go('homePage');  
+            }
+            var authenticator, permissions;
+            permissions = APP_PERMISSIONS.Modelo;
+            authenticator = new Authorizer(user);
+            if (!authenticator.canAccess(permissions)) {
+              $state.go('homePage');  
+              $mdToast.show(
+                $mdToast.simple()
+                  .textContent('Sem Autorização!')
+                  .position("top right")
+                  .hideDelay(3000)
+              );
             }
           });
         }],
@@ -396,10 +671,23 @@ angular.module('StarterApp', ['md.data.table',
         url: '/modelos/{id}',
         templateUrl: 'modelo/_showModelos.html',
         controller: 'ModeloShowCtrl',
-        onEnter: ['$state', 'Auth', function($state, Auth) {
+        onEnter: ['$state', '$mdToast', 'Auth', 'APP_PERMISSIONS', 'Authorizer', 
+          function($state, $mdToast, Auth, APP_PERMISSIONS, Authorizer) {
           Auth.currentUser().then(function (user){
             if (!user) {
               $state.go('homePage');  
+            }
+            var authenticator, permissions;
+            permissions = APP_PERMISSIONS.Modelo;
+            authenticator = new Authorizer(user);
+            if (!authenticator.canAccess(permissions)) {
+              $state.go('homePage');  
+              $mdToast.show(
+                $mdToast.simple()
+                  .textContent('Sem Autorização!')
+                  .position("top right")
+                  .hideDelay(3000)
+              );
             }
           });
         }],
@@ -413,10 +701,23 @@ angular.module('StarterApp', ['md.data.table',
         url: '/modelos/update/{id}',
         templateUrl: 'modelo/_newModelos.html',
         controller: 'ModeloUpdateCtrl',
-        onEnter: ['$state', 'Auth', function($state, Auth) {
+        onEnter: ['$state', '$mdToast', 'Auth', 'APP_PERMISSIONS', 'Authorizer', 
+          function($state, $mdToast, Auth, APP_PERMISSIONS, Authorizer) {
           Auth.currentUser().then(function (user){
             if (!user) {
               $state.go('homePage');  
+            }
+            var authenticator, permissions;
+            permissions = APP_PERMISSIONS.Modelo;
+            authenticator = new Authorizer(user);
+            if (!authenticator.canAccess(permissions)) {
+              $state.go('homePage');  
+              $mdToast.show(
+                $mdToast.simple()
+                  .textContent('Sem Autorização!')
+                  .position("top right")
+                  .hideDelay(3000)
+              );
             }
           });
         }],
@@ -430,10 +731,23 @@ angular.module('StarterApp', ['md.data.table',
         url: '/desenhos',
         templateUrl: 'desenho/_desenhos.html',
         controller: 'DesenhoCtrl',
-        onEnter: ['$state', 'Auth', function($state, Auth) {
+        onEnter: ['$state', '$mdToast', 'Auth', 'APP_PERMISSIONS', 'Authorizer', 
+          function($state, $mdToast, Auth, APP_PERMISSIONS, Authorizer) {
           Auth.currentUser().then(function (user){
             if (!user) {
               $state.go('homePage');  
+            }
+            var authenticator, permissions;
+            permissions = APP_PERMISSIONS.Desenho;
+            authenticator = new Authorizer(user);
+            if (!authenticator.canAccess(permissions)) {
+              $state.go('homePage');  
+              $mdToast.show(
+                $mdToast.simple()
+                  .textContent('Sem Autorização!')
+                  .position("top right")
+                  .hideDelay(3000)
+              );
             }
           });
         }],
@@ -447,10 +761,23 @@ angular.module('StarterApp', ['md.data.table',
         url: '/desenhos/new',
         templateUrl: 'desenho/_newDesenhos.html',
         controller: 'DesenhoNewCtrl',
-        onEnter: ['$state', 'Auth', function($state, Auth) {
+        onEnter: ['$state', '$mdToast', 'Auth', 'APP_PERMISSIONS', 'Authorizer', 
+          function($state, $mdToast, Auth, APP_PERMISSIONS, Authorizer) {
           Auth.currentUser().then(function (user){
             if (!user) {
               $state.go('homePage');  
+            }
+            var authenticator, permissions;
+            permissions = APP_PERMISSIONS.Desenho;
+            authenticator = new Authorizer(user);
+            if (!authenticator.canAccess(permissions)) {
+              $state.go('homePage');  
+              $mdToast.show(
+                $mdToast.simple()
+                  .textContent('Sem Autorização!')
+                  .position("top right")
+                  .hideDelay(3000)
+              );
             }
           });
         }],
@@ -470,10 +797,23 @@ angular.module('StarterApp', ['md.data.table',
         url: '/desenhos/{id}',
         templateUrl: 'desenho/_showDesenhos.html',
         controller: 'DesenhoShowCtrl',
-        onEnter: ['$state', 'Auth', function($state, Auth) {
+        onEnter: ['$state', '$mdToast', 'Auth', 'APP_PERMISSIONS', 'Authorizer', 
+          function($state, $mdToast, Auth, APP_PERMISSIONS, Authorizer) {
           Auth.currentUser().then(function (user){
             if (!user) {
               $state.go('homePage');  
+            }
+            var authenticator, permissions;
+            permissions = APP_PERMISSIONS.Desenho;
+            authenticator = new Authorizer(user);
+            if (!authenticator.canAccess(permissions)) {
+              $state.go('homePage');  
+              $mdToast.show(
+                $mdToast.simple()
+                  .textContent('Sem Autorização!')
+                  .position("top right")
+                  .hideDelay(3000)
+              );
             }
           });
         }],
@@ -487,10 +827,23 @@ angular.module('StarterApp', ['md.data.table',
         url: '/desenhos/update/{id}',
         templateUrl: 'desenho/_updateDesenhos.html',
         controller: 'DesenhoUpdateCtrl',
-        onEnter: ['$state', 'Auth', function($state, Auth) {
+        onEnter: ['$state', '$mdToast', 'Auth', 'APP_PERMISSIONS', 'Authorizer', 
+          function($state, $mdToast, Auth, APP_PERMISSIONS, Authorizer) {
           Auth.currentUser().then(function (user){
             if (!user) {
               $state.go('homePage');  
+            }
+            var authenticator, permissions;
+            permissions = APP_PERMISSIONS.Desenho;
+            authenticator = new Authorizer(user);
+            if (!authenticator.canAccess(permissions)) {
+              $state.go('homePage');  
+              $mdToast.show(
+                $mdToast.simple()
+                  .textContent('Sem Autorização!')
+                  .position("top right")
+                  .hideDelay(3000)
+              );
             }
           });
         }],
@@ -510,10 +863,23 @@ angular.module('StarterApp', ['md.data.table',
         url: '/folhaprocessos',
         templateUrl: 'folhaprocesso/_folhaprocessos.html',
         controller: 'FolhaprocessoCtrl',
-        onEnter: ['$state', 'Auth', function($state, Auth) {
+        onEnter: ['$state', '$mdToast', 'Auth', 'APP_PERMISSIONS', 'Authorizer', 
+          function($state, $mdToast, Auth, APP_PERMISSIONS, Authorizer) {
           Auth.currentUser().then(function (user){
             if (!user) {
               $state.go('homePage');  
+            }
+            var authenticator, permissions;
+            permissions = APP_PERMISSIONS.FolhaProcesso;
+            authenticator = new Authorizer(user);
+            if (!authenticator.canAccess(permissions)) {
+              $state.go('homePage');  
+              $mdToast.show(
+                $mdToast.simple()
+                  .textContent('Sem Autorização!')
+                  .position("top right")
+                  .hideDelay(3000)
+              );
             }
           });
         }],
@@ -527,10 +893,23 @@ angular.module('StarterApp', ['md.data.table',
         url: '/folhaprocessos/new',
         templateUrl: 'folhaprocesso/_newFolhaprocessos.html',
         controller: 'FolhaprocessoNewCtrl',
-        onEnter: ['$state', 'Auth', function($state, Auth) {
+        onEnter: ['$state', '$mdToast', 'Auth', 'APP_PERMISSIONS', 'Authorizer', 
+          function($state, $mdToast, Auth, APP_PERMISSIONS, Authorizer) {
           Auth.currentUser().then(function (user){
             if (!user) {
               $state.go('homePage');  
+            }
+            var authenticator, permissions;
+            permissions = APP_PERMISSIONS.FolhaProcesso;
+            authenticator = new Authorizer(user);
+            if (!authenticator.canAccess(permissions)) {
+              $state.go('homePage');  
+              $mdToast.show(
+                $mdToast.simple()
+                  .textContent('Sem Autorização!')
+                  .position("top right")
+                  .hideDelay(3000)
+              );
             }
           });
         }],
@@ -556,10 +935,23 @@ angular.module('StarterApp', ['md.data.table',
         url: '/folhaprocessos/{id}',
         templateUrl: 'folhaprocesso/_showFolhaprocessos.html',
         controller: 'FolhaprocessoShowCtrl',
-        onEnter: ['$state', 'Auth', function($state, Auth) {
+        onEnter: ['$state', '$mdToast', 'Auth', 'APP_PERMISSIONS', 'Authorizer', 
+          function($state, $mdToast, Auth, APP_PERMISSIONS, Authorizer) {
           Auth.currentUser().then(function (user){
             if (!user) {
               $state.go('homePage');  
+            }
+            var authenticator, permissions;
+            permissions = APP_PERMISSIONS.FolhaProcesso;
+            authenticator = new Authorizer(user);
+            if (!authenticator.canAccess(permissions)) {
+              $state.go('homePage');  
+              $mdToast.show(
+                $mdToast.simple()
+                  .textContent('Sem Autorização!')
+                  .position("top right")
+                  .hideDelay(3000)
+              );
             }
           });
         }],
@@ -573,10 +965,23 @@ angular.module('StarterApp', ['md.data.table',
         url: '/folhaprocessos/rel/{id}',
         templateUrl: 'folhaprocesso/_relFolhaprocessos.html',
         controller: 'FolhaprocessoRelCtrl',
-        onEnter: ['$state', 'Auth', function($state, Auth) {
+        onEnter: ['$state', '$mdToast', 'Auth', 'APP_PERMISSIONS', 'Authorizer', 
+          function($state, $mdToast, Auth, APP_PERMISSIONS, Authorizer) {
           Auth.currentUser().then(function (user){
             if (!user) {
               $state.go('homePage');  
+            }
+            var authenticator, permissions;
+            permissions = APP_PERMISSIONS.FolhaProcesso;
+            authenticator = new Authorizer(user);
+            if (!authenticator.canAccess(permissions)) {
+              $state.go('homePage');  
+              $mdToast.show(
+                $mdToast.simple()
+                  .textContent('Sem Autorização!')
+                  .position("top right")
+                  .hideDelay(3000)
+              );
             }
           });
         }],
@@ -590,10 +995,23 @@ angular.module('StarterApp', ['md.data.table',
         url: '/folhaprocessos/update/{id}',
         templateUrl: 'folhaprocesso/_newFolhaprocessos.html',
         controller: 'FolhaprocessoUpdateCtrl',
-        onEnter: ['$state', 'Auth', function($state, Auth) {
+        onEnter: ['$state', '$mdToast', 'Auth', 'APP_PERMISSIONS', 'Authorizer', 
+          function($state, $mdToast, Auth, APP_PERMISSIONS, Authorizer) {
           Auth.currentUser().then(function (user){
             if (!user) {
               $state.go('homePage');  
+            }
+            var authenticator, permissions;
+            permissions = APP_PERMISSIONS.FolhaProcesso;
+            authenticator = new Authorizer(user);
+            if (!authenticator.canAccess(permissions)) {
+              $state.go('homePage');  
+              $mdToast.show(
+                $mdToast.simple()
+                  .textContent('Sem Autorização!')
+                  .position("top right")
+                  .hideDelay(3000)
+              );
             }
           });
         }],
@@ -617,6 +1035,26 @@ angular.module('StarterApp', ['md.data.table',
       });
       $urlRouterProvider.otherwise("/");
 }])
+.constant('USER_ROLES', {
+  admin: "admin",
+  superadmin: "superadmin",
+  normal: "normal",
+})
+.constant('APP_PERMISSIONS', {
+  Acessorio: "Acessorio",
+  Comando: "Comando",
+  Desenho: "Desenho",
+  Empresa: "Empresa",
+  Fabricante: "Fabricante",
+  FolhaProcesso: "FolhaProcesso",
+  GrupoModelo: "GrupoModelo",
+  Inserto: "Inserto",
+  Modelo: "Modelo",
+  Operacao: "Operacao",
+  Programador: "Programador",
+  Suporte: "Suporte",
+  User: "User",
+})
 //take all whitespace out of string
 .filter('nospace', function () {
   return function (value) {

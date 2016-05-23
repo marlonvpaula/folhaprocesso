@@ -60,6 +60,12 @@ function($scope, $state, $mdSidenav, $timeout, $q, Upload, Auth, empresas){
 	  });
 	  $scope.empresa.nome = '';
     $state.go('home');
+    $mdToast.show(
+      $mdToast.simple()
+        .textContent('Empresa (' + $scope.empresa.nome + ') alterada com sucesso.')
+        .position("top right")
+        .hideDelay(3000)
+    );
   };
 
   $scope.toggleSidenav = function(menuId) {

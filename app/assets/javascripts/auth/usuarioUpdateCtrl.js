@@ -49,6 +49,12 @@ function($scope, $state, $mdSidenav, $timeout, $q, Upload, Auth, users){
 	    username: $scope.usuario.username,
 	  });
     $state.go('home');
+    $mdToast.show(
+      $mdToast.simple()
+        .textContent('Usuário (' + $scope.usuario.username + ') alterado com sucesso.')
+        .position("top right")
+        .hideDelay(3000)
+    );
   };
 
   $scope.salvarSenha = function() {

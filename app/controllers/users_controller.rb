@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!, only: [:index, :show]
   
 	def index
-    respond_with User.all
+    respond_with User.where(empresa_id: current_user.empresa_id)
   end
 
   def create
@@ -21,6 +21,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:username, :email, :password, :image, :empresa_id)
+    params.require(:user).permit(:username, :email, :password, :image, :role, :empresa_id)
   end
 end
