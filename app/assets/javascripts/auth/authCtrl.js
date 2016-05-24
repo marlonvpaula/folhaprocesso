@@ -5,10 +5,11 @@ angular.module('StarterApp.controllers')
             '$mdDialog',
             '$mdSidenav',
             '$mdDialog',
+            '$mdToast',
             'Auth',
             'empresas',
             'users',
-function($scope, $state, $mdDialog, $mdSidenav, $mdDialog, Auth, empresas, users){
+function($scope, $state, $mdDialog, $mdSidenav, $mdDialog, $mdToast, Auth, empresas, users){
   
 	$scope.showHints = true;
   $scope.userRole = 0;
@@ -33,9 +34,9 @@ function($scope, $state, $mdDialog, $mdSidenav, $mdDialog, Auth, empresas, users
     Auth.currentUser().then(function (userLog){
       Auth.register($scope.user).then(function(user){
         user.empresa_id = userLog.empresa_id;
-        if ($scope.userRole = 0) {
+        if ($scope.userRole == 0) {
           user.role = "normal";
-        } else if ($scope.userRole = 1){
+        } else if ($scope.userRole == 1){
           user.role = "admin";
         }
         users.update(user.id, user);
