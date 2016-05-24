@@ -331,6 +331,12 @@ function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, $mdToast, folha
       comandofolhas: $scope.comandsSelected,
       ferramentafolhas: ferramentas,
     });
+    $mdToast.show(
+      $mdToast.simple()
+        .textContent('Folha de Processo (' + $scope.folhaprocesso.nomepeca + ') alterado com sucesso.')
+        .position("top right")
+        .hideDelay(3000)
+    );
     $scope.folhaprocesso.nomepeca = '';
     $state.go('folhaprocessos');
   };

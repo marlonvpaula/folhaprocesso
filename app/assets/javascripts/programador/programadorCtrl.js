@@ -1,12 +1,13 @@
 angular.module('StarterApp.controllers')
 
 .controller('ProgramadorCtrl', ['$scope',
-														 '$state',
-														 '$mdMedia',
-														 '$mdDialog',
-														 '$mdSidenav',
-		                         'programadors',  
-function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, programadors){
+														    '$state',
+														    '$mdMedia',
+														    '$mdDialog',
+														    '$mdSidenav',
+                                '$mdToast',
+		                            'programadors',  
+function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, $mdToast, programadors){
 	$scope.programadors = programadors.programadors;
 
 
@@ -90,6 +91,12 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, programadors){
 		  );
   	}
     $scope.selected = [];
+    $mdToast.show(
+      $mdToast.simple()
+        .textContent('Programador(es) removido(s) com sucesso.')
+        .position("top right")
+        .hideDelay(3000)
+    );
   }
 
 
@@ -100,9 +107,10 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, programadors){
 }])
 .controller('DialogProgrController', ['$scope',
                                       '$mdDialog',
+                                      '$mdToast',
                                       'programadors',
                                       'programador',
-function ($scope, $mdDialog, programadors, programador) {
+function ($scope, $mdDialog, $mdToast, programadors, programador) {
     var update = false;
     if (programador != null) {
       update = true;
@@ -126,11 +134,23 @@ function ($scope, $mdDialog, programadors, programador) {
           id: $scope.programador.id,
           nome: $scope.programador.nome,
         });
+        $mdToast.show(
+          $mdToast.simple()
+            .textContent('Programador (' + $scope.programador.nome + ') alterado com sucesso.')
+            .position("top right")
+            .hideDelay(3000)
+        );
       }
       else {
         programadors.create({
           nome: $scope.programador.nome,
         });
+        $mdToast.show(
+          $mdToast.simple()
+            .textContent('Programador (' + $scope.programador.nome + ') salvo com sucesso.')
+            .position("top right")
+            .hideDelay(3000)
+        );
       }
       $scope.programador.nome = '';
       $mdDialog.hide();

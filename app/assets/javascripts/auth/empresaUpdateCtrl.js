@@ -4,11 +4,12 @@ angular.module('StarterApp.controllers')
 															    '$state',
 															    '$mdSidenav', 
                                   '$timeout', 
+                                  '$mdToast',
                                   '$q',
                                   'Upload',
                                   'Auth',
 			                            'empresas',
-function($scope, $state, $mdSidenav, $timeout, $q, Upload, Auth, empresas){
+function($scope, $state, $mdSidenav, $timeout, $mdToast, $q, Upload, Auth, empresas){
 
   //$scope.uploader = new FileUploader();
 
@@ -58,7 +59,6 @@ function($scope, $state, $mdSidenav, $timeout, $q, Upload, Auth, empresas){
       cep: $scope.empresa.cep,
       telefone: $scope.empresa.telefone,
 	  });
-	  $scope.empresa.nome = '';
     $state.go('home');
     $mdToast.show(
       $mdToast.simple()
@@ -66,6 +66,7 @@ function($scope, $state, $mdSidenav, $timeout, $q, Upload, Auth, empresas){
         .position("top right")
         .hideDelay(3000)
     );
+    $scope.empresa.nome = '';
   };
 
   $scope.toggleSidenav = function(menuId) {

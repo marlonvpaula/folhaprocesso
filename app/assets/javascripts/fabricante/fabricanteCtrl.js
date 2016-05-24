@@ -5,8 +5,9 @@ angular.module('StarterApp.controllers')
 															 '$mdMedia',
 															 '$mdDialog',
 															 '$mdSidenav',
+                               '$mdToast',
 			                         'fabricantes',  
-function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, fabricantes){
+function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, $mdToast, fabricantes){
 	$scope.fabricantes = fabricantes.fabricantes;
 
   $scope.selected = [];
@@ -94,6 +95,12 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, fabricantes){
 		  );
   	}
     $scope.selected = [];
+    $mdToast.show(
+      $mdToast.simple()
+        .textContent('Fabricante(s) removido(s) com sucesso.')
+        .position("top right")
+        .hideDelay(3000)
+    );
   }
 
 
@@ -121,9 +128,10 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, fabricantes){
 }])
 .controller('DialogFabriController', ['$scope',
                                       '$mdDialog',
+                                      '$mdToast',
                                       'fabricantes',
                                       'fabricante',
-function ($scope, $mdDialog, fabricantes, fabricante) {
+function ($scope, $mdDialog, $mdToast, fabricantes, fabricante) {
     var update = false;
     if (fabricante != null) {
       update = true;
@@ -147,11 +155,23 @@ function ($scope, $mdDialog, fabricantes, fabricante) {
           id: $scope.fabricante.id,
           descricao: $scope.fabricante.descricao,
         });
+        $mdToast.show(
+          $mdToast.simple()
+            .textContent('Fabricante (' + $scope.fabricante.descricao + ') alterado com sucesso.')
+            .position("top right")
+            .hideDelay(3000)
+        );
       }
       else {
         fabricantes.create({
           descricao: $scope.fabricante.descricao,
         });
+        $mdToast.show(
+          $mdToast.simple()
+            .textContent('Fabricante (' + $scope.fabricante.descricao + ') salvo com sucesso.')
+            .position("top right")
+            .hideDelay(3000)
+        );
       }
       $scope.fabricante.descricao = '';
       $mdDialog.hide();

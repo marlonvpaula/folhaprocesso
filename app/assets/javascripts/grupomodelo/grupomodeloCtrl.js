@@ -1,12 +1,13 @@
 angular.module('StarterApp.controllers')
 
 .controller('GrupomodeloCtrl', ['$scope',
-														 '$state',
-														 '$mdMedia',
-														 '$mdDialog',
-														 '$mdSidenav',
-		                         'grupomodelos',  
-function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, grupomodelos){
+														    '$state',
+														    '$mdMedia',
+														    '$mdDialog',
+														    '$mdSidenav',
+                                '$mdToast',
+		                            'grupomodelos',  
+function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, $mdToast, grupomodelos){
 	$scope.grupomodelos = grupomodelos.grupomodelos;
 
   
@@ -90,6 +91,12 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, grupomodelos){
 		  );
   	}
     $scope.selected = [];
+    $mdToast.show(
+      $mdToast.simple()
+        .textContent('Grupo de Máquina(s) removido(s) com sucesso.')
+        .position("top right")
+        .hideDelay(3000)
+    );
   }
 
 
@@ -115,9 +122,10 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, grupomodelos){
 }])
 .controller('DialogGrupoController', ['$scope',
                                       '$mdDialog',
+                                      '$mdToast',
                                       'grupomodelos',
                                       'grupomodelo',
-function ($scope, $mdDialog, grupomodelos, grupomodelo) {
+function ($scope, $mdDialog, $mdToast, grupomodelos, grupomodelo) {
     var update = false;
     if (grupomodelo != null) {
       update = true;
@@ -141,11 +149,23 @@ function ($scope, $mdDialog, grupomodelos, grupomodelo) {
           id: $scope.grupomodelo.id,
           descricao: $scope.grupomodelo.descricao,
         });
+        $mdToast.show(
+          $mdToast.simple()
+            .textContent('Grupo de Máquina (' + $scope.grupomodelo.descricao + ') alterado com sucesso.')
+            .position("top right")
+            .hideDelay(3000)
+        );
       }
       else {
         grupomodelos.create({
           descricao: $scope.grupomodelo.descricao,
         });
+        $mdToast.show(
+          $mdToast.simple()
+            .textContent('Grupo de Máquina (' + $scope.grupomodelo.descricao + ') salvo com sucesso.')
+            .position("top right")
+            .hideDelay(3000)
+        );
       }
       $scope.grupomodelo.descricao = '';
       $mdDialog.hide();

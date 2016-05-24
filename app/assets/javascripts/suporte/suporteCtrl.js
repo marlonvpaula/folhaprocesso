@@ -5,8 +5,9 @@ angular.module('StarterApp.controllers')
 														'$mdMedia',
 														'$mdDialog',
 														'$mdSidenav',
+                            '$mdToast',
 		                        'suportes',  
-function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, suportes){
+function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, $mdToast, suportes){
 	$scope.suportes = suportes.suportes;
 
   $scope.selected = [];
@@ -64,6 +65,12 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, suportes){
 		  );
   	}
     $scope.selected = [];
+    $mdToast.show(
+      $mdToast.simple()
+        .textContent('Suporte(s) removido(s) com sucesso.')
+        .position("top right")
+        .hideDelay(3000)
+    );
   }
 
 

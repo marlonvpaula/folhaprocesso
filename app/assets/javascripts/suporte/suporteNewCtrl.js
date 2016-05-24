@@ -5,10 +5,11 @@ angular.module('StarterApp.controllers')
 															 '$mdSidenav', 
                                '$timeout', 
                                '$q',
+                               '$mdToast',
                                'suportes',  
 			                         'insertos',  
 			                         'operacaos',
-function($scope, $state, $mdSidenav, $timeout, $q, suportes, insertos, operacaos){
+function($scope, $state, $mdSidenav, $timeout, $q, $mdToast, suportes, insertos, operacaos){
 	
   $scope.operacaos = operacaos.operacaos;
   $scope.querySearch = querySearch;
@@ -71,6 +72,12 @@ function($scope, $state, $mdSidenav, $timeout, $q, suportes, insertos, operacaos
       operacao_id: $scope.suporte.operacao,
       insertos: $scope.insertsSelected,
 	  });
+    $mdToast.show(
+      $mdToast.simple()
+        .textContent('Suporte (' + $scope.suporte.descricao + ') salvo com sucesso.')
+        .position("top right")
+        .hideDelay(3000)
+    );
     $scope.insertsSelected = [];
 	  $scope.suporte.descricao = '';
     $state.go('suportes');

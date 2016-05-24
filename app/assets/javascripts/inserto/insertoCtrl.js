@@ -1,12 +1,13 @@
 angular.module('StarterApp.controllers')
 
 .controller('InsertoCtrl', ['$scope',
-														 '$state',
-														 '$mdMedia',
-														 '$mdDialog',
-														 '$mdSidenav',
-		                         'insertos',  
-function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, insertos){
+														'$state',
+														'$mdMedia',
+														'$mdDialog',
+														'$mdSidenav',
+                            '$mdToast',
+		                        'insertos',  
+function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, $mdToast, insertos){
 	$scope.insertos = insertos.insertos;
   
 
@@ -66,6 +67,12 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, insertos){
 		  );
   	}
     $scope.selected = [];
+    $mdToast.show(
+      $mdToast.simple()
+        .textContent('Inserto(s) removido(s) com sucesso.')
+        .position("top right")
+        .hideDelay(3000)
+    );
   }
 
 

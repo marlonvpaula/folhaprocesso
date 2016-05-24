@@ -6,11 +6,12 @@ angular.module('StarterApp.controllers')
 															 '$mdSidenav', 
                                '$timeout', 
                                '$q',
+                               '$mdToast',
                                'Upload',
                                'desenhos',
 			                         'grupomodelos',
                                'modelos',
-function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, Upload, desenhos, grupomodelos, modelos){
+function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, $mdToast, Upload, desenhos, grupomodelos, modelos){
   $scope.grupomodelos = grupomodelos.grupomodelos;
   $scope.modelos = modelos.modelos;
 
@@ -94,6 +95,12 @@ function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, Upload, desenho
       modelo_id: $scope.desenho.modelo,
       grupomodelo_id: $scope.desenho.grupomodelo,
 	  });
+    $mdToast.show(
+      $mdToast.simple()
+        .textContent('Desenho (' + $scope.desenho.titulo + ') salvo com sucesso.')
+        .position("top right")
+        .hideDelay(3000)
+    );
 	  $scope.desenho.titulo = '';
     $state.go('desenhos');
   };

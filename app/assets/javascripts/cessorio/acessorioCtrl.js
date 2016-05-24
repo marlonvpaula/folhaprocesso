@@ -1,12 +1,13 @@
 angular.module('StarterApp.controllers')
 
 .controller('AcessorioCtrl', ['$scope',
-														 '$state',
-														 '$mdMedia',
-														 '$mdDialog',
-														 '$mdSidenav',
-		                         'acessorios',  
-function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, acessorios){
+														  '$state',
+														  '$mdMedia',
+														  '$mdDialog',
+														  '$mdSidenav',
+                              '$mdToast',
+		                          'acessorios',  
+function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, $mdToast, acessorios){
 	$scope.acessorios = acessorios.acessorios;
 
 
@@ -83,6 +84,12 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, acessorios){
 		  );
   	}
     $scope.selected = [];
+    $mdToast.show(
+      $mdToast.simple()
+        .textContent('Acessório(s) removido(s) com sucesso.')
+        .position("top right")
+        .hideDelay(3000)
+    );
   }
 
   $scope.editar = function (id, ev) {
@@ -116,9 +123,10 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, acessorios){
 }])
 .controller('DialogAcessController', ['$scope',
                                       '$mdDialog',
+                                      '$mdToast',
                                       'acessorios',
                                       'acessorio',
-function ($scope, $mdDialog, acessorios, acessorio) {
+function ($scope, $mdDialog, $mdToast, acessorios, acessorio) {
     var update = false;
     if (acessorio != null) {
       update = true;
@@ -142,11 +150,23 @@ function ($scope, $mdDialog, acessorios, acessorio) {
           id: $scope.acessorio.id,
           descricao: $scope.acessorio.descricao,
         });
+        $mdToast.show(
+          $mdToast.simple()
+            .textContent('Acessório (' + $scope.acessorio.descricao + ') alterado com sucesso.')
+            .position("top right")
+            .hideDelay(3000)
+        );
       }
       else {
         acessorios.create({
           descricao: $scope.acessorio.descricao,
         });
+        $mdToast.show(
+          $mdToast.simple()
+            .textContent('Acessório (' + $scope.acessorio.descricao + ') salvo com sucesso.')
+            .position("top right")
+            .hideDelay(3000)
+        );
       }
       $scope.acessorio.descricao = '';
       $mdDialog.hide();

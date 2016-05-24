@@ -6,9 +6,10 @@ angular.module('StarterApp.controllers')
 															 '$mdSidenav', 
                                '$timeout', 
                                '$q',
+                               '$mdToast',
 			                         'insertos',  
 			                         'fabricantes',
-function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, insertos,fabricantes){
+function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, $mdToast, insertos,fabricantes){
 
 
 
@@ -72,6 +73,12 @@ function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, insertos,fabric
       raio: $scope.inserto.raio,
       fabricantes: $scope.fabricsSelected,
 	  });
+    $mdToast.show(
+      $mdToast.simple()
+        .textContent('Inserto (' + $scope.inserto.descricao + ') salvo com sucesso.')
+        .position("top right")
+        .hideDelay(3000)
+    );
     $scope.fabricsSelected = [];
 	  $scope.inserto.descricao = '';
     $state.go('insertos');

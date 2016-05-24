@@ -5,8 +5,9 @@ angular.module('StarterApp.controllers')
 														 '$mdMedia',
 														 '$mdDialog',
 														 '$mdSidenav',
+                             '$mdToast',
 		                         'desenhos',  
-function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, desenhos){
+function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, $mdToast, desenhos){
 	$scope.desenhos = desenhos.desenhos;
   
   
@@ -66,6 +67,12 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, desenhos){
 		  );
   	}
     $scope.selected = [];
+    $mdToast.show(
+      $mdToast.simple()
+        .textContent('Desenho(s) removido(s) com sucesso.')
+        .position("top right")
+        .hideDelay(3000)
+    );
   }
 
 

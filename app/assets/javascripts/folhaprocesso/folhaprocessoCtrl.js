@@ -5,8 +5,9 @@ angular.module('StarterApp.controllers')
       														'$mdMedia',
       														'$mdDialog',
       														'$mdSidenav',
+                                  '$mdToast',
       		                        'folhaprocessos',  
-function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, folhaprocessos){
+function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, $mdToast, folhaprocessos){
 	$scope.folhaprocessos = folhaprocessos.folhaprocessos;
   
   $scope.selected = [];
@@ -359,6 +360,12 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, folhaprocessos){
 		  );
   	}
     $scope.selected = [];
+    $mdToast.show(
+      $mdToast.simple()
+        .textContent('Folha de Processo(s) removido(s) com sucesso.')
+        .position("top right")
+        .hideDelay(3000)
+    );
   };
 
   $scope.toggleSidenav = function(menuId) {

@@ -1,14 +1,15 @@
 angular.module('StarterApp.controllers')
 
 .controller('InsertoUpdateCtrl', ['$scope',
-															 '$state',
-                               '$stateParams',
-															 '$mdSidenav', 
-                               '$timeout', 
-                               '$q',
-			                         'insertos',
-			                         'fabricantes',
-function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, insertos, fabricantes){
+															    '$state',
+                                  '$stateParams',
+															    '$mdSidenav', 
+                                  '$timeout', 
+                                  '$q',
+                                  '$mdToast',
+			                            'insertos',
+			                            'fabricantes',
+function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, $mdToast, insertos, fabricantes){
 
 	insertos.get($stateParams.id).then(function(inserto){
 		$scope.fabricsSelected = [];
@@ -85,6 +86,12 @@ function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, insertos, fabri
       raio: $scope.inserto.raio,
       fabricantes: $scope.fabricsSelected,
 	  });
+    $mdToast.show(
+      $mdToast.simple()
+        .textContent('Inserto (' + $scope.inserto.descricao + ') alterado com sucesso.')
+        .position("top right")
+        .hideDelay(3000)
+    );
     $scope.fabricsSelected = [];
 	  $scope.inserto.descricao = '';
     $state.go('insertos');

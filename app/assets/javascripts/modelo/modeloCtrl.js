@@ -5,8 +5,9 @@ angular.module('StarterApp.controllers')
 														'$mdMedia',
 														'$mdDialog',
 														'$mdSidenav',
+                            '$mdToast',
 		                        'modelos',  
-function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, modelos){
+function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, $mdToast, modelos){
 	$scope.modelos = modelos.modelos;
 
   
@@ -27,8 +28,8 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, modelos){
   $scope.delete = function(ev) {
     // Appending dialog to document.body to cover sidenav in docs app
     var confirm = $mdDialog.confirm()
-          .title('Você tem certeza que deseja remover a(s) ' + $scope.selected.length + ' Maquina(s) selecionada(s)?')
-          .textContent('A(s) maquina(s) será(am) removida(s) permanentemente do sistema.')
+          .title('Você tem certeza que deseja remover a(s) ' + $scope.selected.length + ' Máquina(s) selecionada(s)?')
+          .textContent('A(s) máquina(s) será(am) removida(s) permanentemente do sistema.')
           .ariaLabel('Lucky day')
           .targetEvent(ev)
           .ok('Remover')
@@ -65,6 +66,12 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, modelos){
 		  );
   	}
     $scope.selected = [];
+    $mdToast.show(
+      $mdToast.simple()
+        .textContent('Máquina(s) removido(s) com sucesso.')
+        .position("top right")
+        .hideDelay(3000)
+    );
   }
 
 

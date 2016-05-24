@@ -5,8 +5,9 @@ angular.module('StarterApp.controllers')
 														 '$mdMedia',
 														 '$mdDialog',
 														 '$mdSidenav',
+                             '$mdToast',
 		                         'operacaos',  
-function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, operacaos){
+function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, $mdToast, operacaos){
 	$scope.operacaos = operacaos.operacaos;
 
 
@@ -82,6 +83,12 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, operacaos){
 		  );
   	}
     $scope.selected = [];
+    $mdToast.show(
+      $mdToast.simple()
+        .textContent('Operação(s) removido(s) com sucesso.')
+        .position("top right")
+        .hideDelay(3000)
+    );
   }
 
   $scope.editar = function (id, ev) {
@@ -115,9 +122,10 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, operacaos){
 }])
 .controller('DialogOperaController', ['$scope',
                                       '$mdDialog',
+                                      '$mdToast',
                                       'operacaos',
                                       'operacao',
-function ($scope, $mdDialog, operacaos, operacao) {
+function ($scope, $mdDialog, $mdToast, operacaos, operacao) {
     var update = false;
     if (operacao != null) {
       update = true;
@@ -141,12 +149,24 @@ function ($scope, $mdDialog, operacaos, operacao) {
           id: $scope.operacao.id,
           descricao: $scope.operacao.descricao,
         });
+        $mdToast.show(
+          $mdToast.simple()
+            .textContent('Operação (' + $scope.operacao.descricao + ') alterado com sucesso.')
+            .position("top right")
+            .hideDelay(3000)
+        );
       }
       else {
         operacaos.create({
           descricao: $scope.operacao.descricao,
         });
       }
+      $mdToast.show(
+        $mdToast.simple()
+          .textContent('Operação (' + $scope.operacao.descricao + ') salvo com sucesso.')
+          .position("top right")
+          .hideDelay(3000)
+      );
       $scope.operacao.descricao = '';
       $mdDialog.hide();
     };

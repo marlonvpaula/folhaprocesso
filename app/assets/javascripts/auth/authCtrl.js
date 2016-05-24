@@ -1,13 +1,14 @@
 angular.module('StarterApp.controllers')
 .controller('AuthCtrl', [
-'$scope',
-'$state',
-'$mdDialog',
-'$mdSidenav',
-'Auth',
-'empresas',
-'users',
-function($scope, $state, $mdDialog, $mdSidenav, Auth, empresas, users){
+            '$scope',
+            '$state',
+            '$mdDialog',
+            '$mdSidenav',
+            '$mdDialog',
+            'Auth',
+            'empresas',
+            'users',
+function($scope, $state, $mdDialog, $mdSidenav, $mdDialog, Auth, empresas, users){
   
 	$scope.showHints = true;
   $scope.userRole = 0;

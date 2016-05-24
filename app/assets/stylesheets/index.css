@@ -43,6 +43,26 @@ a:focus {
   color: #fff;
 }
 
+.circle {
+  width:160px;
+  height:160px;
+  box-shadow: 3px 3px 6px #333333; 
+  border-radius:50%;
+  /*position: fixed;
+  bottom: 10px;
+  right: 10px;*/
+  -webkit-transition:all 0.2s linear;
+  -moz-transition:all 0.2s linear;
+  -ms-transition:all 0.2s linear;
+  transition:all 0.2s linear;
+}
+.circle p {
+  margin: 0;
+  padding: 0;
+  font-size: 40px;
+  font-weight: bold;
+}
+
 
 .md-sidenav-left {
   background-color: #0277BD;

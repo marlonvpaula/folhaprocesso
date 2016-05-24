@@ -1,14 +1,15 @@
 angular.module('StarterApp.controllers')
 
 .controller('ModeloUpdateCtrl', ['$scope',
-															 '$state',
-															 '$stateParams',
-															 '$mdSidenav', 
-                               '$timeout', 
-                               '$q',
-                               'modelos',  
-			                         'grupomodelos',
-function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, modelos, grupomodelos){
+															   '$state',
+															   '$stateParams',
+															   '$mdSidenav', 
+                                 '$timeout', 
+                                 '$q',
+                                 '$mdToast',
+                                 'modelos',  
+			                           'grupomodelos',
+function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, $mdToast, modelos, grupomodelos){
 	
 	modelos.get($stateParams.id).then(function(modelo){
 		$scope.modelo = modelo;
@@ -27,6 +28,12 @@ function($scope, $state, $stateParams, $mdSidenav, $timeout, $q, modelos, grupom
       descricao: $scope.modelo.descricao,
       grupomodelo_id: $scope.modelo.grupomodelo,
     });
+    $mdToast.show(
+      $mdToast.simple()
+        .textContent('Máquina (' + $scope.modelo.descricao + ') alterado com sucesso.')
+        .position("top right")
+        .hideDelay(3000)
+    );
     $scope.modelo.descricao = '';
     $state.go('modelos');
   };

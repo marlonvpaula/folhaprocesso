@@ -5,8 +5,9 @@ angular.module('StarterApp.controllers')
 														 '$mdMedia',
 														 '$mdDialog',
 														 '$mdSidenav',
+                             '$mdToast',
 		                         'comandos',  
-function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, comandos){
+function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, $mdToast, comandos){
 	$scope.comandos = comandos.comandos;
 
 
@@ -83,6 +84,12 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, comandos){
 		  );
   	}
     $scope.selected = [];
+    $mdToast.show(
+      $mdToast.simple()
+        .textContent('Comando(s) removido(s) com sucesso.')
+        .position("top right")
+        .hideDelay(3000)
+    );
   }
 
   $scope.editar = function (id, ev) {
@@ -114,9 +121,10 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, comandos){
 }])
 .controller('DialogComanController', ['$scope',
                                       '$mdDialog',
+                                      '$mdToast',
                                       'comandos',
                                       'comando',
-function ($scope, $mdDialog, comandos, comando) {
+function ($scope, $mdDialog, $mdToast, comandos, comando) {
     var update = false;
     if (comando != null) {
       update = true;
@@ -140,11 +148,23 @@ function ($scope, $mdDialog, comandos, comando) {
           id: $scope.comando.id,
           descricao: $scope.comando.descricao,
         });
+        $mdToast.show(
+          $mdToast.simple()
+            .textContent('Comando (' + $scope.comando.descricao + ') alterado com sucesso.')
+            .position("top right")
+            .hideDelay(3000)
+        );
       }
       else {
         comandos.create({
           descricao: $scope.comando.descricao,
         });
+        $mdToast.show(
+          $mdToast.simple()
+            .textContent('Comando (' + $scope.comando.descricao + ') salvo com sucesso.')
+            .position("top right")
+            .hideDelay(3000)
+        );
       }
       $scope.comando.descricao = '';
       $mdDialog.hide();

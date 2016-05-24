@@ -4,11 +4,12 @@ angular.module('StarterApp.controllers')
 															    '$state',
 															    '$mdSidenav', 
                                   '$timeout', 
+                                  '$mdToast',
                                   '$q',
                                   'Upload',
                                   'Auth',
 			                            'users',
-function($scope, $state, $mdSidenav, $timeout, $q, Upload, Auth, users){
+function($scope, $state, $mdSidenav, $timeout, $mdToast, $q, Upload, Auth, users){
 
   //$scope.uploader = new FileUploader();
 
