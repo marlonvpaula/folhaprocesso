@@ -89,10 +89,10 @@ a:focus {
 
 
 .hero-area {
-  background: url(/assets/foto-index.jpg) no-repeat;
+  background: url(/assets/shutterstock_943735301.jpg) no-repeat;
   background-size: cover;
   background-position: center bottom;
-  color: #fff;
+  color: #1a1a1a;
   overflow: hidden;
   padding: 90px 0;
 }
