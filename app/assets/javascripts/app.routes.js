@@ -52,10 +52,13 @@ angular.module('StarterApp', ['md.data.table',
         templateUrl: 'home/_home.html',
         controller: 'HomeCtrl',
         onEnter: ['$state', 'Auth', function($state, Auth) {
+          console.log('entrou');
           Auth.currentUser().then(function (user){
             if (!user) {
               $state.go('homePage');  
             }
+          }).catch(function (data) {
+            $state.go('homePage');
           });
         }]
       })
