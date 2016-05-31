@@ -108,6 +108,15 @@ a:focus {
 .navbar-inverse {
     border: 0;
 }
+.navbar-fixed-top {
+  padding: 15px 0;
+}
+
+@media (max-width: 480px) {
+    .navbar-fixed-top {
+        padding: 0px 0;
+    }
+}
 
 
 .md-sidenav-left {
@@ -141,17 +150,18 @@ a:focus {
   color: #1a1a1a;
   overflow: hidden;
   padding: 90px 0;
+  font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 .hero-area .sticky-navigation {
   background: transparent;
 }
 .hero-area .contents h1 {
   font-size: 30px;
-  font-weight: 100;
+  font-weight: 700;
 }
 .hero-area .contents p {
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 600;
   text-transform: uppercase;
 }
 .hero-area .contents .btn {
@@ -184,9 +194,8 @@ a:focus {
   -webkit-transform: translate3d(-250px, 0, 0);
   transform: translate3d(-250px, 0, 0);
 }
-.navbar-fixed-top {
-  padding: 15px 0;
-}
+
+
 .affix {
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
