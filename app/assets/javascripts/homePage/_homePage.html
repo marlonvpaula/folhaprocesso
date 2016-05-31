@@ -1,30 +1,83 @@
 <md-content layout="column" flex>
-    <md-toolbar class="md-table-toolbar md-default"  layout="row" scroll>
+    <!--md-toolbar class="md-table-toolbar md-default"  layout="row" scroll>
 
       <div class="md-toolbar-tools android-navigation" >
         <h3 ng-click"homePage()">
           <span class="logo-folha">TorneAgil</span>
         </h3>
         <div flex="" class="flex"></div>
-        <md-button class="mdl-navigation__link">
+        <md-button class="mdl-navigation__link"-->
           <!--md-icon class="material-icons">mail_outline</md-icon-->
-          <span>Contato</span>
+          <!--span>Contato</span>
         </md-button>
-        <md-button class="mdl-navigation__link">
+        <md-button class="mdl-navigation__link"-->
           <!--md-icon class="material-icons">business</md-icon-->
-          <span>Sobre Nós</span>
+          <!--span>Sobre Nós</span>
         </md-button>
-        <md-button class="mdl-navigation__link" ng-click="cadastre($event)">
+        <md-button class="mdl-navigation__link" ng-click="cadastre($event)"-->
           <!--md-icon class="material-icons">lock</md-icon-->
-          Cadastre-se
+          <!-- Cadastre-se
         </md-button>
-        <md-button class="mdl-navigation__link" ng-click="login($event)">
+        <md-button class="mdl-navigation__link" ng-click="login($event)"-->
           <!--md-icon class="material-icons">lock</md-icon-->
-          Acesso ao Sistema
+          <!--Acesso ao Sistema
         </md-button>
       </div>
-    </md-toolbar>
+    </md-toolbar-->
+    
+  <!-- Navigation -->
+  <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header page-scroll">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <h3 ng-click"homePage()">
+                <span class="logo-folha">TorneAgil</span>
+              </h3>
+              <!--<a class="navbar-brand" href="#page-top">Alumaster</a>-->
+          </div>
 
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                  <li class="hidden">
+                      <a href="#page-top"></a>
+                  </li>
+                  <li class="page-scroll">
+                    <md-button class="mdl-navigation__link">
+                      <!--md-icon class="material-icons">mail_outline</md-icon-->
+                      <span>Contato</span>
+                    </md-button>
+                  </li>
+                  <li class="page-scroll">
+                       <md-button class="mdl-navigation__link">
+                        <!--md-icon class="material-icons">business</md-icon-->
+                        <span>Sobre Nós</span>
+                      </md-button>
+                  </li>
+                  <li class="page-scroll">
+                      <md-button class="mdl-navigation__link" ng-click="cadastre($event)">
+                        <!--md-icon class="material-icons">lock</md-icon-->
+                        Cadastre-se
+                      </md-button>
+                  </li>
+                  <li class="page-scroll">
+                    <md-button class="mdl-navigation__link" ng-click="login($event)">
+                      <!--md-icon class="material-icons">lock</md-icon-->
+                      Acesso ao Sistema
+                    </md-button>
+                  </li>
+              </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+  </nav>
 
 
     <div class="content-wrap">
