@@ -39,16 +39,16 @@
             icon: 'photo'
           },
           {
-            name: 'Maquina',
-            state: 'modelos',
-            type: 'link',
-            icon: 'phonelink'
-          },
-          {
-            name: 'Grupo de Maquina',
+            name: 'Grupo de Máquina',
             state: 'grupomodelos',
             type: 'link',
             icon: 'folder'
+          },
+          {
+            name: 'Máquina',
+            state: 'modelos',
+            type: 'link',
+            icon: 'phonelink'
           }]
         });
 

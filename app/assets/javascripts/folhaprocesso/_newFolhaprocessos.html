@@ -15,32 +15,7 @@
     <md-content class="md-padding" layout="column" flex >
       <h2 class="md-title">Nova Folha de Processo</h2>
       <form name="modeloForm" ng-submit="salvar()">
-        <div layout-gt-xs="row">
-          
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Nome da folha</label>
-            <input name="nomepeca" ng-model="folhaprocesso.nomepeca"
-                   required minlength="4" maxlength="100"/>
-          </md-input-container>
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Operação</label>
-            <md-select ng-model="folhaprocesso.operacao">
-              <md-option ng-repeat="ope in operacaos" value="{{ope.id}}">
-                {{ope.descricao}}
-              </md-option>
-            </md-select>
-          </md-input-container>
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Programador</label>
-            <md-select ng-model="folhaprocesso.programador">
-              <md-option ng-repeat="prog in programadors" value="{{prog.id}}">
-                {{prog.nome}}
-              </md-option>
-            </md-select>
-          </md-input-container>
-          <md-datepicker class="md-block" ng-model="folhaprocesso.dtProjeto" md-placeholder="Data do projeto" flex-gt-sm>
-          </md-datepicker>
-        </div>
+        
         <div layout-gt-xs="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Numero do desenho</label>
@@ -65,6 +40,27 @@
                    ng-disabled="true"/>
           </md-input-container>
         </div>
+        <div layout-gt-xs="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Operação</label>
+            <md-select ng-model="folhaprocesso.operacao">
+              <md-option ng-repeat="ope in operacaos" value="{{ope.id}}">
+                {{ope.descricao}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Programador</label>
+            <md-select ng-model="folhaprocesso.programador">
+              <md-option ng-repeat="prog in programadors" value="{{prog.id}}">
+                {{prog.nome}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <md-datepicker class="md-block" ng-model="folhaprocesso.dtProjeto" md-placeholder="Data do projeto" flex-gt-sm>
+          </md-datepicker>
+        </div>
+
         <div layout-gt-xs="row">
           <md-chips ng-model="acessorsSelected" md-autocomplete-snap
                   md-transform-chip="transformChip($chip)"
@@ -106,6 +102,15 @@
             <div class="hint">##:##:##</div>
           </md-input-container>
         </div>
+        <div layout-gt-xs="row">
+          
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Descrição da Materia Prima</label>
+            <input name="nomepeca" ng-model="folhaprocesso.nomepeca"
+                   required minlength="4" maxlength="100"/>
+          </md-input-container>
+        </div>
+        
         <div layout-gt-xs="row">
           <h2 class="md-title">Adicionar Ferramentas</h2>
         </div>
