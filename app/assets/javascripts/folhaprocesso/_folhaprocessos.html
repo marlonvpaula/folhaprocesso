@@ -80,7 +80,8 @@
             <thead md-head md-order="query.order">
               <tr md-row>
                 <th md-column md-numeric md-order-by="id"><span>Id</span></th>
-                <th md-column md-order-by="nomepeca"><span>Nome Peça</span></th>
+                <th md-column md-order-by="desenho.codigo"><span>Código Desenho</span></th>
+                <th md-column md-order-by="nomepeca"><span>Descrição da Materia Prima</span></th>
                 <th md-column md-order-by="dtProjeto"><span>Data</span></th>
                 <th md-column><span>Ações</span></th>
               </tr>
@@ -89,6 +90,7 @@
             <tbody md-body>
               <tr md-row md-select="folhaprocesso" ng-repeat="folhaprocesso in folhaprocessos | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
                 <td md-cell>{{ folhaprocesso.id }}</td>
+                <td md-cell>{{ folhaprocesso.desenho.codigo }}</td>
                 <td md-cell>{{ folhaprocesso.nomepeca }}</td>
                 <td md-cell>{{ folhaprocesso.dtProjeto }}</td>
                 <td md-cell>
