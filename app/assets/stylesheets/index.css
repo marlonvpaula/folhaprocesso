@@ -86,6 +86,9 @@ a:focus {
         font-size: 1.5em;
     }
 }
+.navbar-header h3 {
+  margin-top: 10px;
+}
 
 .navbar {
     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -144,12 +147,13 @@ a:focus {
 
 
 .hero-area {
-  background: url(/assets/shutterstock_943735301.jpg) no-repeat;
+  background: url(/assets/desktop.jpg) no-repeat;
   background-size: cover;
   background-position: center bottom;
   color: #1a1a1a;
   overflow: hidden;
   padding: 90px 0;
+  margin-top: 50px;
   font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 .hero-area .sticky-navigation {
