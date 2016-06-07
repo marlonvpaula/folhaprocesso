@@ -2,6 +2,8 @@ angular.module('StarterApp.controllers')
 
 .controller('FolhaprocessoNewCtrl', ['$scope',
       															 '$state',
+                                     '$mdMedia',
+                                     '$mdDialog',
       															 '$mdSidenav', 
                                      '$timeout', 
                                      '$q',
@@ -14,7 +16,7 @@ angular.module('StarterApp.controllers')
                                      'programadors',
                                      'acessorios',   
                                      'comandos',
-function($scope, $state, $mdSidenav, $timeout, $q, $mdToast, folhaprocessos, suportes, insertos, operacaos, desenhos, programadors, acessorios, comandos){
+function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, $timeout, $q, $mdToast, folhaprocessos, suportes, insertos, operacaos, desenhos, programadors, acessorios, comandos){
 	
   $scope.operacaos = operacaos.operacaos;
   $scope.programadors = programadors.programadors;
@@ -319,6 +321,91 @@ function($scope, $state, $mdSidenav, $timeout, $q, $mdToast, folhaprocessos, sup
   $scope.toggleSidenav = function(menuId) {
     $mdSidenav(menuId).toggle();
   };
+
+  $scope.mostrarImagem = function (ev) {
+    showImage(ev);
+  }
+
+  function showImage(ev) {
+    //var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+    $mdDialog.show({
+      controller: 'DialogImageController',
+      templateUrl: 'folhaprocesso/_imageFolhaprocesso.html',
+      parent: angular.element(document.body),
+      locals: {
+        desenho: $scope.folhaprocesso.desenho
+      },
+      targetEvent: ev,
+      onRemoving: onCloseDialog,
+      clickOutsideToClose:true
+      //fullscreen: useFullScreen
+    })
+    .then(function(answer) {
+      $scope.status = 'You said the information was "' + answer + '".';
+      
+    }, function() {
+      $scope.status = 'You cancelled the dialog.';
+    });
+    $scope.$watch(function() {
+      return $mdMedia('xs') || $mdMedia('sm');
+    }, function(wantsFullScreen) {
+      $scope.customFullscreen = (wantsFullScreen === true);
+    });
+
+    function onCloseDialog(scope, element, options) {
+      desenhos.get($scope.folhaprocesso.desenho.id).then(function(desenho){
+        $scope.folhaprocesso.desenho = desenho;
+      });
+    }
+  };
   
 
+}])
+.controller('DialogImageController', ['$scope',
+                                      '$mdDialog',
+                                      '$mdToast',
+                                      'Upload',
+                                      'desenhos',
+                                      'desenho',
+function ($scope, $mdDialog, $mdToast, Upload, desenhos, desenho) {
+    $scope.desenho = desenho;
+    
+    $scope.hide = function() {
+      $mdDialog.hide();
+    };
+    $scope.cancel = function() {
+      $mdDialog.cancel();
+    };
+    
+    $scope.upload = function (file) {
+      Upload.upload({
+        url: 'desenhos/' + $scope.desenho.id + '.json',
+        method: 'PUT',
+        headers: { 'Content-Type': false },
+        fields: {
+          'desenho[titulo]': $scope.desenho.titulo,
+          'desenho[picture]': file
+        },
+        file: file,
+        sendFieldsAs: 'json'
+      }).then(function (resp) {
+        console.log('Success ' + resp.config.file.name + 'uploaded. Response: ' + resp.data);
+        desenhos.get($scope.desenho.id).then(function(desenho){
+          $scope.desenho = desenho;
+          $scope.desenho.modelo = desenho.modelo.id;
+          $scope.desenho.grupomodelo = desenho.grupomodelo.id;
+        });
+      }, function (resp) {
+        console.log('Error status: ' + resp.status);
+        desenhos.get($scope.desenho.id).then(function(desenho){
+          $scope.desenho = desenho;
+          $scope.desenho.modelo = desenho.modelo.id;
+          $scope.desenho.grupomodelo = desenho.grupomodelo.id;
+        });
+      }, function (evt) {
+        $scope.progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+
+        console.log('progress: ' + $scope.progressPercentage + '% ' + evt.config.file.name);
+      });
+    };
 }]);

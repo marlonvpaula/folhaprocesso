@@ -39,6 +39,12 @@
             <input name="descricaoDesenho" ng-model="folhaprocesso.desenho.grupomodelo.descricao"
                    ng-disabled="true"/>
           </md-input-container>
+          <md-button class="md-fab md-mini md-primary" ng-click="mostrarImagem($event)" aria-label="Imagem Desenho" ng-disabled="!folhaprocesso.desenho.titulo">
+            <md-icon class="material-icons">photo</md-icon>
+            <md-tooltip md-visible="demo.showTooltip" md-direction="top">
+              Imagem Desenho
+            </md-tooltip>
+          </md-button>
         </div>
         <div layout-gt-xs="row">
           <md-input-container class="md-block" flex-gt-sm>

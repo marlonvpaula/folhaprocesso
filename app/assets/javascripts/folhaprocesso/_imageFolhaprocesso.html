@@ -1,0 +1,33 @@
+<md-dialog aria-label="Imagem Desenho"  ng-cloak>
+  <form name="imagemDesenhoForm">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Imagem Desenho</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon class="material-icons">close</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <div class="md-padding">
+	    <div layout-gt-xs="row">
+	      <img ng-src="{{ desenho.picture.url }}" style="width: 300px; height: 200px">
+	    </div>
+		  
+	    <form name="desenhoForm">
+				<div layout-gt-xs="row">    
+		      <input id="file-input" type="file" ngf-select="upload($file)" ng-model="image" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" ngf-min-height="100">
+				</div>    
+		    <md-progress-linear md-mode="determinate" value="{{progressPercentage}}"></md-progress-linear>
+		  </form>
+		
+	  </div>
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button class="md-raised md-warn" ng-click="cancel()">
+        Fechar
+      </md-button>
+    </md-dialog-actions>
+
+  </form>
+</md-dialog>
