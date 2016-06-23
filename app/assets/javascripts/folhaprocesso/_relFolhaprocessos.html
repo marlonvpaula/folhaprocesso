@@ -19,6 +19,10 @@
 	  border: 1px solid black;
 	}
 
+	p {
+		margin: 0;
+	}
+
 	.tdTitulo {
 		background-color: rgb(217, 217, 217);
 		height: 20px;
@@ -36,6 +40,7 @@
 	.dados {
 		text-align:right;
 	}
+
 
 </style>
 
@@ -57,9 +62,9 @@
 				<td class="tdTitulo"> Título do desenho </td>
 				<td class="dados"> {{ folhaprocesso.desenho.titulo }} </td>
 				<td rowspan=3 style="vertical-align: top;">
-					<label ng-repeat="comando in folhaprocesso.comandofolhas">
-						{{comando.comando.descricao}} <br> 
-					</label>
+					<p ng-repeat="comando in folhaprocesso.comandofolhas">
+						{{comando.comando.descricao}}
+					</p>
 			  </td>
 			</tr>
 			<tr>
@@ -82,13 +87,19 @@
 	<table>
 		<tbody>
 			<tr>
-				<td rowspan=2 style="width: 180px;"> <img src="{{folhaprocesso.desenho.picture.url}}" style="width: 180px; height: 150px;"> </td>
+				<td rowspan=2 style="width: 220px;"> <img src="{{folhaprocesso.desenho.picture.url}}" style="width: 220px; height: 220px;"> </td>
 				<td class="tdTitulo"> Descrição do Material</td>
 				<td class="tdTitulo"> Instrumento de Medição, fixação e outros </td>
 			</tr>
 			<tr>
-				<td style="vertical-align: top;"> {{folhaprocesso.nomepeca}}</td>
-				<td style="vertical-align: top;"> <label ng-repeat="acessorio in folhaprocesso.acessoriofolhas">{{acessorio.acessorio.descricao}} <br> </label> </td>
+				<td style="vertical-align: top;"> 
+					{{folhaprocesso.nomepeca}}
+				</td>
+				<td style="vertical-align: top;"> 
+					<p ng-repeat="acessorio in folhaprocesso.acessoriofolhas">
+						{{acessorio.acessorio.descricao}} 
+				  </p> 
+			  </td>
 			</tr>
 		</tbody>	
 	</table>
