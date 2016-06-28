@@ -14,7 +14,7 @@
     <md-card>
       <md-toolbar class="md-table-toolbar md-default" ng-show="!filter.show && !selected.length">
         <div class="md-toolbar-tools">
-          <span>Folha de Processos - {{ folhaprocesso.nomepeca }}</span>
+          <span>Folha de Processos - {{ folhaprocesso.desenho.codigo }}</span>
           <div flex="" class="flex"></div>
 
           <md-button class="md-fab md-mini md-primary" ng-click="imprimir(folhaprocesso.id)" aria-label="print">
@@ -70,7 +70,14 @@
           </md-chip>
         </md-chips>
       </div>
-      
+
+      <div layout-gt-xs="row">
+        <h2 class="md-title">Descrição do Material</h2>
+      </div>
+      <div layout-gt-xs="row">
+        <h4 style="text-transform: uppercase;"> {{ folhaprocesso.nomepeca }}</h4>
+      </div>
+
       <div layout-gt-xs="row">
         <h2 class="md-title">Ferramentas</h2>
       </div>

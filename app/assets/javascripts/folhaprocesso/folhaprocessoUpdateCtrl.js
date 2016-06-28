@@ -18,7 +18,7 @@ angular.module('StarterApp.controllers')
                                         'acessorios',   
                                         'comandos',
 function($scope, $state, $mdMedia, $mdDialog, $stateParams, $mdSidenav, $timeout, $q, $mdToast, folhaprocessos, suportes, insertos, operacaos, desenhos, programadors, acessorios, comandos){
-  
+  $scope.update = true;
   $scope.operacaos = operacaos.operacaos;
   $scope.programadors = programadors.programadors;
   $scope.suportes = suportes.suportes;

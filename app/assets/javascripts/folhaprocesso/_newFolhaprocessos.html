@@ -20,7 +20,7 @@
           <md-input-container class="md-block" flex-gt-sm>
             <label>Numero do desenho</label>
             <input name="codigoDesenho" ng-model="folhaprocesso.desenho.codigo" ng-change="updateDesenho()" ui-mask="999.999.999" model-view-value="true" 
-                    ng-pattern="/^[0-9]{3}.[0-9]{3}.[0-9]{3}$/" required/>
+                    ng-pattern="/^[0-9]{3}.[0-9]{3}.[0-9]{3}$/" required ng-disabled="update"/>
             <div class="hint">###.###.###</div>
           </md-input-container>
           <md-input-container class="md-block" flex-gt-sm>
