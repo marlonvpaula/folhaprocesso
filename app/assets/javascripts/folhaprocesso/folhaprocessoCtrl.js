@@ -20,7 +20,7 @@ function($scope, $state, $mdMedia, $mdDialog, $mdSidenav, $mdToast, folhaprocess
 
   $scope.query = {
     order: 'id',
-    limit: 15,
+    limit: 10,
     page: 1
   };
 
