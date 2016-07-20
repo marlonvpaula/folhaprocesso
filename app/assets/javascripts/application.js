@@ -10,6 +10,9 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require d3/d3
+//= require underscore/underscore
+
 //= require angular
 //= require angular-devise
 //= require angular-ui-router
