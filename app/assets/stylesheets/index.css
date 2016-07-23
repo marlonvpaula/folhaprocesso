@@ -523,10 +523,10 @@ a:focus {
 }
 
 
-.side-menu menu-toggle span{
+/*.side-menu menu-toggle span{
   padding-top: 12px;
   padding-bottom: 12px;
-}
+}*/
 
 md-content.autocomplete {
   min-height: 200px; }
